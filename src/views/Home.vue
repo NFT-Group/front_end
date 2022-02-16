@@ -31,6 +31,7 @@
 
   import * as d3 from 'd3'
   import * as firebase from 'firebase/app'
+  import * as firebase_store from 'firebase/firestore'
 
   const firebaseConfig = {
     apiKey: "AIzaSyCMbegkc1LAvlUpj2akUiBr_I9lB2OW19k",
@@ -43,7 +44,7 @@
   };
 
   firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
+  const db = firebase_store.firestore();
 
   function barcharts()
   {
