@@ -31,7 +31,7 @@
 
   import * as d3 from 'd3'
   import { initializeApp } from 'firebase/app'
-  import 'firebase/firestore'
+  import { getFirestore } from 'firebase/firestore'
 
   const firebaseConfig = {
     apiKey: "AIzaSyCMbegkc1LAvlUpj2akUiBr_I9lB2OW19k",
@@ -44,7 +44,7 @@
   };
 
   const app = initializeApp(firebaseConfig);
-  const db = app.firestore();
+  const db = getFirestore();
 
   function barcharts()
   {
