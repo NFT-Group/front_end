@@ -30,7 +30,7 @@
 <script>
 
   import * as d3 from 'd3'
-  import * as firebase from 'firebase'
+  import * as firebase from 'firebase/app'
 
   const firebaseConfig = {
     apiKey: "AIzaSyCMbegkc1LAvlUpj2akUiBr_I9lB2OW19k",
