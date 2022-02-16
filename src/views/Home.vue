@@ -28,8 +28,9 @@
 </template>
 
 <script>
-  const firebase = require('../../../firebase_files/firebase_concat.js')
-  const d3 = require('d3')
+  import * as firebase from '../../../firebase_files/firebase_concat.js'
+  import * as d3 from 'd3'
+
 
   // Firebase web app configuration
   const firebaseConfig = {
