@@ -28,9 +28,12 @@
 </template>
 
 <script>
-  import * as d3 from 'd3';
-  import * as firebase from 'firebase';
+  // import * as d3 from 'd3';
+  // import * as firebase from 'firebase';
   
+  const firebase = require('firebase')
+  const d3 = require('d3')
+
   // Firebase web app configuration
   const firebaseConfig = {
     apiKey: "AIzaSyCMbegkc1LAvlUpj2akUiBr_I9lB2OW19k",
