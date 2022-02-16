@@ -46,7 +46,7 @@
   const app = initializeApp(firebaseConfig);
   const db = getFirestore();
 
-  function barcharts()
+  async function barcharts()
   {
       const svg = d3.select('.canvas')
       .append('svg')
