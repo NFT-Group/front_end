@@ -8,15 +8,6 @@
   </div>
 </template>
 
-<script>
-  import index from './components/index'
-  export default
-  {
-      name: 'App',
-      components: { index }
-  }
-</script>
-
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

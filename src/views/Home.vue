@@ -25,6 +25,9 @@
     </select>
     <br>
   </form>
+  <div>
+  <index />
+    </div>
 
 </template>
 
