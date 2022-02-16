@@ -30,6 +30,20 @@
 <script>
 
   import * as d3 from 'd3'
+  import * as firebase from 'firebase'
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyCMbegkc1LAvlUpj2akUiBr_I9lB2OW19k",
+    authDomain: "practice-firebase-52292.firebaseapp.com",
+    projectId: "practice-firebase-52292",
+    storageBucket: "practice-firebase-52292.appspot.com",
+    messagingSenderId: "481429582032",
+    appId: "1:481429582032:web:de4d582b032c9d8ad6eed5",
+    measurementId: "G-QBXC1HV2C0"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
 
   function barcharts()
   {
@@ -38,7 +52,6 @@
       .attr('width', 600)
       .attr('height', 600);
 
-      // Create margins and dimensions
       const margin = {
           top: 80,
           right: 20,
@@ -51,28 +64,24 @@
       const graph = svg.append('g')
           .attr('width', graphWidth)
           .attr('height', graphHeight)
-          .attr('transform', `translate(${margin.left}, ${margin.top})`);     // Displaces graph from being flush with top-left of screen
+          .attr('transform', `translate(${margin.left}, ${margin.top})`);
 
-      // Create axes groups
       const xAxisGroup = graph.append('g')
           .attr('transform', `translate(0, ${graphHeight})`);
       const yAxisGroup = graph.append('g');
 
-      // Set up axes (without domain)
       const y = d3.scaleLinear()
-          .range([graphHeight, 0]);                           // Range of scale on graph
+          .range([graphHeight, 0]);
       const x = d3.scaleBand()
           .range([0, graphWidth])
           .paddingInner(0.2)
           .paddingOuter(0.2);
 
-      // Create & call the axes
       const xAxis = d3.axisBottom(x);
       const yAxis = d3.axisLeft(y)
           .ticks(5)
           .tickFormat(d => d + ' NFTs');
 
-      // Set axis text
       xAxisGroup.selectAll('text')
           .attr('transform', 'rotate(-30)')
           .attr('text-anchor', 'end')
@@ -83,7 +92,6 @@
           .attr('fill', '#2c3e50')
           .style('font', '16px Avenir');
 
-      // Add axis titles
       svg.append('text')
           .attr('text-anchor', 'middle')
           .attr('x', graphWidth/2 + margin.left)
@@ -103,7 +111,6 @@
           .attr('transform', 'rotate(-90)')
           .style('font-weight', 400);
 
-      // Add axis graph title
       svg.append('text')
           .attr('text-anchor', 'middle')
           .attr('y', margin.top/2)
@@ -112,14 +119,11 @@
           .style('font', '25px Avenir')
           .attr('fill', '#2c3e50')
           .style('font-weight', 600);
-      // Declare data array
+
       var data = [];
-      // Listen to firebase database ('onSnapshot' fires every time database changes)
       db.collection('collections').onSnapshot(res => {
           res.docChanges().forEach(change => {
-              // Set ID from firebase for each data point 
               const doc = {...change.doc.data(), id: change.doc.id}
-              // Switch statement to decide between new, modified and deleted data
               console.log(doc)
               switch(change.type)
               {
@@ -127,35 +131,33 @@
                       data.push(doc);
                       break;
                   case 'modified':
-                      // Find index of item inside data array
                       const index = data.findIndex(item => item.id == doc.id);
                       data[index] = doc;
                       break;
                   case 'removed':
-                      // Filters all data points for items with ID 
                       data = data.filter(item => item.id !== doc.id);
                       break;
                   default:
                       break;
               }
           })
-          y.domain([0, d3.max(data, function(d) { return +d.size; })])    // Spread of actual datapoints (responseive not hard coded)
-              .range([graphHeight, 0]);                                   // Range of scale on graph
-          x.domain(data.map(item => item.name))                           // Map() cycles through the JSON array and returns an array of all the 'name' variables
+          y.domain([0, d3.max(data, function(d) { return +d.size; })])
+              .range([graphHeight, 0]);
+          x.domain(data.map(item => item.name))
               .range([0, graphWidth])
               .paddingInner(0.2)
               .paddingOuter(0.2);
-          // Join updated data to elements
+
           const rects = graph.selectAll('rect').data(data);
-          // Remove unwanted (if any) shapes using exit selection
+
           rects.exit().remove();
-          // Update the rectangle(s) already in the DOM
-          rects.attr('width', x.bandwidth)                        // Sets standard bar width
-              .attr('height', d => (graphHeight - y(d.size)))     // Sets height of bars (passed through the y scale)
-              .attr('fill', 'midnightblue')                       // Sets fill for bars
-              .attr('x', d => x(d.name))                          // Sets bar spacing
+
+          rects.attr('width', x.bandwidth)                    
+              .attr('height', d => (graphHeight - y(d.size)))    
+              .attr('fill', 'midnightblue')              
+              .attr('x', d => x(d.name))                 
               .attr('y', d => y(d.size));
-          // Append the enter selection to the DOM
+
           rects.enter()
           .append('rect')
           .attr('width', x.bandwidth)
@@ -163,8 +165,8 @@
           .attr('fill', 'midnightblue')
           .attr('x', d => x(d.name))
           .attr('y', d => y(d.size));   
-          // Call axes
-          xAxisGroup.call(xAxis);                     // Runs the axis function on the group, generating the SVGs and adding them to group
+
+          xAxisGroup.call(xAxis);        
           yAxisGroup.call(yAxis);
       })
   }
