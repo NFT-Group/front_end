@@ -30,8 +30,8 @@
 <script>
 
   import * as d3 from 'd3'
-  import * as firebase from 'firebase/app'
-  import { firestore } from 'firebase/firestore'
+  import app from 'firebase/app'
+  import 'firebase/firestore'
 
   const firebaseConfig = {
     apiKey: "AIzaSyCMbegkc1LAvlUpj2akUiBr_I9lB2OW19k",
@@ -43,8 +43,8 @@
     measurementId: "G-QBXC1HV2C0"
   };
 
-  firebase.initializeApp(firebaseConfig);
-  const db = firestore();
+  app.initializeApp(firebaseConfig);
+  const db = app.firestore();
 
   function barcharts()
   {
