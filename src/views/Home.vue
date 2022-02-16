@@ -29,6 +29,8 @@
 
 <script>
 
+  import * as d3 from 'd3'
+
   function barcharts()
   {
       const svg = d3.select('.canvas')
