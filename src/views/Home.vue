@@ -28,19 +28,11 @@
 </template>
 
 <script>
-//import index from '../components/index'
 
 const charts = require('../charts/charts.js')
-//import * as charts from '../charts/charts.js'
 
 charts.barcharts()
 
-//export default{
-  //name: 'App',
-  //components:{
-    //index
-  //},
-//}
 </script>
 
 
