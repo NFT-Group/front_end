@@ -44,7 +44,7 @@
   };
 
   firebase.initializeApp(firebaseConfig);
-  const db = firebase_store.firestore();
+  const db = firestore();
 
   function barcharts()
   {
