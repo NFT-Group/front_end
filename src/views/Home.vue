@@ -122,7 +122,7 @@
           .style('font-weight', 600);
 
       var data = [];
-      onSnapshot(collection(db, 'collections', res => {
+      onSnapshot(collection(db, 'collections'), res => {
           res.docChanges().forEach(change => {
               const doc = {...change.doc.data(), id: change.doc.id}
               console.log(doc)
