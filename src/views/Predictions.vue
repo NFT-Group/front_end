@@ -1,13 +1,10 @@
 <template>
   <div class="about">
-    <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>D3 X Firebase charts</title>
-    <!-- <link rel="stylesheet" href="styles.css"> -->
-    </head>
-    <body>
+    <h1>This is an about page</h1>
+  </div>
+</template>
+
+<body>
     <div class="canvas">
     </div>
     <!-- Link with firebase data -->
@@ -34,7 +31,5 @@
 
     </script>
     <script src="https://d3js.org/d3.v7.min.js"></script> 
-    <script src="firebase_index.js"></script>
-    </body>
-  </div>
-</template>
+    <script src="index.js"></script>
+</body>
