@@ -30,7 +30,7 @@
 <script>
 
   import * as d3 from 'd3'
-  import app from 'firebase/app'
+  import { initializeApp } from 'firebase/app'
   import 'firebase/firestore'
 
   const firebaseConfig = {
@@ -43,7 +43,7 @@
     measurementId: "G-QBXC1HV2C0"
   };
 
-  app.initializeApp(firebaseConfig);
+  const app = initializeApp(firebaseConfig);
   const db = app.firestore();
 
   function barcharts()
