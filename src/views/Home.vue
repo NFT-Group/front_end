@@ -29,7 +29,9 @@
 
 <script>
 //import index from '../components/index'
-import * as charts from '../charts/charts.js'
+
+const charts = require('../charts/charts.js')
+//import * as charts from '../charts/charts.js'
 
 charts.barcharts()
 
