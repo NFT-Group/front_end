@@ -26,10 +26,6 @@
     <br>
   </form>
 
-    <div>
-    <index />
-    </div>
-
 </template>
 
 <script>
@@ -40,7 +36,6 @@
       components: { index }
   }
 </script>
-
 
 <style>
   form{

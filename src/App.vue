@@ -3,15 +3,13 @@
     <router-link to="/">Home</router-link> |
     <router-link to="/predictions">Predictions</router-link> |
     <router-link to="/about">About</router-link>
-  </div>
   <router-view/>
-  <div>
   <index />
   </div>
 </template>
 
 <script>
-  import index from '@/components/index'
+  import index from './components/index'
   export default
   {
       name: 'App',

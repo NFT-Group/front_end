@@ -23,8 +23,7 @@ import * as d3 from 'd3'
             const app = initializeApp(firebaseConfig);
             const db = getFirestore();
 
-            const svg = d3.select('.canvas')
-            .append('svg')
+            const svg = d3.select(this.$el)
             .attr('width', 600)
             .attr('height', 600);
 
