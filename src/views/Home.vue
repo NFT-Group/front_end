@@ -31,7 +31,7 @@
 
   import * as d3 from 'd3'
   import { initializeApp } from 'firebase/app'
-  import { getFirestore } from 'firebase/firestore'
+  import { getFirestore, collection, onSnapshot } from 'firebase/firestore'
 
   const firebaseConfig = {
     apiKey: "AIzaSyCMbegkc1LAvlUpj2akUiBr_I9lB2OW19k",
@@ -122,7 +122,7 @@
           .style('font-weight', 600);
 
       var data = [];
-      db.collection('collections').onSnapshot(res => {
+      onSnapshot(collection(db, 'collections', res => {
           res.docChanges().forEach(change => {
               const doc = {...change.doc.data(), id: change.doc.id}
               console.log(doc)
