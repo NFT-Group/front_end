@@ -8,8 +8,7 @@ import * as d3 from 'd3'
 
   export default
   {
-      mounted: setup()
-      {
+      mounted: function() {
           const firebaseConfig = {
                 apiKey: "AIzaSyCMbegkc1LAvlUpj2akUiBr_I9lB2OW19k",
                 authDomain: "practice-firebase-52292.firebaseapp.com",
