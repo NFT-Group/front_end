@@ -27,7 +27,7 @@
   </form>
   <div>
     <index />
-    <index2 />
+    <!-- <index2 /> -->
   </div>
 
 </template>
