@@ -34,7 +34,7 @@
                 left: 140
             };
 
-            const graphWidth = 600 - margin.left - margin.right;
+            const graphWidth = 1000 - margin.left - margin.right;
             const graphHeight = 600 - margin.top - margin.bottom;
             const graph = svg.append('g')
                 .attr('width', graphWidth)
