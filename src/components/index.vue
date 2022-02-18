@@ -1,5 +1,5 @@
 <template>
-    <svg width="1000" height="600"></svg>
+    <svg width="900" height="600"></svg>
 </template>
 
 <script>
@@ -24,7 +24,7 @@
             const db = getFirestore();
 
             const svg = d3.select(this.$el)
-            .attr('width', 1000)
+            .attr('width', 900)
             .attr('height', 600);
 
             const margin = {
@@ -34,7 +34,7 @@
                 left: 140
             };
 
-            const graphWidth = 1000 - margin.left - margin.right;
+            const graphWidth = 900 - margin.left - margin.right;
             const graphHeight = 600 - margin.top - margin.bottom;
             const graph = svg.append('g')
                 .attr('width', graphWidth)
@@ -55,10 +55,10 @@
             const xAxis = d3.axisBottom(x);
             const yAxis = d3.axisLeft(y)
                 .ticks(5)
-                .tickFormat(d => d + ' NFTs');
+                .tickFormat(d => d);
 
             xAxisGroup.selectAll('text')
-                .attr('transform', 'rotate(-30)')
+                .attr('transform', 'rotate(30)')
                 .attr('text-anchor', 'end')
                 .attr('fill', '#2c3e50')
                 .style('font', '16px Avenir');
