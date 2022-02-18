@@ -138,15 +138,15 @@
                 xAxisGroup.call(xAxis);        
                 yAxisGroup.call(yAxis);
 
-                xAxisGroup.selectAll('text')
+                            xAxisGroup.selectAll('text')
                 .attr('transform', 'rotate(30)')
-                .attr('text-anchor', 'end')
+                .attr('text-anchor', 'middle')
                 .attr('fill', '#2c3e50')
-                .style('font', '20px Avenir');
+                .style('font', '16px Avenir');
 
                 yAxisGroup.selectAll('text')
                 .attr('fill', '#2c3e50')
-                .style('font', '20px Avenir');
+                .style('font', '16px Avenir');
             })
       }
   }
