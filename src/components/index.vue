@@ -1,5 +1,5 @@
 <template>
-    <svg id= "" width="900" height="600"></svg>
+    <svg id="starterChart" width="900" height="600"></svg>
     <!-- <svg width="900" height="600"></svg> -->
 </template>
 
@@ -24,7 +24,7 @@
             const app = initializeApp(firebaseConfig);
             const db = getFirestore();
 
-            const svg = d3.select(this.$el)
+            const svg = d3.select("#starterChart")
             .attr('width', 900)
             .attr('height', 600);
 
@@ -147,8 +147,10 @@
             })
       }
   }
+  
 
 </script>
+
 
 <style>
 </style>
