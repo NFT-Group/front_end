@@ -14,20 +14,20 @@
     <label>Collection:</label>
     <select>
         <option value="allcollections">All Collection</option>
-        <option value="cryptokittens">Crypto Kittens</option>
-        <option value="boredapes">Bored Apes Yacht Club</option>
-        <option value="littlelemon">Little Lemon</option>
+        <option value="cryptokittens">CryptoPunks</option>
+        <option value="boredapes">Bored Ape Yacht Club</option>
+        <option value="boredapekennel">Bored Ape Kennel Club</option>
         <option value="doodles">Doodles</option>
-        <option value="artblocks">Art Blocks</option>
-        <option value="cryptopunks">Crypto Punks</option>
+        <option value="coolcats">Cool Cats</option>
+        <option value="cryptoadz">CrypToadz</option>
         <option value="pudgypenguins">Pudgy Penguins</option>
-        <option value="thesandbox">The Sandbox</option>
+        <option value="clonex">cloneX</option>
     </select>
     <br>
   </form>
   <div>
-  <index />
-    </div>
+    <index />
+  </div>
 
 </template>
 
@@ -57,7 +57,7 @@
     text-transform: uppercase;
     letter-spacing: 1px; 
     font-weight: bold; 
-}
+  }
   input, select{
     display: block; 
     padding: 10px 6px;
