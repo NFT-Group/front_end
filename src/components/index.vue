@@ -24,7 +24,7 @@
             const db = getFirestore();
 
             const svg = d3.select(this.$el)
-            .attr('width', 600)
+            .attr('width', 1000)
             .attr('height', 600);
 
             const margin = {
