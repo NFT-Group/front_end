@@ -1,5 +1,6 @@
 <template>
-    <svg width="900" height="600"></svg>
+    <svg id= "" width="900" height="600"></svg>
+    <!-- <svg width="900" height="600"></svg> -->
 </template>
 
 <script>
@@ -61,11 +62,11 @@
                 .attr('transform', 'rotate(30)')
                 .attr('text-anchor', 'end')
                 .attr('fill', '#2c3e50')
-                .style('font', '16px Avenir');
+                .style('font', '20px Avenir');
 
             yAxisGroup.selectAll('text')
                 .attr('fill', '#2c3e50')
-                .style('font', '16px Avenir');
+                .style('font', '20px Avenir');
 
             svg.append('text')
                 .attr('text-anchor', 'middle')
