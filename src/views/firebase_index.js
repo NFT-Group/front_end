@@ -2,8 +2,8 @@
 // Select canvas container and append SVG
 const svg = d3.select('.canvas')
     .append('svg')
-        .attr('width', 600)
-        .attr('height', 600);
+        .attr('width', 1000)
+        .attr('height', 1000);
 
 // Create margins and dimensions
 const margin = {
