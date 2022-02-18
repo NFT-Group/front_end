@@ -1,5 +1,5 @@
 <template>
-    <svg width="600" height="600"></svg>
+    <svg width="1000" height="600"></svg>
 </template>
 
 <script>
