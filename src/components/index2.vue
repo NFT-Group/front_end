@@ -164,7 +164,7 @@
             const app = initializeApp(firebaseConfig);
             const db = getFirestore();
 
-            const svg = d3.select("#starterChart")
+            const svg = d3.select("#liveChart")
             .attr('width', 900)
             .attr('height', 600);
 
