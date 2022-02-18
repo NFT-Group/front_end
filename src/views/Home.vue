@@ -33,10 +33,11 @@
 
 <script>
   import index from '@/components/index'
+  import index2 from '@/components/index2'
   export default
   {
       name: 'App',
-      components: { index }
+      components: { index, index2 }
   }
 </script>
 
