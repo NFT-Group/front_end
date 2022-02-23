@@ -1,6 +1,6 @@
 <template>
 
-  <h1>Quantum</h1>
+  <h1 class="title">Quantum</h1>
   <p>AN NFT MARKET ANALYSER AND VISUALISER</p>
   <br><br>
   <p class="input">EXPLORE...</p>
@@ -23,38 +23,8 @@
 </script>
 
 <style>
-  form{
-    max-width: 420px; 
-    margin: 20px auto; 
-    background: white; 
-    text-align: left;
-    padding: 0px;
-    border-radius: 10px;
-  }
-  label{
-    color:#aaa;
-    display: inline-block;
-    margin: 25px 0 15px; 
-    font-size: 0.6em;
-    text-transform: uppercase;
-    letter-spacing: 1px; 
-    font-weight: bold; 
-  }
-  input, select{
-    display: block; 
-    padding: 10px 6px;
-    width: 100%;
-    box-sizing: border-box;
-    border: none; 
-    border-bottom: 1px solid #ddd;
-    color: #555;
-  }
-  input[type="checkbox"]{
-    display: inline-block;
-    width: 16px; 
-    margin: 0 10px 0 0; 
-    position: relative; 
-    top: 2px; 
+  h1.title{
+    font-size: 50px;
   }
   p.input{
     color: #444; 
