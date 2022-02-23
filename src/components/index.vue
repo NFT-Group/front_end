@@ -9,7 +9,7 @@
   import { initializeApp } from 'firebase/app'
   import { getFirestore, collection, onSnapshot } from 'firebase/firestore'
   import firebase_admin
-  import { credentials, firestore, db } from firebase_admin  
+  from firebase_admin import credentials, firestore, db  
 
     // CHART 1 - NFT COLLECTION COUNTS
   export default
