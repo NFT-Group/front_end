@@ -8,6 +8,7 @@
   import * as d3 from 'd3'
   import { initializeApp } from 'firebase/app'
   import { getFirestore, collection, onSnapshot } from 'firebase/firestore'
+  import firebase_admin
   import { credentials, firestore, db } from firebase_admin  
 
     // CHART 1 - NFT COLLECTION COUNTS
