@@ -3,6 +3,9 @@
   <h1>Quantum</h1>
   <p>AN NFT MARKET ANALYSER AND VISUALISER</p>
   <br><br>
+  <p class="input">EXPLORE...</p>
+  <br><br>
+  <div>
     <index />
     <!-- <index2 /> -->
   </div>
