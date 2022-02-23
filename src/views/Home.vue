@@ -3,29 +3,6 @@
   <h1>Quantum</h1>
   <p>AN NFT MARKET ANALYSER AND VISUALISER</p>
   <br><br>
-  <p class="input">EXPLORE...</p>
-  <form>
-    <label>Blockchain:</label>
-    <select >
-        <option value="ethereum">Ethereum</option>
-        <option value="solana">Solana</option>
-    </select>
-    <br>
-    <label>Collection:</label>
-    <select>
-        <option value="allcollections">All Collection</option>
-        <option value="cryptokittens">CryptoPunks</option>
-        <option value="boredapes">Bored Ape Yacht Club</option>
-        <option value="boredapekennel">Bored Ape Kennel Club</option>
-        <option value="doodles">Doodles</option>
-        <option value="coolcats">Cool Cats</option>
-        <option value="cryptoadz">CrypToadz</option>
-        <option value="pudgypenguins">Pudgy Penguins</option>
-        <option value="clonex">cloneX</option>
-    </select>
-    <br>
-  </form>
-  <div>
     <index />
     <!-- <index2 /> -->
   </div>
