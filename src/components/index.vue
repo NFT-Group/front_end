@@ -1,6 +1,6 @@
 <template>
     <div id="Charts">
-        <svg id="starterChart" width="900" height="600"></svg>
+        <svg id="starterChart" width="700" height="500"></svg>
     </div>
 </template>
 
@@ -21,8 +21,8 @@
             const db = getFirestore();
 
             const svg = d3.select("#starterChart")
-            .attr('width', 900)
-            .attr('height', 600);
+            .attr('width', 700)
+            .attr('height', 500);
 
             const margin = {
                 top: 80,
@@ -31,8 +31,8 @@
                 left: 140
             };
 
-            const graphWidth = 900 - margin.left - margin.right;
-            const graphHeight = 600 - margin.top - margin.bottom;
+            const graphWidth = 700 - margin.left - margin.right;
+            const graphHeight = 500 - margin.top - margin.bottom;
             const graph = svg.append('g')
                 .attr('width', graphWidth)
                 .attr('height', graphHeight)
