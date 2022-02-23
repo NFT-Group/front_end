@@ -6,8 +6,8 @@
   <p class="input">EXPLORE...</p>
   <br><br>
   <div>
-    <!-- <index /> -->
-    <index2 /> 
+    <index />
+    <!-- <index2 />  -->
   </div>
 
 </template>
