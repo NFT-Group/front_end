@@ -18,7 +18,7 @@
   export default
   {
       name: 'App',
-      components: { index2, index }
+      components: { index, index2 }
   }
 </script>
 
