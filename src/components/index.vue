@@ -1,6 +1,6 @@
 <template>
     <div id="Charts">
-        <svg id="starterChart" width="900" height="600"></svg>
+        <svg id="starterChart" width="700" height="500"></svg>
     </div>
 </template>
 
@@ -8,37 +8,32 @@
   import * as d3 from 'd3'
   import { initializeApp } from 'firebase/app'
   import { getFirestore, collection, onSnapshot } from 'firebase/firestore'
+  import { credentials, firestore, db } from 'firebase-admin'
 
     // CHART 1 - NFT COLLECTION COUNTS
   export default
   {
       mounted: function() {
-          const firebaseConfig = {
-                apiKey: "AIzaSyCMbegkc1LAvlUpj2akUiBr_I9lB2OW19k",
-                authDomain: "practice-firebase-52292.firebaseapp.com",
-                projectId: "practice-firebase-52292",
-                storageBucket: "practice-firebase-52292.appspot.com",
-                messagingSenderId: "481429582032",
-                appId: "1:481429582032:web:de4d582b032c9d8ad6eed5",
-                measurementId: "G-QBXC1HV2C0"
-            };
-
-            const app = initializeApp(firebaseConfig);
+            cred = credentials.Certificate('practice_key.json')
+            firebase_admin.initialize_app(cred, 
+            {
+                'databaseURL': "https://practice-firebase-52292-default-rtdb.europe-west1.firebasedatabase.app/"
+            })
             const db = getFirestore();
 
             const svg = d3.select("#starterChart")
-            .attr('width', 900)
-            .attr('height', 600);
+            .attr('width', 700)
+            .attr('height', 500);
 
             const margin = {
                 top: 80,
                 right: 20,
                 bottom: 100,
                 left: 140
-            };
+            }; 
 
-            const graphWidth = 900 - margin.left - margin.right;
-            const graphHeight = 600 - margin.top - margin.bottom;
+            const graphWidth = 700 - margin.left - margin.right;
+            const graphHeight = 500 - margin.top - margin.bottom;
             const graph = svg.append('g')
                 .attr('width', graphWidth)
                 .attr('height', graphHeight)
@@ -73,7 +68,7 @@
                 .attr('text-anchor', 'middle')
                 .attr('y', margin.left/3)
                 .attr('x', -(margin.top) + -(graphHeight/2))
-                .text('Size of Collection (No. of NFTs)')
+                .text('size of Collection (No. of NFTs)')
                 .style('font', '18px Avenir')
                 .attr('fill', '#2c3e50')
                 .attr('transform', 'rotate(-90)')
@@ -83,7 +78,7 @@
                 .attr('text-anchor', 'middle')
                 .attr('y', margin.top/2)
                 .attr('x', margin.left + graphWidth/2)
-                .text('NFT Collections by Size')
+                .text('NFT Collections by size')
                 .style('font', '25px Avenir')
                 .attr('fill', '#2c3e50')
                 .style('font-weight', 600);

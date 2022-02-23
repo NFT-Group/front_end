@@ -2,6 +2,7 @@
   <div id="nav">
     <router-link to="/">Home</router-link> |
     <router-link to="/predictions">Predictions</router-link> |
+    <router-link to="/whalewatch">Whale Watch</router-link> |
     <router-link to="/about">About</router-link>
   <router-view/>
   <index />
