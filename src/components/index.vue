@@ -8,14 +8,14 @@
   import * as d3 from 'd3'
   import { initializeApp } from 'firebase/app'
   import { getFirestore, collection, onSnapshot } from 'firebase/firestore'
-  import * as firebase-admin from 'firebase-admin' 
+  import * as firebase_admin from 'firebase-admin' 
 
     // CHART 1 - NFT COLLECTION COUNTS
   export default
   {
       mounted: function() {
             cred = credentials.Certificate('practice_key.json')
-            firebase-admin.initialize_app(cred, 
+            firebase_admin.initialize_app(cred, 
             {
                 'databaseURL': "https://practice-firebase-52292-default-rtdb.europe-west1.firebasedatabase.app/"
             })
