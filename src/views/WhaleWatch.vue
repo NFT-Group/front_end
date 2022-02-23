@@ -4,11 +4,11 @@
     </div>
     <br><br>
     <p> What's hot?</p>
+    <br><br><br><br>
     <hr class="solid">
-    <br><br>
     <p>Insert Node Graph</p>
+    <br><br><br><br>
     <hr class="solid">
-    <br><br>
     <p>Live Updating Whales</p>
 </template>
 
