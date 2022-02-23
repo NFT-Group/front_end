@@ -30,7 +30,7 @@
                 right: 20,
                 bottom: 100,
                 left: 140
-            };
+            }; 
 
             const graphWidth = 700 - margin.left - margin.right;
             const graphHeight = 500 - margin.top - margin.bottom;
