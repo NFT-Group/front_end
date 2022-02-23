@@ -13,17 +13,11 @@
   export default
   {
       mounted: function() {
-          const firebaseConfig = {
-                apiKey: "AIzaSyCMbegkc1LAvlUpj2akUiBr_I9lB2OW19k",
-                authDomain: "practice-firebase-52292.firebaseapp.com",
-                projectId: "practice-firebase-52292",
-                storageBucket: "practice-firebase-52292.appspot.com",
-                messagingSenderId: "481429582032",
-                appId: "1:481429582032:web:de4d582b032c9d8ad6eed5",
-                measurementId: "G-QBXC1HV2C0"
-            };
-
-            const app = initializeApp(firebaseConfig);
+            cred = credentials.Certificate('allCollections_key.json')
+            firebase_admin.initialize_app(cred, 
+            {
+                'databaseURL': "https://allcollections-6e66c-default-rtdb.europe-west1.firebasedatabase.app/"
+            })
             const db = getFirestore();
 
             const svg = d3.select("#starterChart")
@@ -73,7 +67,7 @@
                 .attr('text-anchor', 'middle')
                 .attr('y', margin.left/3)
                 .attr('x', -(margin.top) + -(graphHeight/2))
-                .text('Size of Collection (No. of NFTs)')
+                .text('blocknumber of Collection (No. of NFTs)')
                 .style('font', '18px Avenir')
                 .attr('fill', '#2c3e50')
                 .attr('transform', 'rotate(-90)')
@@ -83,7 +77,7 @@
                 .attr('text-anchor', 'middle')
                 .attr('y', margin.top/2)
                 .attr('x', margin.left + graphWidth/2)
-                .text('NFT Collections by Size')
+                .text('NFT Collections by blocknumber')
                 .style('font', '25px Avenir')
                 .attr('fill', '#2c3e50')
                 .style('font-weight', 600);
@@ -109,9 +103,9 @@
                             break;
                     }
                 })
-                y.domain([0, d3.max(data, function(d) { return +d.size; })])
+                y.domain([0, d3.max(data, function(d) { return +d.blocknumber; })])
                     .range([graphHeight, 0]);
-                x.domain(data.map(item => item.name))
+                x.domain(data.map(item => item.contracthash))
                     .range([0, graphWidth])
                     .paddingInner(0.2)
                     .paddingOuter(0.2);
@@ -121,18 +115,18 @@
                 rects.exit().remove();
 
                 rects.attr('width', x.bandwidth)                    
-                    .attr('height', d => (graphHeight - y(d.size)))    
+                    .attr('height', d => (graphHeight - y(d.blocknumber)))    
                     .attr('fill', 'midnightblue')              
-                    .attr('x', d => x(d.name))                 
-                    .attr('y', d => y(d.size));
+                    .attr('x', d => x(d.contracthash))                 
+                    .attr('y', d => y(d.blocknumber));
 
                 rects.enter()
                 .append('rect')
                 .attr('width', x.bandwidth)
-                .attr('height', d => (graphHeight - y(d.size)))
+                .attr('height', d => (graphHeight - y(d.blocknumber)))
                 .attr('fill', 'midnightblue')
-                .attr('x', d => x(d.name))
-                .attr('y', d => y(d.size));   
+                .attr('x', d => x(d.contracthash))
+                .attr('y', d => y(d.blocknumber));   
 
                 xAxisGroup.call(xAxis);        
                 yAxisGroup.call(yAxis);
