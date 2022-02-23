@@ -7,7 +7,7 @@
 <script>
   import * as d3 from 'd3'
   import { initializeApp } from 'firebase/app'
-  import { getFirestore, collection, onSnapshot } from 'firebase/firestore'
+  // import { getFirestore, collection, onSnapshot } from 'firebase/firestore'
   import { getDatabase } from "firebase/database";
 
   import { credentials, firestore, db } from 'firebase-admin'
@@ -27,7 +27,9 @@
                 measurementId: "G-QBXC1HV2C0"
             };
             const app = initializeApp(firebaseConfig);
-            const db = getDatabase();
+
+            // Get a reference to the database service
+            const database = getDatabase(app);
 
             const svg = d3.select("#starterChart")
             .attr('width', 700)
@@ -92,6 +94,14 @@
                 .style('font-weight', 600);
 
             var data = [];
+            // const starCountRef = ref(db, 'posts/' + postId + '/starCount');
+            // onValue(starCountRef, (snapshot) => {
+            // const data = snapshot.val();
+            // onValue(starCountRef, (snapshot) => {
+            //     updateStarCount(postElement, data);
+            // });
+
+            
             onSnapshot(collection(db, 'collections'), res => {
                 res.docChanges().forEach(change => {
                     const doc = {...change.doc.data(), id: change.doc.id}
