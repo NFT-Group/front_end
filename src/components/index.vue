@@ -13,10 +13,10 @@
   export default
   {
       mounted: function() {
-            cred = credentials.Certificate('allCollections_key.json')
+            cred = credentials.Certificate('practice_key.json')
             firebase_admin.initialize_app(cred, 
             {
-                'databaseURL': "https://allcollections-6e66c-default-rtdb.europe-west1.firebasedatabase.app/"
+                'databaseURL': "https://practice-firebase-52292-default-rtdb.europe-west1.firebasedatabase.app/"
             })
             const db = getFirestore();
 
@@ -67,7 +67,7 @@
                 .attr('text-anchor', 'middle')
                 .attr('y', margin.left/3)
                 .attr('x', -(margin.top) + -(graphHeight/2))
-                .text('blocknumber of Collection (No. of NFTs)')
+                .text('size of Collection (No. of NFTs)')
                 .style('font', '18px Avenir')
                 .attr('fill', '#2c3e50')
                 .attr('transform', 'rotate(-90)')
@@ -77,7 +77,7 @@
                 .attr('text-anchor', 'middle')
                 .attr('y', margin.top/2)
                 .attr('x', margin.left + graphWidth/2)
-                .text('NFT Collections by blocknumber')
+                .text('NFT Collections by size')
                 .style('font', '25px Avenir')
                 .attr('fill', '#2c3e50')
                 .style('font-weight', 600);
@@ -103,9 +103,9 @@
                             break;
                     }
                 })
-                y.domain([0, d3.max(data, function(d) { return +d.blocknumber; })])
+                y.domain([0, d3.max(data, function(d) { return +d.size; })])
                     .range([graphHeight, 0]);
-                x.domain(data.map(item => item.contracthash))
+                x.domain(data.map(item => item.name))
                     .range([0, graphWidth])
                     .paddingInner(0.2)
                     .paddingOuter(0.2);
@@ -115,18 +115,18 @@
                 rects.exit().remove();
 
                 rects.attr('width', x.bandwidth)                    
-                    .attr('height', d => (graphHeight - y(d.blocknumber)))    
+                    .attr('height', d => (graphHeight - y(d.size)))    
                     .attr('fill', 'midnightblue')              
-                    .attr('x', d => x(d.contracthash))                 
-                    .attr('y', d => y(d.blocknumber));
+                    .attr('x', d => x(d.name))                 
+                    .attr('y', d => y(d.size));
 
                 rects.enter()
                 .append('rect')
                 .attr('width', x.bandwidth)
-                .attr('height', d => (graphHeight - y(d.blocknumber)))
+                .attr('height', d => (graphHeight - y(d.size)))
                 .attr('fill', 'midnightblue')
-                .attr('x', d => x(d.contracthash))
-                .attr('y', d => y(d.blocknumber));   
+                .attr('x', d => x(d.name))
+                .attr('y', d => y(d.size));   
 
                 xAxisGroup.call(xAxis);        
                 yAxisGroup.call(yAxis);
