@@ -99,7 +99,7 @@
             //     updateStarCount(postElement, data);
             // });
 
-            const ref = ref(db, 'practice-firebase-52292-default-rtdb');
+            const ref = firebase.database().ref(db, 'practice-firebase-52292-default-rtdb');
             console.log(ref);
             onValue(ref, (res) => {
                 res.docChanges().forEach(change => {
