@@ -7,7 +7,7 @@
 <script>
   import * as d3 from 'd3'
   import { initializeApp } from 'firebase/app'
-  import { getDatabase, ref } from "firebase/database";
+  import { getDatabase, ref, onValue } from "firebase/database";
   import { credentials, firestore, db } from 'firebase-admin'
 
     // CHART 1 - NFT COLLECTION COUNTS
@@ -99,7 +99,8 @@
             //     updateStarCount(postElement, data);
             // });
 
-            const ref = firestore.database().ref();
+            const ref = ref(db, 'practice-firebase-52292-default-rtdb');
+            console.log(ref);
             onValue(ref, (res) => {
                 res.docChanges().forEach(change => {
                     const doc = {...change.doc.data(), id: change.doc.id}
