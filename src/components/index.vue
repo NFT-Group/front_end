@@ -7,7 +7,7 @@
 <script>
   import * as d3 from 'd3'
   import { initializeApp } from 'firebase/app'
-  import { getDatabase, ref, onValue } from "firebase/database";
+  import { getDatabase, ref, onValue, once, get } from "firebase/database";
   import { credentials, fisnapshottore, db } from 'firebase-admin'
 
     // CHART 1 - NFT COLLECTION COUNTS
