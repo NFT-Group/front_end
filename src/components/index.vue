@@ -100,32 +100,14 @@
             // });
 
             const reference = ref(db, 'practice-firebase-52292-default-rtdb');
+            console.log(reference.once("size"))
+            console.log(reference.get())
             console.log(reference);
             console.log("Hello")
             onValue(reference, (snapshot) => {
                 console.log("Reference")
-                snapshot.val()
-                snapshot.docChanges().forEach(change => {
-                    const doc = {...change.doc.data(), id: change.doc.id}
-                    console.log(doc)
-                    switch(change.type)
-                    {
-                        case 'added':
-                            data.push(doc);
-                            break;
-                        case 'modified':
-                            const index = data.findIndex(item => item.id == doc.id);
-                            data[index] = doc;
-                            break;
-                        case 'removed':
-                            data = data.filter(item => item.id !== doc.id);
-                            break;
-                        default:
-                            console.log("After swictch gfgf")
-                            break;
-                    }
-                })
-                console.log("After swictch")
+                data = snapshot.val()
+
                 y.domain([0, d3.max(data, function(d) { return +d.size; })])
                     .range([graphHeight, 0]);
                 x.domain(data.map(item => item.name))
@@ -164,7 +146,7 @@
                 .attr('fill', '#2c3e50')
                 .style('font', '16px Avenir');
             })
-        console.log("Reference")
+        console.log("End of function")
       }
   }
 </script>
