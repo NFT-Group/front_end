@@ -8,7 +8,7 @@
   import * as d3 from 'd3'
   import { initializeApp } from 'firebase/app'
   import { getDatabase, ref, onValue } from "firebase/database";
-  import { credentials, firestore, db } from 'firebase-admin'
+  import { credentials, fisnapshottore, db } from 'firebase-admin'
 
     // CHART 1 - NFT COLLECTION COUNTS
   export default
@@ -101,8 +101,9 @@
 
             const reference = ref(db, 'practice-firebase-52292-default-rtdb');
             console.log(reference);
-            onValue(reference, (res) => {
-                res.docChanges().forEach(change => {
+            onValue(reference, (snapshot) => {
+                console.log("Reference")
+                snapshot.docChanges().forEach(change => {
                     const doc = {...change.doc.data(), id: change.doc.id}
                     console.log(doc)
                     switch(change.type)
@@ -118,9 +119,11 @@
                             data = data.filter(item => item.id !== doc.id);
                             break;
                         default:
+                            console.log("After swictch gfgf")
                             break;
                     }
                 })
+                console.log("After swictch")
                 y.domain([0, d3.max(data, function(d) { return +d.size; })])
                     .range([graphHeight, 0]);
                 x.domain(data.map(item => item.name))
