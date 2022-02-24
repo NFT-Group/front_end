@@ -7,9 +7,7 @@
 <script>
   import * as d3 from 'd3'
   import { initializeApp } from 'firebase/app'
-  // import { getFirestore, collection, onSnapshot } from 'firebase/firestore'
-  import { getDatabase } from "firebase/database";
-
+  import { getDatabase, ref } from "firebase/database";
   import { credentials, firestore, db } from 'firebase-admin'
 
     // CHART 1 - NFT COLLECTION COUNTS
@@ -29,7 +27,7 @@
             const app = initializeApp(firebaseConfig);
 
             // Get a reference to the database service
-            const database = getDatabase(app);
+            const db = getDatabase(app);
 
             const svg = d3.select("#starterChart")
             .attr('width', 700)
@@ -93,7 +91,7 @@
                 .attr('fill', '#2c3e50')
                 .style('font-weight', 600);
 
-            var data = [];
+            // var data = [];
             // const starCountRef = ref(db, 'posts/' + postId + '/starCount');
             // onValue(starCountRef, (snapshot) => {
             // const data = snapshot.val();
@@ -101,8 +99,8 @@
             //     updateStarCount(postElement, data);
             // });
 
-            
-            onSnapshot(collection(db, 'collections'), res => {
+            const ref = db.ref();
+            onValue(ref, (res) => {
                 res.docChanges().forEach(change => {
                     const doc = {...change.doc.data(), id: change.doc.id}
                     console.log(doc)
@@ -163,7 +161,6 @@
       }
   }
 </script>
-
 
 <style>
 </style>
