@@ -101,8 +101,10 @@
 
             const reference = ref(db, 'practice-firebase-52292-default-rtdb');
             console.log(reference);
+            console.log("Hello")
             onValue(reference, (snapshot) => {
                 console.log("Reference")
+                snapshot.val()
                 snapshot.docChanges().forEach(change => {
                     const doc = {...change.doc.data(), id: change.doc.id}
                     console.log(doc)
@@ -162,6 +164,7 @@
                 .attr('fill', '#2c3e50')
                 .style('font', '16px Avenir');
             })
+        console.log("Reference")
       }
   }
 </script>
