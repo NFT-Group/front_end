@@ -91,15 +91,14 @@
                 .attr('fill', '#2c3e50')
                 .style('font-weight', 600);
 
-            // var data = [];
-            // const starCountRef = ref(db, 'posts/' + postId + '/starCount');
-            // onValue(starCountRef, (snapshot) => {
-            // const data = snapshot.val();
-            // onValue(starCountRef, (snapshot) => {
-            //     updateStarCount(postElement, data);
-            // });
+            const starCountRef = ref(db, 'posts/' + postId + '/starCount');
+            onValue(starCountRef, (snapshot) => {
+                const data = snapshot.val();
+                updateChart(postElement, data);
+            });
 
-            const reference = ref(db, 'practice-firebase-52292-default-rtdb');
+   
+            const reference = ref(db, '/');
             console.log(reference);
             onValue(reference, (snapshot) => {
                 console.log("Reference")
