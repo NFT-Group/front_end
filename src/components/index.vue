@@ -99,7 +99,7 @@
             //     updateStarCount(postElement, data);
             // });
 
-            const ref = db.ref();
+            const ref = firestore.database().ref();
             onValue(ref, (res) => {
                 res.docChanges().forEach(change => {
                     const doc = {...change.doc.data(), id: change.doc.id}
