@@ -100,7 +100,9 @@
             // });
 
             const reference = ref(db, 'practice-firebase-52292-default-rtdb');
+            
             //console.log(reference.once("size"))
+
             console.log(reference.get())
             console.log(reference);
             console.log("Hello")
