@@ -7,7 +7,7 @@
 <script>
   import * as d3 from 'd3'
   import { initializeApp } from 'firebase/app'
-  import { getDatabase, ref, onValue } from "firebase/database";
+  import { getDatabase, ref, onValue, once, get } from "firebase/database";
   import { credentials, fisnapshottore, db } from 'firebase-admin'
 
     // CHART 1 - NFT COLLECTION COUNTS
@@ -29,7 +29,7 @@
             // Get a reference to the database service
             const db = getDatabase(app);
 
-            const svg = d3.select("#starterChart")
+            const svg = d3.select("starterChart") //removed #
             .attr('width', 700)
             .attr('height', 500);
 
@@ -91,38 +91,27 @@
                 .attr('fill', '#2c3e50')
                 .style('font-weight', 600);
 
-            const starCountRef = ref(db, 'posts/' + postId + '/starCount');
-            onValue(starCountRef, (snapshot) => {
-                const data = snapshot.val();
-                updateChart(postElement, data);
-            });
-
    
             const reference = ref(db, '/');
+            // var data = [];
+            // const starCountRef = ref(db, 'posts/' + postId + '/starCount');
+            // onValue(starCountRef, (snapshot) => {
+            // const data = snapshot.val();
+            // onValue(starCountRef, (snapshot) => {
+            //     updateStarCount(postElement, data);
+            // });
+
+            const reference = ref(db, 'practice-firebase-52292-default-rtdb');
+            
+            //console.log(reference.once("size"))
+
+            console.log(reference.get())
             console.log(reference);
+            console.log("Hello")
             onValue(reference, (snapshot) => {
                 console.log("Reference")
-                snapshot.docChanges().forEach(change => {
-                    const doc = {...change.doc.data(), id: change.doc.id}
-                    console.log(doc)
-                    switch(change.type)
-                    {
-                        case 'added':
-                            data.push(doc);
-                            break;
-                        case 'modified':
-                            const index = data.findIndex(item => item.id == doc.id);
-                            data[index] = doc;
-                            break;
-                        case 'removed':
-                            data = data.filter(item => item.id !== doc.id);
-                            break;
-                        default:
-                            console.log("After swictch gfgf")
-                            break;
-                    }
-                })
-                console.log("After swictch")
+                data = snapshot.val()
+
                 y.domain([0, d3.max(data, function(d) { return +d.size; })])
                     .range([graphHeight, 0]);
                 x.domain(data.map(item => item.name))
@@ -151,7 +140,7 @@
                 xAxisGroup.call(xAxis);        
                 yAxisGroup.call(yAxis);
 
-                            xAxisGroup.selectAll('text')
+                xAxisGroup.selectAll('text')
                 .attr('transform', 'rotate(30)')
                 .attr('text-anchor', 'start')
                 .attr('fill', '#2c3e50')
@@ -161,6 +150,7 @@
                 .attr('fill', '#2c3e50')
                 .style('font', '16px Avenir');
             })
+        console.log("End of function")
       }
   }
 </script>

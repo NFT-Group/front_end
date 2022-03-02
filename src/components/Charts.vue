@@ -1,154 +1,194 @@
 <template>
-    <div class = "canvas">
-
-    </div>
+  <div class="charts">
+    <div id="bloodGroupChart"></div>
+    <div id="ageRangesChart"></div>
+  </div>
 </template>
 
 <script>
-
-// SET UP GRAPH ------------------------------------------------------------------
-// Select canvas container and append SVG
-const svg = d3.select('.canvas')
-    .append('svg')
-        .attr('width', 600)
-        .attr('height', 600);
-
-// Create margins and dimensions
-const margin = {
-    top: 80,
-    right: 20,
-    bottom: 100,
-    left: 140
-};
-
-const graphWidth = 600 - margin.left - margin.right;
-const graphHeight = 600 - margin.top - margin.bottom;
-const graph = svg.append('g')
-    .attr('width', graphWidth)
-    .attr('height', graphHeight)
-    .attr('transform', `translate(${margin.left}, ${margin.top})`);     // Displaces graph from being flush with top-left of screen
-
-// Create axes groups
-const xAxisGroup = graph.append('g')
-    .attr('transform', `translate(0, ${graphHeight})`);
-const yAxisGroup = graph.append('g');
-
-// Set up axes (without domain)
-const y = d3.scaleLinear()
-    .range([graphHeight, 0]);                           // Range of scale on graph
-const x = d3.scaleBand()
-    .range([0, graphWidth])
-    .paddingInner(0.2)
-    .paddingOuter(0.2);
-
-// Create & call the axes
-const xAxis = d3.axisBottom(x);
-const yAxis = d3.axisLeft(y)
-    .ticks(5)
-    .tickFormat(d => d + ' NFTs');
-
-// Set axis text
-xAxisGroup.selectAll('text')
-    .attr('transform', 'rotate(-30)')
-    .attr('text-anchor', 'end')
-    .attr('fill', '#2c3e50')
-    .style('font', '16px Avenir');
-
-yAxisGroup.selectAll('text')
-    .attr('fill', '#2c3e50')
-    .style('font', '16px Avenir');
-
-// Add axis titles
-svg.append('text')
-    .attr('text-anchor', 'middle')
-    .attr('x', graphWidth/2 + margin.left)
-    .attr('y', graphHeight + margin.top + margin.bottom)
-    .text('NFT Collections')
-    .style('font', '18px Avenir')
-    .attr('fill', '#2c3e50')
-    .style('font-weight', 400);
-
-svg.append('text')
-    .attr('text-anchor', 'middle')
-    .attr('y', margin.left/3)
-    .attr('x', -(margin.top) + -(graphHeight/2))
-    .text('Size of Collection (No. of NFTs)')
-    .style('font', '18px Avenir')
-    .attr('fill', '#2c3e50')
-    .attr('transform', 'rotate(-90)')
-    .style('font-weight', 400);
-
-// Add axis graph title
-svg.append('text')
-    .attr('text-anchor', 'middle')
-    .attr('y', margin.top/2)
-    .attr('x', margin.left + graphWidth/2)
-    .text('NFT Collections by Size')
-    .style('font', '25px Avenir')
-    .attr('fill', '#2c3e50')
-    .style('font-weight', 600);
-
-
-// UPDATE FUNCTION ------------------------------------------------------------
-const update = (data) => {
-    // Update scale domains
-    y.domain([0, d3.max(data, function(d) { return +d.size; })])    // Spread of actual datapoints (responseive not hard coded)
-        .range([graphHeight, 0]);                                   // Range of scale on graph
-    x.domain(data.map(item => item.name))                           // Map() cycles through the JSON array and returns an array of all the 'name' variables
-        .range([0, graphWidth])
-        .paddingInner(0.2)
-        .paddingOuter(0.2);
-    // Join updated data to elements
-    const rects = graph.selectAll('rect').data(data);
-    // Remove unwanted (if any) shapes using exit selection
-    rects.exit().remove();
-    // Update the rectangle(s) already in the DOM
-    rects.attr('width', x.bandwidth)                        // Sets standard bar width
-        .attr('height', d => (graphHeight - y(d.size)))     // Sets height of bars (passed through the y scale)
-        .attr('fill', 'midnightblue')                       // Sets fill for bars
-        .attr('x', d => x(d.name))                          // Sets bar spacing
-        .attr('y', d => y(d.size));
-    // Append the enter selection to the DOM
-    rects.enter()
-    .append('rect')
-    .attr('width', x.bandwidth)
-    .attr('height', d => (graphHeight - y(d.size)))
-    .attr('fill', 'midnightblue')
-    .attr('x', d => x(d.name))
-    .attr('y', d => y(d.size));   
-    // Call axes
-    xAxisGroup.call(xAxis);                     // Runs the axis function on the group, generating the SVGs and adding them to group
-    yAxisGroup.call(yAxis);
-}
-
-// Declare data array
-var data = [];
-// Listen to firebase database ('onSnapshot' fires every time database changes)
-db.collection('collections').onSnapshot(res => {
-    res.docChanges().forEach(change => {
-        // Set ID from firebase for each data point 
-        const doc = {...change.doc.data(), id: change.doc.id}
-        // Switch statement to decide between new, modified and deleted data
-        switch(change.type)
-        {
-            case 'added':
-                data.push(doc);
-                break;
-            case 'modified':
-                // Find index of item inside data array
-                const index = data.findIndex(item => item.id == doc.id);
-                data[index] = doc;
-                break;
-            case 'removed':
-                // Filters all data points for items with ID 
-                data = data.filter(item => item.id !== doc.id);
-                break;
-            default:
-                break;
+import * as d3 from 'd3';
+export default {
+  name: 'Charts',
+  props: {
+    patients: {
+      type: Array,
+      validator: (patient) => patient.every(x => typeof x === 'object'),
+      required: true
+    }
+  },
+  data: ()=> {
+    return {
+      width: 360,
+      height: 280,
+      margin: {top: 50, right: 50, bottom: 50, left: 50}
+    }
+  },
+  computed: {
+    groupCounts(){
+      let groupCounts = {};
+      this.patients.map(patient => {
+        groupCounts[patient.bloodgroup] = groupCounts[patient.bloodgroup] + 1 || 1;  
+      })
+      return groupCounts;
+    },
+    bloodGroups(){
+      return Object.keys(this.groupCounts)
+    },
+    ageRanges(){
+      let ageRanges = {};
+      this.patients.map(patient => {
+        if(patient.age < 18){
+          ageRanges['Under 18'] = ageRanges['Under 18'] + 1 || 1
+        } else if(patient.age < 30){
+          ageRanges['18-30yrs'] = ageRanges['18-30yrs'] + 1 || 1
+        } else if(patient.age < 60){
+          ageRanges['30-60yrs'] = ageRanges['30-60yrs'] + 1 || 1
+        } else {
+          ageRanges['Over 60'] = ageRanges['Over 60'] + 1 || 1
         }
-    })
-    update(data);
-})
+      })
+      return ageRanges;
+    },
+    ageGroups(){
+      return Object.keys(this.ageRanges)
+    }
+  },
+  methods: {
+    initBloodGroupChart(){
+      var width = this.width - this.margin.left - this.margin.right,
+      height = this.height - this.margin.top - this.margin.bottom,
+      margin = this.margin;
 
+
+      var x = d3.scaleBand()
+      .range([0, width])
+      .padding(0.1);
+      var y = d3.scaleLinear()
+      .range([height, 0]);
+          
+      var svg = d3.select("#bloodGroupChart")
+      .append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .style("border", "3px solid black")
+      .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+      
+      var data = [...this.bloodGroups].map((group)=>{
+        return {bloodgroup: group, count: this.groupCounts[group]};
+      });
+
+      x.domain(data.map(function(d) { return d.bloodgroup; }));
+      y.domain([0, d3.max(data, function(d) { return d.count; })]);
+
+      svg.selectAll(".bar")
+      .data(data)
+      .enter().append("rect")
+      .style("fill", "steelblue")
+      .attr("x", function(d) { return x(d.bloodgroup); })
+      .attr("width", x.bandwidth())
+      .attr("y", function(d) { return y(d.count); })
+      .attr("height", function(d) { return height - y(d.count); });
+
+      svg.append("g")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x))
+      .append("text")
+      .attr("y", height - 150)
+      .attr("x", width - 100)
+      .attr("text-anchor", "end")
+      .attr("stroke", "black")
+      .text("Blood Group");
+
+      svg.append("g")
+      .call(d3.axisLeft(y))
+      .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", "-3.1em")
+      .attr("text-anchor", "end")
+      .attr("stroke", "black")
+      .text("Number of Patients with Blood Group");
+
+      svg.append("text")
+      .attr("transform", "translate(80,-10)")
+      .attr("x", 0)
+      .attr("y", 0)
+      .attr("font-size", "20px")
+      .text("Blood Groups");
+    },
+    initAgeRangesChart(){
+      var width = this.width - this.margin.left - this.margin.right,
+      height = this.height - this.margin.top - this.margin.bottom,
+      margin = this.margin;
+
+
+      var x = d3.scaleBand()
+      .range([0, width])
+      .padding(0.1);
+      var y = d3.scaleLinear()
+      .range([height, 0]);
+          
+      var svg = d3.select("#ageRangesChart")
+      .append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .style("border", "3px solid black")
+      .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+      
+      var data = [...this.ageGroups].map((group)=>{
+        return {agerange: group, count: this.ageRanges[group]};
+      });
+
+      x.domain(data.map(function(d) { return d.agerange; }));
+      y.domain([0, d3.max(data, function(d) { return d.count; })]);
+
+      svg.selectAll(".bar")
+      .data(data)
+      .enter().append("rect")
+      .style("fill", "steelblue")
+      .attr("x", function(d) { return x(d.agerange); })
+      .attr("width", x.bandwidth())
+      .attr("y", function(d) { return y(d.count); })
+      .attr("height", function(d) { return height - y(d.count); });
+
+      svg.append("g")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x))
+      .append("text")
+      .attr("y", height - 150)
+      .attr("x", width - 100)
+      .attr("text-anchor", "end")
+      .attr("stroke", "black")
+      .text("Age Range");
+
+      svg.append("g")
+      .call(d3.axisLeft(y))
+      .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", "-3.1em")
+      .attr("text-anchor", "end")
+      .attr("stroke", "black")
+      .text("Number of Patients in Age Range");
+
+      svg.append("text")
+      .attr("transform", "translate(80,-10)")
+      .attr("x", 0)
+      .attr("y", 0)
+      .attr("font-size", "20px")
+      .text("Age Distribution");
+    }
+  },
+  mounted(){
+    this.initBloodGroupChart();
+    this.initAgeRangesChart();
+  }
+}
 </script>
+
+<style scoped>
+</style>
+
 
