@@ -91,6 +91,8 @@
                 .attr('fill', '#2c3e50')
                 .style('font-weight', 600);
 
+   
+            const reference = ref(db, '/');
             // var data = [];
             // const starCountRef = ref(db, 'posts/' + postId + '/starCount');
             // onValue(starCountRef, (snapshot) => {
