@@ -29,7 +29,7 @@
             // Get a reference to the database service
             const db = getDatabase(app);
 
-            const svg = d3.select("#starterChart")
+            const svg = d3.select("starterChart") //removed #
             .attr('width', 700)
             .attr('height', 500);
 
@@ -100,7 +100,9 @@
             // });
 
             const reference = ref(db, 'practice-firebase-52292-default-rtdb');
-            console.log(reference.once("size"))
+            
+            //console.log(reference.once("size"))
+
             console.log(reference.get())
             console.log(reference);
             console.log("Hello")
@@ -136,7 +138,7 @@
                 xAxisGroup.call(xAxis);        
                 yAxisGroup.call(yAxis);
 
-                            xAxisGroup.selectAll('text')
+                xAxisGroup.selectAll('text')
                 .attr('transform', 'rotate(30)')
                 .attr('text-anchor', 'start')
                 .attr('fill', '#2c3e50')
