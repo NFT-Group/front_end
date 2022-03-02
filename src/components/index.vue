@@ -1,6 +1,6 @@
 <template>
     <div id="Charts">
-        <svg id="starterChart" width="700" height="500"></svg>
+        <svg id="barChart" width="700" height="500"></svg>
     </div>
 </template>
 
@@ -28,10 +28,10 @@
 
             // Get a reference to the database service
             const db = getDatabase(app);
-
-            const svg = d3.select("starterChart") //removed #
-            .attr('width', 700)
-            .attr('height', 500);
+            console.log(db)
+            const svg = d3.select("#barChart")
+                .attr('width', 700)
+                .attr('height', 500);
 
             const margin = {
                 top: 80,
@@ -91,26 +91,12 @@
                 .attr('fill', '#2c3e50')
                 .style('font-weight', 600);
 
-   
             const reference = ref(db, '/');
-            // var data = [];
-            // const starCountRef = ref(db, 'posts/' + postId + '/starCount');
-            // onValue(starCountRef, (snapshot) => {
-            // const data = snapshot.val();
-            // onValue(starCountRef, (snapshot) => {
-            //     updateStarCount(postElement, data);
-            // });
 
-            const reference = ref(db, 'practice-firebase-52292-default-rtdb');
-            
-            //console.log(reference.once("size"))
-
-            console.log(reference.get())
-            console.log(reference);
-            console.log("Hello")
             onValue(reference, (snapshot) => {
-                console.log("Reference")
-                data = snapshot.val()
+                var data = snapshot.val()
+                console.log('DATA BELOW BAKC:')
+                console.log(data["BAKC"])
 
                 y.domain([0, d3.max(data, function(d) { return +d.size; })])
                     .range([graphHeight, 0]);
@@ -150,7 +136,6 @@
                 .attr('fill', '#2c3e50')
                 .style('font', '16px Avenir');
             })
-        console.log("End of function")
       }
   }
 </script>
