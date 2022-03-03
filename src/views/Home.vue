@@ -6,8 +6,7 @@
   <hr class="solid">
   <br><br>
   <div>
-    <index />
-    <!-- <index2 />  -->
+    <chart/>
   </div>
   <br><br>
   <hr class="solid">
@@ -31,10 +30,10 @@
 </template>
 
 <script>
-  import index from '@/components/index'
+import Chart from '../components/Chart.vue'
   export default{
     name: 'App',
-    components: { index },
+    components: { Chart },
     data(){
       return{
         emailInput: '',
