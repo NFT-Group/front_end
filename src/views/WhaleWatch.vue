@@ -3,21 +3,24 @@
         <h1>Whale Watching</h1>
     </div>
     <br><br><br><br>
-    <p> What's hot?</p>
+    <h2> What's hot?</h2>
     <grid :data="gridData" :columns="gridColumns"></grid>
     <br><br><br><br>
     <hr class="solid">
-    <p>Insert Node Graph</p>
+    <div>
+      <nodeChart/>
+    </div>
     <br><br><br><br>
     <hr class="solid">
-    <p>Live Updating Whales</p>
+    <h2>Live Updating Whales</h2>
     <br><br><br><br>
 </template>
 
 <script>
 import Grid from '../components/Grid'
+import NodeChart from '../components/NodeChart.vue'
 export default {
-  name: "What's hot?",
+  name: "Whale watch",
     data() {
       return {
         gridData: [
@@ -33,7 +36,8 @@ export default {
       }
   },
   components: {
-    Grid
+    Grid,
+    NodeChart
   }
 }
 </script>

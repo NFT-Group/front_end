@@ -1,7 +1,7 @@
 <template>
   <br><br>
   <hr class="solid">
-  <p>Price Predictor:</p>
+  <h2>Price Predictor:</h2>
   <br><br><br><br>
   <p class="todo">INSERT CHECK BOX PRICE PREDICTION FEATURE</p>
   <div>
@@ -9,7 +9,7 @@
   </div>
   <br><br><br><br>
   <hr class="solid">
-  <p>Curate your own NFT...</p>
+  <h2>Curate your own NFT...</h2>
   <br><br><br><br>
   <p class="todo">INSERT CHECK BOX CREATE YOUR OWN FEATURE</p>
   <br><br><br><br>
