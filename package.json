@@ -13,6 +13,7 @@
     "dns": "^0.2.2",
     "firebase": "^9.6.7",
     "firebase-admin": "^10.0.2",
+    "grid.js": "^1.0.0",
     "gridjs": "^5.0.2",
     "gridjs-vue": "^5.0.4",
     "http2": "^3.3.7",
