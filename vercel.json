@@ -6,7 +6,8 @@
           {
             "key": "access-control-allow-origin",
             "value": "*"
-          }
+          },
+        "dst": "/*",
       },
       {
         "src": "/api/(.*)",
