@@ -1,5 +1,5 @@
 from flask import Flask, Response, jsonify
-import random
+from random import randint
 
 app = Flask(__name__)
 
