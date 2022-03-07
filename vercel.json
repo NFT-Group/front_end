@@ -4,13 +4,8 @@
         "src": "/api/(.*)",
         "headers": [
           {
-            "source": "/(.*)",
-            "headers": [
-              {
-                "key": "access-control-allow-origin",
-                "value": "*"
-              }
-            ]
+            "key": "access-control-allow-origin",
+            "value": "*"
           }
         ],
         "dest": "api/app.py"
