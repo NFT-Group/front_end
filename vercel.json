@@ -1,15 +1,23 @@
 {
   "routes": [
       {
-        "src": "/.*",
-        "headers":
-          { "key": "Access-Control-Allow-Origin", "value": "*" },
-        "dest": "/api/(.*)"
+        "src": ".*",
+        "methods": ["GET", "POST", "OPTIONS"],
+        "headers": {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
+          "Access-Control-Allow-Credentials": "true"
+        },
+        "dest": "index.js",
+        "continue": true
       },
       {
         "src": "/api/(.*)",
-        "headers":
-          { "key": "Access-Control-Allow-Origin", "value": "*" },
+        "headers": {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
+          "Access-Control-Allow-Credentials": "true"
+        },
         "dest": "api/app.py"
       }
     ]
