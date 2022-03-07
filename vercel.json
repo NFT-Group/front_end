@@ -4,7 +4,7 @@
         "src": "/.*",
         "headers":
           { "key": "Access-Control-Allow-Origin", "value": "*" },
-        "dest": "/.*"
+        "dest": "/api/(.*)"
       },
       {
         "src": "/api/(.*)",
