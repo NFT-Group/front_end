@@ -9,7 +9,8 @@
   </div>
   <br><br><br><br>
   <hr class="solid">
-  <h2 id="testheader">Curate your own NFT...</h2>
+  <h2 >Curate your own NFT...</h2>
+  <h3 id="nft_price_display">Your NFT price will appear here... </h3>
   <br><br><br><br>
   <p class="todo">INSERT CHECK BOX CREATE YOUR OWN FEATURE</p>
   <form @submit="onSubmit">
@@ -35,7 +36,7 @@ export default {
           console.log("inside axios.get")
           console.log(res)
           console.log(res.data)
-          document.getElementById('testheader').innerHTML=res.data;
+          document.getElementById('nft_price_display').innerHTML=res.data["price"];
         })
         .catch((error) => {
           // eslint-disable-next-line
