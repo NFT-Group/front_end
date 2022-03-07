@@ -23,13 +23,16 @@ import axios from 'axios';
 
 export default {
   name: 'Predictions',
+  created() {
+    this.onSubmit();
+  },
   methods: {
     onSubmit() {
       console.log("entering onSubmit")
       const path = 'https://front-end-one-smoky.vercel.app/predictions/get_price';
-      axios.put(path)
+      axios.get(path)
         .then((res) => {
-          console.log("inside axios.put")
+          console.log("inside axios.get")
           console.log(res)
           console.log(res.data)
           document.getElementById('testheader').innerHTML=res.data;
