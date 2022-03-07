@@ -12,7 +12,7 @@
   <h2 id="testheader">Curate your own NFT...</h2>
   <br><br><br><br>
   <p class="todo">INSERT CHECK BOX CREATE YOUR OWN FEATURE</p>
-  <form action="/predictions">
+  <form @submit="onSubmit">
     <input type="submit" name="submit_button">
   </form>
   <br><br><br><br>
@@ -23,17 +23,16 @@ import axios from 'axios';
 
 export default {
   name: 'Predictions',
-  data() {
-    return {
-      msg: '',
-    };
-  },
+  //data() {
+    //return {
+      //msg: '',
+    //};
+  //},
   methods: {
-    getMessage() {
-      console.log("outside axios.get")
-      const path = 'https://front-end-one-smoky.vercel.app/predictions';
+    onSubmit() {
+      const path = 'https://front-end-one-smoky.vercel.app/get_price';
       axios.get(path)
-        .then((res) => {
+      .then((res) => {
           console.log("inside axios.get")
           console.log(res)
           console.log(res.data)
@@ -41,14 +40,28 @@ export default {
         })
         .catch((error) => {
           // eslint-disable-next-line
-          console.log("error axios.get")
+          console.log("error onSubmit")
           console.error(error);
         });
     },
-  },
-  created() {
-    this.getMessage();
-  },
+    //getMessage() {
+      //console.log("inside getMessage")
+      //const path = 'https://front-end-one-smoky.vercel.app/predictions';
+      //axios.get(path)
+        //.then((res) => {
+          //console.log("inside axios.get")
+          //document.getElementById('testheader').innerHTML=res.data;
+        //})
+        //.catch((error) => {
+          // eslint-disable-next-line
+          //console.log("error axios.get")
+          //console.error(error);
+        //});
+    //},
+  //},
+  //created() {
+    //this.getMessage();
+  //},
 };
 </script>
 
