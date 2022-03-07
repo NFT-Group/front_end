@@ -25,10 +25,11 @@ import axios from 'axios';
 export default {
   name: 'Predictions',
   created() {
-    
+    this.onSubmit()
   },
   methods: {
     onSubmit() {
+      console.log("entering onSubmit")
       const path = 'https://front-end-one-smoky.vercel.app/api/get_price';
       axios.get(path)
         .then((res) => {
