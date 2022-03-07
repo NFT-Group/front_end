@@ -1,6 +1,14 @@
 {
   "routes": [
       {
+        "src": "/*",
+        "headers":
+          {
+            "key": "access-control-allow-origin",
+            "value": "*"
+          }
+      },
+      {
         "src": "/api/(.*)",
         "headers":
           {
