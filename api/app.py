@@ -1,14 +1,14 @@
 from flask import Flask, Response, jsonify
-from random import randint
+#from random import randint
 
 app = Flask(__name__)
 
 #@app.route('/', defaults={'path': ''})
 @app.route('/api/get_price', methods=["GET"])
 def api():
-    price = randint(1000000, 10000000)
-    response_string = "That NFT would cost " + str(price) + " pounds!"
-    return response_string
+    #price = randint(1000000, 10000000)
+    response_json = {"price" : "One squillion billion pounds!"}
+    return jsonify(response_json)
     #if request.method == 'GET':
         #response_object = {"price": "1000"}
         #return jsonify(response_object)
