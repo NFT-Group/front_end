@@ -1,5 +1,11 @@
 {
-    "headers": [
+  "routes": [
+      {
+        "src": "/api/(.*)",
+        "dest": "api/app.py"
+      }
+    ],
+  "headers": [
       {
         "source": "/(.*)",
         "headers": [

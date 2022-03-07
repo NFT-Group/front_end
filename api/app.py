@@ -2,8 +2,8 @@ from flask import Flask, Response, jsonify
 app = Flask(__name__)
 
 #@app.route('/', defaults={'path': ''})
-@app.route('/api', methods=["GET"])
-def get_price():
+@app.route('/api/get_price', methods=["GET"])
+def api():
     response_object = {"price": "1000"}
     response = Response(data=jsonify(response_object))
     return response
