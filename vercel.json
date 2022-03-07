@@ -2,12 +2,11 @@
   "routes": [
       {
         "src": "/api/(.*)",
-        "headers": [
+        "headers":
           {
             "key": "access-control-allow-origin",
             "value": "*"
-          }
-        ],
+          },
         "dest": "api/app.py"
       }
     ]
