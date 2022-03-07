@@ -30,7 +30,7 @@ export default {
     onSubmit() {
       console.log("entering onSubmit")
       const path = 'https://front-end-one-smoky.vercel.app/api/get_price';
-      axios.get(path, {headers: {'access-control-allow-origin': '*'}})
+      axios.get(path)
         .then((res) => {
           console.log("inside axios.get")
           console.log(res)
