@@ -9,9 +9,12 @@
   </div>
   <br><br><br><br>
   <hr class="solid">
-  <h2>Curate your own NFT...</h2>
+  <h2 id="testheader">Curate your own NFT...</h2>
   <br><br><br><br>
   <p class="todo">INSERT CHECK BOX CREATE YOUR OWN FEATURE</p>
+  <form action="/predictions">
+    <input type="submit" name="submit_button">
+  </form>
   <br><br><br><br>
 </template>
 
@@ -27,13 +30,16 @@ export default {
   },
   methods: {
     getMessage() {
+      console.log("outside axios.get")
       const path = 'https://front-end-one-smoky.vercel.app/predictions';
       axios.get(path)
         .then((res) => {
-          this.msg = res.data;
+          console.log("inside axios.get")
+          getElementById('testheader').innerHTML=res.data;
         })
         .catch((error) => {
           // eslint-disable-next-line
+          console.log("error axios.get")
           console.error(error);
         });
     },
