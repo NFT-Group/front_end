@@ -1,7 +1,15 @@
 {
   "routes": [
       {
+        "src": "/.*",
+        "headers":
+          { "key": "Access-Control-Allow-Origin", "value": "*" },
+        "dest": "/.*"
+      },
+      {
         "src": "/api/(.*)",
+        "headers":
+          { "key": "Access-Control-Allow-Origin", "value": "*" },
         "dest": "api/app.py"
       }
     ]
