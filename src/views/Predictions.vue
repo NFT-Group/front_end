@@ -23,11 +23,6 @@ import axios from 'axios';
 
 export default {
   name: 'Predictions',
-  //data() {
-    //return {
-      //msg: '',
-    //};
-  //},
   methods: {
     onSubmit() {
       const path = 'https://front-end-one-smoky.vercel.app/get_price';
@@ -44,24 +39,7 @@ export default {
           console.error(error);
         });
     },
-    //getMessage() {
-      //console.log("inside getMessage")
-      //const path = 'https://front-end-one-smoky.vercel.app/predictions';
-      //axios.get(path)
-        //.then((res) => {
-          //console.log("inside axios.get")
-          //document.getElementById('testheader').innerHTML=res.data;
-        //})
-        //.catch((error) => {
-          // eslint-disable-next-line
-          //console.log("error axios.get")
-          //console.error(error);
-        //});
-    //},
-  //},
-  //created() {
-    //this.getMessage();
-  //},
+  },
 };
 </script>
 
