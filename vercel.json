@@ -2,18 +2,18 @@
   "routes": [
       {
         "src": "/api/(.*)",
-        "dest": "api/app.py"
-      }
-    ],
-  "headers": [
-      {
-        "source": "/(.*)",
         "headers": [
           {
-            "key": "access-control-allow-origin",
-            "value": "*"
+            "source": "/(.*)",
+            "headers": [
+              {
+                "key": "access-control-allow-origin",
+                "value": "*"
+              }
+            ]
           }
-        ]
+        ],
+        "dest": "api/app.py"
       }
     ]
   }
