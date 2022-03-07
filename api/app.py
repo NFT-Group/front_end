@@ -8,7 +8,8 @@ app = Flask(__name__)
 def api():
     price = randint(1000000, 10000000)
     response_string = "That NFT would cost " + str(price) + " pounds!"
-    response_object = {"price": response_string}
+    response_object = {"price": ""}
+    response_object["price"] = response_string
     return jsonify(response_object)
     #if request.method == 'GET':
         #response_object = {"price": "1000"}
