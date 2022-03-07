@@ -35,6 +35,8 @@ export default {
       axios.get(path)
         .then((res) => {
           console.log("inside axios.get")
+          console.log(res)
+          console.log(res.data)
           document.getElementById('testheader').innerHTML=res.data;
         })
         .catch((error) => {
