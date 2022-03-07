@@ -2,10 +2,11 @@ from flask import Flask, Response, jsonify
 app = Flask(__name__)
 
 #@app.route('/', defaults={'path': ''})
-@app.route('/predictions/get_price', methods=["GET"])
+@app.route('/predictions/get_price', methods=["POST"])
 def get_price():
     response_object = {"price": "1000"}
-    return jsonify(response_object)
+    response = Response(data=jsonify(response_object))
+    return response
     #if request.method == 'GET':
         #response_object = {"price": "1000"}
         #return jsonify(response_object)
