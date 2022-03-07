@@ -35,7 +35,7 @@ export default {
       axios.get(path)
         .then((res) => {
           console.log("inside axios.get")
-          getElementById('testheader').innerHTML=res.data;
+          document.getElementById('testheader').innerHTML=res.data;
         })
         .catch((error) => {
           // eslint-disable-next-line
