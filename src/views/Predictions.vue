@@ -34,7 +34,7 @@ export default {
         .then((res) => {
           console.log(res)
           console.log(res.data)
-          document.getElementById('nft_price_display').innerHTML=res.data["price"];
+          document.getElementById('nft_price_display').innerHTML=res.data;
         })
         .catch((error) => {
           // eslint-disable-next-line
