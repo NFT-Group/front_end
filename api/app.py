@@ -6,8 +6,8 @@ app = Flask(__name__)
 #@app.route('/', defaults={'path': ''})
 @app.route('/api/get_price', methods=["GET"])
 def api():
-    price = randint(1000000, 10000000)
-    response_json = {"price" : "That NFT would cost " + str(price) + "pounds! Wow!"}
+    price = randint(100, 10000000)
+    response_json = {"price" : "That NFT would cost £" + str(price) + "! Wow!"}
     return jsonify(response_json)
     #if request.method == 'GET':
         #response_object = {"price": "1000"}
