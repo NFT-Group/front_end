@@ -17,7 +17,7 @@
   <br><br>
   <p> Enter your email and a message here. Our team will get back to you ASAP.</p>
   <form @submit.prevent="handleSubmit">
-      <label>Enter you email:</label>
+      <label>Enter your email:</label>
       <input type="email" required v-model="emailInput">
       <label>Message:</label>
       <input type="text" required v-model="messageInput">

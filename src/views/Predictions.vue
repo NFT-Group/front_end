@@ -26,10 +26,10 @@ export default {
   methods: {
     onSubmit() {
       console.log("entering onSubmit")
-      const path = 'https://front-end-one-smoky.vercel.app/get_price';
-      axios.post(path)
+      const path = 'https://front-end-one-smoky.vercel.app/predictions/get_price';
+      axios.put(path)
         .then((res) => {
-          console.log("inside axios.post")
+          console.log("inside axios.put")
           console.log(res)
           console.log(res.data)
           document.getElementById('testheader').innerHTML=res.data;
