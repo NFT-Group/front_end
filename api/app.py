@@ -1,8 +1,8 @@
 from flask import Flask, Response, jsonify
-from flask_cors import CORS
+#from flask_cors import CORS
 app = Flask(__name__)
 
-CORS(app, resources={r'*': {'origins': '*'}})
+#CORS(app, resources={r'*': {'origins': '*'}})
 
 #@app.route('/', defaults={'path': ''})
 @app.route('/api/get_price', methods=["GET"])
