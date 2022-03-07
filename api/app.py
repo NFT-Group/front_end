@@ -6,8 +6,7 @@ app = Flask(__name__)
 @app.route('/api/get_price', methods=["GET"])
 def api():
     response_object = {"price": "1000"}
-    response = Response(data=jsonify(response_object))
-    return response
+    return jsonify(response_object)
     #if request.method == 'GET':
         #response_object = {"price": "1000"}
         #return jsonify(response_object)
