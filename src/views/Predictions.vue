@@ -39,10 +39,11 @@ export default {
       console.log(evt);
       console.log("which element is checked?")
       console.log(evt.srcElement.collection.value)
+      var collection_value = evt.srcElement.collection.value
       evt.preventDefault();
       console.log("entering onSubmit")
       const path = 'https://front-end-one-smoky.vercel.app/api/get_price';
-      axios.get(path)
+      axios.post(path, collection_value)
         .then((res) => {
           console.log(res)
           console.log(res.data)
