@@ -38,7 +38,7 @@ export default {
     onSubmit(evt) {
       console.log(evt);
       console.log("is cryptoadz checked?")
-      console.log(evt.target.elements['cryptoad'].checked)
+      console.log(evt.target.elements["cryptoad"])
       evt.preventDefault();
       console.log("entering onSubmit")
       const path = 'https://front-end-one-smoky.vercel.app/api/get_price';
