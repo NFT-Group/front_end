@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 #@app.route('/', defaults={'path': ''})
 @app.route('/api/get_price', methods=["POST"])
-def api(event):
+def api():
     collection = request.data
     price = randint(100, 10000000)
     response_json = {"price" : "That " + collection + " would cost £" + str(price) + "! Wow!"}
