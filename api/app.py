@@ -8,7 +8,7 @@ app = Flask(__name__)
 def api():
     collection = request.data
     price = randint(100, 10000000)
-    response_json = {"price" : "That " + collection + " would cost £" + str(price) + "! Wow!"}
+    response_json = {"price" : "That " + str(collection) + " would cost £" + str(price) + "! Wow!"}
     return jsonify(response_json)
     #if request.method == 'GET':
         #response_object = {"price": "1000"}

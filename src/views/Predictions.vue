@@ -43,7 +43,7 @@ export default {
       evt.preventDefault();
       console.log("entering onSubmit")
       const path = 'https://front-end-one-smoky.vercel.app/api/get_price';
-      axios.post(path, collection_value)
+      axios.post(path, collection_value, { headers: { 'content-type': 'text/plain' }})
         .then((res) => {
           console.log(res)
           console.log(res.data)
