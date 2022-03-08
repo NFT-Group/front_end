@@ -19,7 +19,7 @@
     <label for="ape">Bored Apes</label>
     <input type="radio" id="cryptoad" name="collection" value="cryptoad">
     <label for="cryptoad">CrypToadz</label>
-    <input type="radio" id="punk" name="result_type" value="punk">
+    <input type="radio" id="punk" name="collection" value="punk">
     <label for="punk">CryptoPunk</label><br><br>
     <input type="submit" name="submit_button">
   </form>
