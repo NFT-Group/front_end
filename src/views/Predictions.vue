@@ -60,16 +60,16 @@ export default {
       evt.preventDefault();
       console.log("entering onSubmit")
       const path = 'https://front-end-one-smoky.vercel.app/api/get_price';
-      axios.post(path, JSON.parse(query_object), { headers: { 'content-type': 'text/json' }})
-        .then((res) => {
-          console.log(res)
-          console.log(res.data)
-          document.getElementById('nft_price_display').innerHTML=res.data["price"];
-        })
-        .catch((error) => {
-           eslint-disable-next-line
-          console.error(error);
-        });
+      //axios.post(path, JSON.parse(query_object), { headers: { 'content-type': 'text/json' }})
+        //.then((res) => {
+          //console.log(res)
+          //console.log(res.data)
+          //document.getElementById('nft_price_display').innerHTML=res.data["price"];
+        //})
+        //.catch((error) => {
+           //eslint-disable-next-line
+          //console.error(error);
+        //});
     },
   },
 };
