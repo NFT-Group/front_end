@@ -5,7 +5,6 @@
   <br><br><br><br>
   <p class="todo">INSERT CHECK BOX PRICE PREDICTION FEATURE</p>
   <div>
-    <!-- <index2 /> -->
   </div>
   <br><br><br><br>
   <hr class="solid">
@@ -27,7 +26,7 @@
       </select>
     <br><br>
     <label>Enter a Token ID:</label>
-    <input type="number" required v-model="tokenID" id="tokenid" value="tokenid" name="tokenid"> 
+    <input type="number" required v-model="tokenID" id="tokenid" name="tokenid"> 
     <br><br>
     <input type="submit" name="submit_button">
   </form>

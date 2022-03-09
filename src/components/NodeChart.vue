@@ -305,8 +305,7 @@
 
 <style>
     text {
-        font: 8px sans-serif;
-        fill: grey;
+        font: 8px Avenir;
     }
     
     text:hover,
