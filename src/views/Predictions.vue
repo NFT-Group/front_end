@@ -15,7 +15,7 @@
   <p class="todo">INSERT CHECK BOX CREATE YOUR OWN FEATURE</p>
   <form @submit="onSubmit">
     <label>Enter a Collection:</label>
-      <select>
+      <select value="collection" id="collection" name="collection">
           <option value="punk" id="punk" name="collection">CryptoPunks</option>
           <option value="ape" id="ape" name="collection">Bored Ape Yacht Club</option>
           <option value="kennel" id="kennel" name="collection">Bored Ape Kennel Club</option>
@@ -27,7 +27,7 @@
       </select>
     <br><br>
     <label>Enter a Token ID:</label>
-    <input type="number" required v-model="tokenID" id="tokenid"> 
+    <input type="number" required v-model="tokenID" id="tokenid" value="tokenid" name="tokenid> 
     <input type="submit" name="submit_button">
   </form>
   <br><br><br><br>
