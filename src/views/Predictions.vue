@@ -3,15 +3,6 @@
   <hr class="solid">
   <h2>Price Predictor:</h2>
   <br><br><br><br>
-  <p class="todo">INSERT CHECK BOX PRICE PREDICTION FEATURE</p>
-  <div>
-  </div>
-  <br><br><br><br>
-  <hr class="solid">
-  <h2 >Curate your own NFT...</h2>
-  <h3 id="nft_price_display">Your NFT price will appear here... </h3>
-  <br><br><br><br>
-  <p class="todo">INSERT CHECK BOX CREATE YOUR OWN FEATURE</p>
   <form @submit="onSubmit">
     <label>Enter a Collection:</label>
       <select value="collection" id="collection" name="collection">
@@ -30,6 +21,12 @@
     <br><br>
     <input type="submit" name="submit_button">
   </form>
+  <br><br>
+  <h3 id="nft_price_display">Your NFT price will appear here... </h3>
+  <br><br>
+  <hr class="solid">
+  <br><br>
+  <h2 >Curate your own NFT...</h2>
   <br><br><br><br>
 </template>
 
