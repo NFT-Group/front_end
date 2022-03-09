@@ -16,19 +16,18 @@
   <form @submit="onSubmit">
     <label>Enter a Collection:</label>
       <select>
-          <option value="cryptokittens">CryptoPunks</option>
-          <option value="boredapes">Bored Ape Yacht Club</option>
-          <option value="boredapekennel">Bored Ape Kennel Club</option>
-          <option value="doodles">Doodles</option>
-          <option value="coolcats">Cool Cats</option>
-          <option value="cryptoadz">CrypToadz</option>
-          <option value="pudgypenguins">Pudgy Penguins</option>
-          <option value="clonex">cloneX</option>
+          <option value="punk" id="punk" name="collection">CryptoPunks</option>
+          <option value="ape" id="ape" name="collection">Bored Ape Yacht Club</option>
+          <option value="kennel" id="kennel" name="collection">Bored Ape Kennel Club</option>
+          <option value="doodle" id="doodle" name="collection">Doodles</option>
+          <option value="coolcat" id="coolcat" name="collection">Cool Cats</option>
+          <option value="cryptoad" id="cryptoad" name="collection">CrypToadz</option>
+          <option value="penguin" id="penguin" name="collection">Pudgy Penguins</option>
+          <option value="clonex" id="clonex" name="collection">cloneX</option>
       </select>
     <br><br>
     <label>Enter a Token ID:</label>
-    <input type="number" required v-model="tokenID"> 
-    <br><br>
+    <input type="number" required v-model="tokenID" id="tokenid"> 
     <input type="submit" name="submit_button">
   </form>
   <br><br><br><br>
