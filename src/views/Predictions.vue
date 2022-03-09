@@ -1,8 +1,8 @@
 <template>
+  <h1>Price Predictor</h1>
   <br><br>
-  <hr class="solid">
-  <h2>Price Predictor:</h2>
-  <br><br><br><br>
+  <h2>Predict the value of your next NFT</h2>
+  <br><br>
   <form @submit="onSubmit">
     <label>Enter a Collection:</label>
       <select value="collection" id="collection" name="collection">
@@ -26,7 +26,7 @@
   <br><br>
   <hr class="solid">
   <br><br>
-  <h2 >Curate your own NFT...</h2>
+  <h2 >Curate your own NFT</h2>
   <br><br><br><br>
 </template>
 

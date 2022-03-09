@@ -7,6 +7,8 @@
   <p>Quantum is a Market Analyser, Visualiser and Predictive tool <br> created as part of a Group Project
     at Imperial College London. <br>  The project is conducted under the supervision of <a href="https://www.imperial.ac.uk/people/w.knottenbelt">Prof. Will Knottenbelt</a>
   </p>
+  <h4>Why Quantum?</h4>
+  <p>Quantum is the name of the first known NFT, created in May 2014 by Kevin McCoy and Anil Dash. It consisted of a video clip made by McCoy's wife, Jennifer. </p>
 </template>
 
 <style>
