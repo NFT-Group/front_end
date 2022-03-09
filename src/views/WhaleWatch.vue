@@ -7,6 +7,10 @@
     <grid :data="gridData" :columns="gridColumns"></grid>
     <br><br><br><br>
     <hr class="solid">
+    <h2> Whale transactions of Bored Ape Yacht Club:</h2>
+    <p> Hover for transaction destinations. <br>
+        Red link = Sale <br>
+        Blue link = Purchase </p>
     <div>
       <nodeChart/>
     </div>
