@@ -51,21 +51,24 @@ export default {
       console.log(collection)
       console.log("tokenid")
       console.log(tokenid)
+      var query_object = {"collection": collection, "tokenid": tokenid}
+      console.log(query_object)
+      console.log(JSON.parse(query_object))
       //console.log(evt.srcElement.collection.value)
       //var collection_value = evt.srcElement.collection.value
       evt.preventDefault();
       console.log("entering onSubmit")
       const path = 'https://front-end-one-smoky.vercel.app/api/get_price';
-      // axios.post(path, collection_value, { headers: { 'content-type': 'text/plain' }})
-        //.then((res) => {
-        //  console.log(res)
-        //  console.log(res.data)
-        //  document.getElementById('nft_price_display').innerHTML=res.data["price"];
-        //})
-       // .catch((error) => {
-          // eslint-disable-next-line
-        //  console.error(error);
-       // });
+      axios.post(path, JSON.parse(query_object), { headers: { 'content-type': 'text/json' }})
+        .then((res) => {
+          console.log(res)
+          console.log(res.data)
+          document.getElementById('nft_price_display').innerHTML=res.data["price"];
+        })
+        .catch((error) => {
+           eslint-disable-next-line
+          console.error(error);
+        });
     },
   },
 };
