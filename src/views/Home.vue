@@ -54,6 +54,10 @@ import Chart from '../components/Chart.vue'
   h1.title{
     font-size: 50px;
   }
+  h2{
+    color: #666e77;
+    font-weight: 500;
+  }
   p.input{
     color: #444; 
     font-size: 1.2em; 

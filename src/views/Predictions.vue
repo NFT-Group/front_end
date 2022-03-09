@@ -28,6 +28,7 @@
     <br><br>
     <label>Enter a Token ID:</label>
     <input type="number" required v-model="tokenID"> 
+    <br><br>
     <input type="submit" name="submit_button">
   </form>
   <br><br><br><br>
@@ -68,8 +69,12 @@ export default {
 
 <style>
   h2{
-    font-size: 25px;
-    color: black;
+    color: #666e77;
+    font-weight: 500;
+  }
+  h3{
+    color: #666e77;
+    font-weight: 500;
   }
   p.input{
     color: #444; 
