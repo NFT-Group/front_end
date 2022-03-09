@@ -14,13 +14,19 @@
   <br><br><br><br>
   <p class="todo">INSERT CHECK BOX CREATE YOUR OWN FEATURE</p>
   <form @submit="onSubmit">
-    <h2>Select collection:</h2>
-    <input type="radio" id="ape" name="collection" value="ape" checked="checked">
-    <label for="ape">Bored Apes</label>
-    <input type="radio" id="cryptoad" name="collection" value="cryptoad">
-    <label for="cryptoad">CrypToadz</label>
-    <input type="radio" id="punk" name="collection" value="punk">
-    <label for="punk">CryptoPunk</label><br><br>
+    <label>Collection:</label>
+      <select>
+          <option value="cryptokittens">CryptoPunks</option>
+          <option value="boredapes">Bored Ape Yacht Club</option>
+          <option value="boredapekennel">Bored Ape Kennel Club</option>
+          <option value="doodles">Doodles</option>
+          <option value="coolcats">Cool Cats</option>
+          <option value="cryptoadz">CrypToadz</option>
+          <option value="pudgypenguins">Pudgy Penguins</option>
+          <option value="clonex">cloneX</option>
+      </select>
+    <label>Token Id:</label>
+    <input type="number" required v-model="tokenID"> 
     <input type="submit" name="submit_button">
   </form>
   <br><br><br><br>
