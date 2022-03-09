@@ -14,7 +14,7 @@
   <br><br><br><br>
   <p class="todo">INSERT CHECK BOX CREATE YOUR OWN FEATURE</p>
   <form @submit="onSubmit">
-    <label>Collection:</label>
+    <label>Enter a Collection:</label>
       <select>
           <option value="cryptokittens">CryptoPunks</option>
           <option value="boredapes">Bored Ape Yacht Club</option>
@@ -25,7 +25,8 @@
           <option value="pudgypenguins">Pudgy Penguins</option>
           <option value="clonex">cloneX</option>
       </select>
-    <label>Token Id:</label>
+    <br><br>
+    <label>Enter a Token ID:</label>
     <input type="number" required v-model="tokenID"> 
     <input type="submit" name="submit_button">
   </form>
@@ -49,16 +50,16 @@ export default {
       evt.preventDefault();
       console.log("entering onSubmit")
       const path = 'https://front-end-one-smoky.vercel.app/api/get_price';
-      axios.post(path, collection_value, { headers: { 'content-type': 'text/plain' }})
-        .then((res) => {
-          console.log(res)
-          console.log(res.data)
-          document.getElementById('nft_price_display').innerHTML=res.data["price"];
-        })
-        .catch((error) => {
+      // axios.post(path, collection_value, { headers: { 'content-type': 'text/plain' }})
+        //.then((res) => {
+        //  console.log(res)
+        //  console.log(res.data)
+        //  document.getElementById('nft_price_display').innerHTML=res.data["price"];
+        //})
+       // .catch((error) => {
           // eslint-disable-next-line
-          console.error(error);
-        });
+        //  console.error(error);
+       // });
     },
   },
 };
@@ -76,5 +77,31 @@ export default {
   }
   p.todo{
     font-style: italic;
+  }
+  form{
+    max-width: 420px; 
+    margin: 20px auto; 
+    background: white; 
+    text-align: left;
+    padding: 0px;
+    border-radius: 10px;
+  }
+  label{
+    color:#aaa;
+    display: inline-block;
+    margin: 25px 0 15px; 
+    font-size: 0.6em;
+    text-transform: uppercase;
+    letter-spacing: 1px; 
+    font-weight: bold; 
+  }
+  input, select{
+    display: block; 
+    padding: 10px 6px;
+    width: 100%;
+    box-sizing: border-box;
+    border: none; 
+    border-bottom: 1px solid #ddd;
+    color: #555;
   }
 </style>
