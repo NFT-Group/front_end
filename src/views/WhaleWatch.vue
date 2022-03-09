@@ -2,7 +2,7 @@
     <div class="whalewatching">
         <h1>Whale Watching</h1>
     </div>
-    <br><br><br><br>
+    <br>
     <h2> What's hot?</h2>
     <grid :data="gridData" :columns="gridColumns"></grid>
     <br><br>

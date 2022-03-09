@@ -2,7 +2,7 @@
   <h1>Price Predictor</h1>
   <br><br>
   <h2>Predict the value of your next NFT</h2>
-  <br><br>
+  <br>
   <form @submit="onSubmit">
     <label>Enter a Collection:</label>
       <select value="collection" id="collection" name="collection">
