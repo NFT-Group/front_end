@@ -45,6 +45,12 @@ export default {
     onSubmit(evt) {
       console.log(evt);
       console.log("which element is checked?")
+      var collection = evt.srcElement.collection.value
+      var tokenid = evt.srcElement.tokenid.value
+      console.log("collection")
+      console.log(collection)
+      console.log("tokenid")
+      console.log(tokenid)
       //console.log(evt.srcElement.collection.value)
       //var collection_value = evt.srcElement.collection.value
       evt.preventDefault();
