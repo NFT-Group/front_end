@@ -27,7 +27,7 @@
       </select>
     <br><br>
     <label>Enter a Token ID:</label>
-    <input type="number" required v-model="tokenID" id="tokenid" value="tokenid" name="tokenid> 
+    <input type="number" required v-model="tokenID" id="tokenid" value="tokenid" name="tokenid"> 
     <input type="submit" name="submit_button">
   </form>
   <br><br><br><br>
