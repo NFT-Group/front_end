@@ -86,7 +86,7 @@ export default {
             .attr('fill', '#2c3e50')
             .style('font-weight', 600);
 
-        const reference = ref(db, '/').orderByChild('timestamp').startAt('2022-02-10');
+        const reference = ref(db, '/');
 
         var apeAddress = '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D'
         var cryptoPunkAddress = '0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB'
@@ -97,7 +97,7 @@ export default {
         var boredApeKennelAddress = '0xba30E5F9Bb24caa003E9f2f0497Ad287FDF95623'
         var pudgyPenguinAddress = '0xBd3531dA5CF5857e7CfAA92426877b022e612cf8'
 
-        onValue(reference, (snapshot) => {
+        onValue(reference.orderByChild('timestamp').startAt('2022-02-10'), (snapshot) => {
             const data = Object.values(snapshot.val())
             console.log(data)
 
