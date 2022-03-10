@@ -87,11 +87,54 @@ export default {
             .style('font-weight', 600);
 
         const reference = ref(db, '/');
+        var apeAddress = '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D'
+        var cryptoPunkAddress = '0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB'
+        var doodlesAddress = '0x8a90CAb2b38dba80c64b7734e58Ee1dB38B8992e'
+        var coolCatsAddress = '0x1A92f7381B9F03921564a437210bB9396471050C'
+        var cloneXAddress = '0x49cF6f5d44E70224e2E23fDcdd2C053F30aDA28B'
+        var crypToadzAddress = '0x1CB1A5e65610AEFF2551A50f76a87a7d3fB649C6'
+        var boredApeKennelAddress = '0xba30E5F9Bb24caa003E9f2f0497Ad287FDF95623'
+        var pudgyPenguinAddress = '0xBd3531dA5CF5857e7CfAA92426877b022e612cf8'
 
         onValue(reference, (snapshot) => {
             const data = Object.values(snapshot.val())
             console.log(data)
 
+            //get number of historical transactions for all collections
+            //format data into Array object of 8 elements with 'name' and 'size' fields
+            var total_transaction_counts[8];
+            var collection_names[8];
+            total_transaction_counts[0] = (ref.order_by_child('contracthash').equal_to('apeAddress').get()).length
+            collection_names[0] = 'Bored Ape yacht Club'
+            total_transaction_counts[1] = (ref.order_by_child('contracthash').equal_to('cryptoPunkAddress').get()).length
+            collection_names[1] = 'CryptoPunks'
+            total_transaction_counts[2] = (ref.order_by_child('contracthash').equal_to('boredApeKennelAddress').get()).length
+            collection_names[2] = 'Bored Ape Kennel Club'
+            total_transaction_counts[3] = (ref.order_by_child('contracthash').equal_to('coolCatsAddress').get()).length
+            collection_names[3] = 'Cool Cats'
+            total_transaction_counts[4] = (ref.order_by_child('contracthash').equal_to('cloneXAddress').get()).length
+            collection_names[4] = 'cloneX'
+            total_transaction_counts[5] = (ref.order_by_child('contracthash').equal_to('crypToadzAddress').get()).length
+            collection_names[5] = 'CrypToadz'
+            total_transaction_counts[6] = (ref.order_by_child('contracthash').equal_to('doodlesAddress').get()).length
+            collection_names[6] = 'Doodles'
+            total_transaction_counts[7] = (ref.order_by_child('contracthash').equal_to('pudgyPenguinAddress').get()).length
+            collection_names[7] = 'Pudgy Penguins'
+
+            var data_array[8];
+            var i = 0;
+            for (; i < 8; i += 1)
+            {
+                data_array[i] = { 'name' : collection_names[i], 'size' : total_transaction_counts[i] }
+            }
+
+            data = data_array
+
+            console.log("data")
+            console.log(data)
+            console.log("data_array")
+            console.log(data_array)
+            
             y.domain([0, d3.max(data, function(d) { return +d.size; })])
                 .range([graphHeight, 0])
 
