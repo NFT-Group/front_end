@@ -98,31 +98,35 @@ export default {
         var pudgyPenguinAddress = '0xBd3531dA5CF5857e7CfAA92426877b022e612cf8'
 
         onValue(reference, (snapshot) => {
-            //const data = Object.values(snapshot.val())
-            //console.log(data)
+            const data = Object.values(snapshot.val())
+            console.log(data)
 
             //get number of historical transactions for all collections
             //format data into Array object of 8 elements with 'name' and 'size' fields
-            var last_month_transactions = reference.orderByChild('timestamp').startAt('2022-02-10').get() //make this less hard coded!!
-            console.log(last_month_transactions)
+
+
             var collection_names = ['Bored Ape Yacht Club', 'CryptoPunks', 'Bored Ape Kennel Club', 'Cool Cats', 'cloneX', 'CrypToadz', 'Doodles', 'Pudgy Penguins'];
             var total_transaction_counts = [0, 0, 0, 0, 0, 0, 0, 0];
-            var transaction_keys = Object.keys(last_month_transactions);
+            console.log(collection_names)
+            console.log(total_transaction_counts)
+            var transaction_keys = Object.keys(data);
+            console.log("keys")
+            console.log(transaction_keys)
             var i = 0;
             for (; i < transaction_keys.length; i += 1)
             {
-                if (last_month_transactions[transaction_keys[i]]['contracthash'] == apeAddress) { total_transaction_counts[0] += 1 };
-                if (last_month_transactions[transaction_keys[i]]['contracthash'] == cryptoPunkAddress) { total_transaction_counts[1] += 1 };
-                if (last_month_transactions[transaction_keys[i]]['contracthash'] == boredApeKennelAddress) { total_transaction_counts[2] += 1 };
-                if (last_month_transactions[transaction_keys[i]]['contracthash'] == coolCatsAddress) { total_transaction_counts[3] += 1 };
-                if (last_month_transactions[transaction_keys[i]]['contracthash'] == cloneXAddress) { total_transaction_counts[4] += 1 };
-                if (last_month_transactions[transaction_keys[i]]['contracthash'] == crypToadzAddress) { total_transaction_counts[5] += 1 };
-                if (last_month_transactions[transaction_keys[i]]['contracthash'] == doodlesAddress) { total_transaction_counts[6] += 1 };
-                if (last_month_transactions[transaction_keys[i]]['contracthash'] == pudgyPenguinAddress) { total_transaction_counts[7] += 1 };
+                if (data[transaction_keys[i]]['timestamp'] > '2022-02-10')
+                {
+                    if (data[transaction_keys[i]]['contracthash'] == apeAddress) { total_transaction_counts[0] += 1 };
+                    if (data[transaction_keys[i]]['contracthash'] == cryptoPunkAddress) { total_transaction_counts[1] += 1 };
+                    if (data[transaction_keys[i]]['contracthash'] == boredApeKennelAddress) { total_transaction_counts[2] += 1 };
+                    if (data[transaction_keys[i]]['contracthash'] == coolCatsAddress) { total_transaction_counts[3] += 1 };
+                    if (data[transaction_keys[i]]['contracthash'] == cloneXAddress) { total_transaction_counts[4] += 1 };
+                    if (data[transaction_keys[i]]['contracthash'] == crypToadzAddress) { total_transaction_counts[5] += 1 };
+                    if (data[transaction_keys[i]]['contracthash'] == doodlesAddress) { total_transaction_counts[6] += 1 };
+                    if (data[transaction_keys[i]]['contracthash'] == pudgyPenguinAddress) { total_transaction_counts[7] += 1 };
+                }
             }
-
-            console.log(collection_names)
-            console.log(total_transaction_counts)
 
             var data = [];
             var i = 0;
