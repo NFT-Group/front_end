@@ -58,7 +58,7 @@ def find_price_predictor_from_tokenid(request):
     #loaded_model = pickle.load(open(filename, 'rb')) ## FUCK
 
     # find input
-    nft_string = collection_name+tokenid
+    nft_string = collection_name+tokenID
     ref = db.reference(nft_string)
     data_for_input = ref.get()
 
