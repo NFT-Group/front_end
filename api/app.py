@@ -42,7 +42,7 @@ def find_price_predictor_from_tokenid(request):
     # process request 
     collection_name = request['collection']
     tokenID = request['tokenid']
-    
+
     # find model
     filename = collection_name + "_model.pkl"
     loaded_model = pickle.load(open(filename, 'rb'))
@@ -54,7 +54,7 @@ def find_price_predictor_from_tokenid(request):
 
     # format input 
     data_for_input_json = pd.DataFrame([data_for_input])
-    data_for_input_json = data_for_input_json.drop(['NameOfCollection', 'ethprice', axis=1])
+    data_for_input_json = data_for_input_json.drop(['NameOfCollection', 'ethprice'], axis=1])
     data_for_input_json['timestamp'] = 0
 
     predicted_price = loaded_model.predict(data_for_input_json)
