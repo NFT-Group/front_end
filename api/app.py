@@ -4,7 +4,15 @@ import time
 from datetime import datetime
 import firebase_admin
 from firebase_admin import credentials, firestore, db
-import '../firebase_files/contract_details' as cd
+
+apeAddress = '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D'
+cryptoPunkAddress = '0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB'
+doodlesAddress = '0x8a90CAb2b38dba80c64b7734e58Ee1dB38B8992e'
+coolCatsAddress = '0x1A92f7381B9F03921564a437210bB9396471050C'
+cloneXAddress = '0x49cF6f5d44E70224e2E23fDcdd2C053F30aDA28B'
+crypToadzAddress = '0x1CB1A5e65610AEFF2551A50f76a87a7d3fB649C6'
+boredApeKennelAddress = '0xba30E5F9Bb24caa003E9f2f0497Ad287FDF95623'
+pudgyPenguinAddress = '0xBd3531dA5CF5857e7CfAA92426877b022e612cf8'
 
 app = Flask(__name__)
 
@@ -35,21 +43,21 @@ def get_weeks_transactions:
     total_transaction_counts = [0, 0, 0, 0, 0, 0, 0, 0]
     collection_names = ['Bored Ape Yacht Club', 'CryptoPunks', 'Bored Ape Kennel Club', 'Cool Cats', 'cloneX', 'CrypToadz', 'Doodles', 'Pudgy Penguins']
     for key in transaction_keys:
-        if weeks_transactions[key]['contracthash'] == cd.apeAddress:
+        if weeks_transactions[key]['contracthash'] == apeAddress:
             total_transaction_counts[0] += 1
-        if weeks_transactions[key]['contracthash'] == cd.cryptoPunkAddress:
+        if weeks_transactions[key]['contracthash'] == cryptoPunkAddress:
             total_transaction_counts[1] += 1
-        if weeks_transactions[key]['contracthash'] == cd.boredApeKennelAddress:
+        if weeks_transactions[key]['contracthash'] == boredApeKennelAddress:
             total_transaction_counts[2] += 1
-        if weeks_transactions[key]['contracthash'] == cd.coolCatsAddress:
+        if weeks_transactions[key]['contracthash'] == coolCatsAddress:
             total_transaction_counts[3] += 1
-        if weeks_transactions[key]['contracthash'] == cd.cloneXAddress:
+        if weeks_transactions[key]['contracthash'] == cloneXAddress:
             total_transaction_counts[4] += 1
-        if weeks_transactions[key]['contracthash'] == cd.crypToadzAddress:
+        if weeks_transactions[key]['contracthash'] == crypToadzAddress:
             total_transaction_counts[5] += 1
-        if weeks_transactions[key]['contracthash'] == cd.doodlesAddress:
+        if weeks_transactions[key]['contracthash'] == doodlesAddress:
             total_transaction_counts[6] += 1
-        if weeks_transactions[key]['contracthash'] == cd.pudgyPenguinAddress:
+        if weeks_transactions[key]['contracthash'] == pudgyPenguinAddress:
             total_transaction_counts[7] += 1
     
     response_json_array = []
