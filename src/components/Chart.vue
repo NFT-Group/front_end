@@ -7,7 +7,7 @@
 <script>
 import * as d3 from 'd3'
 import { ref, onValue } from "firebase/database"
-import { db } from '../assets/javascripts/firebaseConfig'
+//import { db } from '../assets/javascripts/firebaseConfig'
 import axios from 'axios';
 
 // CHART 1 - NFT COLLECTION COUNTS
