@@ -52,7 +52,7 @@ default_app = firebase_admin.initialize_app(cred_push, {
 
 
 def find_price_predictor_from_tokenid(request):
-    # process request 
+    # process request
     collection_name = request['collection']
     tokenID = request['tokenid']
 
@@ -79,7 +79,7 @@ def find_price_predictor_from_tokenid(request):
 #@app.route('/', defaults={'path': ''})
 @app.route('/api/get_price', methods=["POST"])
 def api():
-    collection = request.data
+    collection = JSON.loads(str(request.data)[2:-1])
     price = find_price_predictor_from_tokenid(collection) #randint(100, 10000000)
     response_json = {"price" : "That " + str(collection)[2:-1] + " would cost £" + str(price) + "! Wow!"}
     return jsonify(response_json)
