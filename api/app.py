@@ -79,7 +79,7 @@ def api():
     #cred_push_key = str(pathlib.Path(__file__).parent.resolve()) + '/database_store_keys/key_for_ML-prepped-database.json'
     cred_push = firebase_admin.credentials.Certificate(cred_push_key)
     try:
-        ml_app = firebase_admin.initialize_app(cred_push, { 'databaseURL':'https://ml-prepped-database-default-rtdb.europe-west1.firebasedatabase.app/' }, 'ml_app' )
+        ml_app = firebase_admin.initialize_app(cred_push, { 'databaseURL':'https://ml-prepped-database-default-rtdb.europe-west1.firebasedatabase.app/' } )
     except:
         a = cred_push # dummy operation
     collection = json.loads(str(request.data)[2:-1])
