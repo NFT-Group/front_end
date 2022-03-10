@@ -102,26 +102,18 @@ export default {
 
             //get number of historical transactions for all collections
             //format data into Array object of 8 elements with 'name' and 'size' fields
-            var total_transaction_counts[8];
-            var collection_names[8];
+            var total_transaction_counts = [];
+            var collection_names = ['Bored Ape Yacht Club', 'CryptoPunks', 'Bored Ape Kennel Club', 'Cool Cats', 'cloneX', 'CrypToadz', 'Doodles', 'Pudgy Penguins'];
             total_transaction_counts[0] = (ref.order_by_child('contracthash').equal_to('apeAddress').get()).length
-            collection_names[0] = 'Bored Ape yacht Club'
             total_transaction_counts[1] = (ref.order_by_child('contracthash').equal_to('cryptoPunkAddress').get()).length
-            collection_names[1] = 'CryptoPunks'
             total_transaction_counts[2] = (ref.order_by_child('contracthash').equal_to('boredApeKennelAddress').get()).length
-            collection_names[2] = 'Bored Ape Kennel Club'
             total_transaction_counts[3] = (ref.order_by_child('contracthash').equal_to('coolCatsAddress').get()).length
-            collection_names[3] = 'Cool Cats'
             total_transaction_counts[4] = (ref.order_by_child('contracthash').equal_to('cloneXAddress').get()).length
-            collection_names[4] = 'cloneX'
             total_transaction_counts[5] = (ref.order_by_child('contracthash').equal_to('crypToadzAddress').get()).length
-            collection_names[5] = 'CrypToadz'
             total_transaction_counts[6] = (ref.order_by_child('contracthash').equal_to('doodlesAddress').get()).length
-            collection_names[6] = 'Doodles'
             total_transaction_counts[7] = (ref.order_by_child('contracthash').equal_to('pudgyPenguinAddress').get()).length
-            collection_names[7] = 'Pudgy Penguins'
 
-            var data_array[8];
+            var data_array = [];
             var i = 0;
             for (; i < 8; i += 1)
             {
