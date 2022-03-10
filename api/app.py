@@ -6,6 +6,7 @@ import firebase_admin
 from firebase_admin import credentials, firestore, db
 import json
 import pickle
+import pandas
 
 apeAddress = '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D'
 cryptoPunkAddress = '0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB'
@@ -52,7 +53,7 @@ def find_price_predictor_from_tokenid(request):
     tokenID = request['tokenid']
 
     # find model
-    filename = "../public/node_graph_data/" + collection_name + "_model.pkl"
+    filename = "../node_graph_data/" + collection_name + "_model.pkl"
     loaded_model = pickle.load(open(filename, 'rb'))
 
     # find input
