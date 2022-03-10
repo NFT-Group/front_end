@@ -32,7 +32,7 @@ def api():
     #return a+1
 
 @app.route('/api/get_weeks_transactions', methods=["GET"])
-def get_weeks_transactions:
+def get_weeks_transactions():
     cred = credentials.Certificate('../firebase_files/allCollections_key.json')
     firebase_admin.initialize_app(cred, { 'databaseURL': "https://allcollections-6e66c-default-rtdb.europe-west1.firebasedatabase.app/" } )
     ref = db.reference('/')
