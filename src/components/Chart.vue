@@ -97,7 +97,7 @@ export default {
         var boredApeKennelAddress = '0xba30E5F9Bb24caa003E9f2f0497Ad287FDF95623'
         var pudgyPenguinAddress = '0xBd3531dA5CF5857e7CfAA92426877b022e612cf8'
 
-        onValue(reference, (snapshot) => {
+        reference.orderByChild('timestamp').startAt('2022-02-10').on('value', (snapshot) => {
             const data = Object.values(snapshot.val())
             console.log(data)
 
