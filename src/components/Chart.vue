@@ -81,7 +81,7 @@ export default {
             .attr('text-anchor', 'middle')
             .attr('y', margin.top/2)
             .attr('x', margin.left + graphWidth/2)
-            .text('NFT Collections by size')
+            .text('Transaction volumes in the past month')
             .style('font', '25px Avenir')
             .attr('fill', '#2c3e50')
             .style('font-weight', 600);
@@ -109,22 +109,22 @@ export default {
             var total_transaction_counts = [0, 0, 0, 0, 0, 0, 0, 0];
             console.log(collection_names)
             console.log(total_transaction_counts)
-            var transaction_keys = Object.keys(data);
-            console.log("keys")
-            console.log(transaction_keys)
+            //var transaction_keys = Object.keys(data);
+            //console.log("keys")
+            //console.log(transaction_keys)
             var i = 0;
-            for (; i < transaction_keys.length; i += 1)
+            for (; i < data.length; i += 1)
             {
-                if (data[transaction_keys[i]]['timestamp'] > '2022-02-10')
+                if (data[i]['timestamp'] > '2022-02-10')
                 {
-                    if (data[transaction_keys[i]]['contracthash'] == apeAddress) { total_transaction_counts[0] += 1 };
-                    if (data[transaction_keys[i]]['contracthash'] == cryptoPunkAddress) { total_transaction_counts[1] += 1 };
-                    if (data[transaction_keys[i]]['contracthash'] == boredApeKennelAddress) { total_transaction_counts[2] += 1 };
-                    if (data[transaction_keys[i]]['contracthash'] == coolCatsAddress) { total_transaction_counts[3] += 1 };
-                    if (data[transaction_keys[i]]['contracthash'] == cloneXAddress) { total_transaction_counts[4] += 1 };
-                    if (data[transaction_keys[i]]['contracthash'] == crypToadzAddress) { total_transaction_counts[5] += 1 };
-                    if (data[transaction_keys[i]]['contracthash'] == doodlesAddress) { total_transaction_counts[6] += 1 };
-                    if (data[transaction_keys[i]]['contracthash'] == pudgyPenguinAddress) { total_transaction_counts[7] += 1 };
+                    if (data[i]['contracthash'] == apeAddress) { total_transaction_counts[0] += 1 };
+                    if (data[i]['contracthash'] == cryptoPunkAddress) { total_transaction_counts[1] += 1 };
+                    if (data[i]['contracthash'] == boredApeKennelAddress) { total_transaction_counts[2] += 1 };
+                    if (data[i]['contracthash'] == coolCatsAddress) { total_transaction_counts[3] += 1 };
+                    if (data[i]['contracthash'] == cloneXAddress) { total_transaction_counts[4] += 1 };
+                    if (data[i]['contracthash'] == crypToadzAddress) { total_transaction_counts[5] += 1 };
+                    if (data[i]['contracthash'] == doodlesAddress) { total_transaction_counts[6] += 1 };
+                    if (data[i]['contracthash'] == pudgyPenguinAddress) { total_transaction_counts[7] += 1 };
                 }
             }
 
