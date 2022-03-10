@@ -5,6 +5,7 @@ from datetime import datetime
 import firebase_admin
 from firebase_admin import credentials, firestore, db
 import json
+import pickle
 
 apeAddress = '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D'
 cryptoPunkAddress = '0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB'
@@ -45,13 +46,6 @@ app = Flask(__name__)
 
 # CREATE LINK FOR 'FULL DATABASE'
 
-#cred_push_key = str(pathlib.Path(__file__).parent.resolve()) + '/database_store_keys/key_for_ML-prepped-database.json'
-cred_push = firebase_admin.credentials.Certificate(cred_push_key)
-default_app = firebase_admin.initialize_app(cred_push, {
-    'databaseURL':'https://ml-prepped-database-default-rtdb.europe-west1.firebasedatabase.app/'
-})
-
-
 def find_price_predictor_from_tokenid(request):
     # process request
     collection_name = request['collection']
@@ -80,6 +74,11 @@ def find_price_predictor_from_tokenid(request):
 #@app.route('/', defaults={'path': ''})
 @app.route('/api/get_price', methods=["POST"])
 def api():
+    #cred_push_key = str(pathlib.Path(__file__).parent.resolve()) + '/database_store_keys/key_for_ML-prepped-database.json'
+    cred_push = firebase_admin.credentials.Certificate(cred_push_key)
+    default_app = firebase_admin.initialize_app(cred_push, {
+        'databaseURL':'https://ml-prepped-database-default-rtdb.europe-west1.firebasedatabase.app/'
+    })
     collection = json.loads(str(request.data)[2:-1])
     price = find_price_predictor_from_tokenid(collection) #randint(100, 10000000)
     response_json = {"price" : "That " + str(collection)[2:-1] + " would cost £" + str(price) + "! Wow!"}
