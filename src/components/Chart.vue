@@ -86,7 +86,7 @@ export default {
             .attr('fill', '#2c3e50')
             .style('font-weight', 600);
 
-        const reference = db.ref('/');
+        const reference = ref(db, '/');
 
         var apeAddress = '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D'
         var cryptoPunkAddress = '0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB'
