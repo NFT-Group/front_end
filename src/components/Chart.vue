@@ -8,17 +8,13 @@
 import * as d3 from 'd3'
 import { ref, onValue } from "firebase/database"
 import { db } from '../assets/javascripts/firebaseConfig'
+import axios from 'axios';
 
 // CHART 1 - NFT COLLECTION COUNTS
 export default {
 
     methods: {
-        test() {
-            console.log('test')
-        },
-        anotherTest() {
-            console.log('hello')
-        }
+
     },
     mounted: function() {
 
@@ -81,7 +77,7 @@ export default {
             .attr('text-anchor', 'middle')
             .attr('y', margin.top/2)
             .attr('x', margin.left + graphWidth/2)
-            .text('Transaction volumes in the past month')
+            .text('Transaction volumes (last 30 days)')
             .style('font', '25px Avenir')
             .attr('fill', '#2c3e50')
             .style('font-weight', 600);
