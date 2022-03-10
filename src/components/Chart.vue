@@ -81,26 +81,17 @@ export default {
             .then((res) => {
                 console.log(res)
                 console.log(res.data)
-                this.new_data(data)
-                var data_array = [];
-                var i = 0;
-                for (; i < 8; i += 1)
-                {
-                    data_array[i] = data[toString(i)]
-                }
-
-                console.log("data_array")
-                console.log(data_array)
+                this.new_data(res.data)
                 
-                y.domain([0, d3.max(data_array, function(d) { return +d.size; })])
+                y.domain([0, d3.max(data, function(d) { return +d.size; })])
                     .range([graphHeight, 0])
 
-                x.domain(data_array.map(item => item.name))
+                x.domain(data.map(item => item.name))
                     .range([0, graphWidth])
                     .paddingInner(0.2)
                     .paddingOuter(0.2)
 
-                const rects = graph.selectAll('rect').data(data_array)
+                const rects = graph.selectAll('rect').data(data)
 
                 rects.exit().remove()
 
