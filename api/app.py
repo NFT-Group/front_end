@@ -68,9 +68,6 @@ def find_price_predictor_from_tokenid(request):
     predicted_price = loaded_model.predict(data_for_input_json)
     return predicted_price
 
-
-        
-
 #@app.route('/', defaults={'path': ''})
 @app.route('/api/get_price', methods=["POST"])
 def api():
