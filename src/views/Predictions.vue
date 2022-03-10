@@ -1,18 +1,8 @@
 <template>
+  <h1>Price Predictor</h1>
   <br><br>
-  <hr class="solid">
-  <h2>Price Predictor:</h2>
-  <br><br><br><br>
-  <p class="todo">INSERT CHECK BOX PRICE PREDICTION FEATURE</p>
-  <div>
-    <!-- <index2 /> -->
-  </div>
-  <br><br><br><br>
-  <hr class="solid">
-  <h2 >Curate your own NFT...</h2>
-  <h3 id="nft_price_display">Your NFT price will appear here... </h3>
-  <br><br><br><br>
-  <p class="todo">INSERT CHECK BOX CREATE YOUR OWN FEATURE</p>
+  <h2>Predict the value of your next NFT</h2>
+  <br>
   <form @submit="onSubmit">
     <label>Enter a Collection:</label>
       <select value="collection" id="collection" name="collection">
@@ -27,10 +17,16 @@
       </select>
     <br><br>
     <label>Enter a Token ID:</label>
-    <input type="number" required v-model="tokenID" id="tokenid" value="tokenid" name="tokenid"> 
+    <input type="number" required v-model="tokenID" id="tokenid" name="tokenid"> 
     <br><br>
     <input type="submit" name="submit_button">
   </form>
+  <br><br>
+  <h3 id="nft_price_display">Your NFT price will appear here... </h3>
+  <br><br>
+  <hr class="solid">
+  <br><br>
+  <h2 >Curate your own NFT</h2>
   <br><br><br><br>
 </template>
 
