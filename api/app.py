@@ -4,6 +4,7 @@ import time
 from datetime import datetime
 import firebase_admin
 from firebase_admin import credentials, firestore, db
+import json
 
 apeAddress = '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D'
 cryptoPunkAddress = '0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB'
@@ -79,7 +80,7 @@ def find_price_predictor_from_tokenid(request):
 #@app.route('/', defaults={'path': ''})
 @app.route('/api/get_price', methods=["POST"])
 def api():
-    collection = JSON.loads(str(request.data)[2:-1])
+    collection = json.loads(str(request.data)[2:-1])
     price = find_price_predictor_from_tokenid(collection) #randint(100, 10000000)
     response_json = {"price" : "That " + str(collection)[2:-1] + " would cost £" + str(price) + "! Wow!"}
     return jsonify(response_json)
