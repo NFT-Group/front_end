@@ -86,7 +86,7 @@ export default {
             .attr('fill', '#2c3e50')
             .style('font-weight', 600);
 
-        const reference = ref(db, '/');
+        const reference = db.ref('/');
 
         var apeAddress = '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D'
         var cryptoPunkAddress = '0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB'
@@ -103,7 +103,7 @@ export default {
 
             //get number of historical transactions for all collections
             //format data into Array object of 8 elements with 'name' and 'size' fields
-            var last_month_transactions = ref.orderByChild('timestamp').startAt('2022-02-10').get() //make this less hard coded!!
+            var last_month_transactions = reference.orderByChild('timestamp').startAt('2022-02-10').get() //make this less hard coded!!
             console.log(last_month_transactions)
             var collection_names = ['Bored Ape Yacht Club', 'CryptoPunks', 'Bored Ape Kennel Club', 'Cool Cats', 'cloneX', 'CrypToadz', 'Doodles', 'Pudgy Penguins'];
             var total_transaction_counts = [0, 0, 0, 0, 0, 0, 0, 0];
