@@ -84,7 +84,7 @@ def api():
     try:
         firebase_admin.delete_app(transactions_app)
     except:
-        a = cred # dummy operation
+        a = cred_push # dummy operation
     try:
         ml_app = firebase_admin.initialize_app(cred_push, { 'databaseURL':'https://ml-prepped-database-default-rtdb.europe-west1.firebasedatabase.app/' } )
     except:
