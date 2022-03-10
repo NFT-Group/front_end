@@ -128,14 +128,17 @@ export default {
                 }
             }
 
-            var data = [];
+            var data_array = [];
             var i = 0;
             for (; i < 8; i += 1)
             {
                 data_array[i] = { 'name' : collection_names[i], 'size' : total_transaction_counts[i] }
             }
 
-            data
+            console.log("data_array")
+            console.log(data_array)
+            
+            data = data_array
 
             console.log("data")
             console.log(data)
