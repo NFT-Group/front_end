@@ -7,22 +7,12 @@
 <script>
 import * as d3 from 'd3'
 import { ref, onValue } from "firebase/database"
-import { db } from '../assets/javascripts/firebaseConfig'
+//import { db } from '../assets/javascripts/firebaseConfig'
+import axios from 'axios';
 
 // CHART 1 - NFT COLLECTION COUNTS
 export default {
-
-    methods: {
-        test() {
-            console.log('test')
-        },
-        anotherTest() {
-            console.log('hello')
-        }
-    },
     mounted: function() {
-
-        this.test()
         
         const svg = d3.select("#barChart")
             .attr('width', 700)
@@ -81,57 +71,61 @@ export default {
             .attr('text-anchor', 'middle')
             .attr('y', margin.top/2)
             .attr('x', margin.left + graphWidth/2)
-            .text('NFT Collections by size')
+            .text('Transaction volumes (last 7 days)')
             .style('font', '25px Avenir')
             .attr('fill', '#2c3e50')
             .style('font-weight', 600);
 
-        const reference = ref(db, '/');
+        const path = 'https://front-end-one-smoky.vercel.app/api/get_weeks_transactions';
+        axios.get(path)
+            .then((res) => {
+                console.log(res)
+                console.log(res.data)
 
-        onValue(reference, (snapshot) => {
-            const data = Object.values(snapshot.val())
-            console.log(data)
-
-            y.domain([0, d3.max(data, function(d) { return +d.size; })])
-                .range([graphHeight, 0])
-
-            x.domain(data.map(item => item.name))
-                .range([0, graphWidth])
-                .paddingInner(0.2)
-                .paddingOuter(0.2)
-
-            const rects = graph.selectAll('rect').data(data)
-
-            rects.exit().remove()
-
-            rects.attr('width', x.bandwidth)                    
-                .attr('height', d => (graphHeight - y(d.size)))    
-                .attr('fill', 'midnightblue')              
-                .attr('x', d => x(d.name))                 
-                .attr('y', d => y(d.size))
+                var data = res.data
                 
-            rects.enter()
-                .append('rect')
-                .attr('width', x.bandwidth)
-                .attr('height', d => (graphHeight - y(d.size)))
-                .attr('fill', 'midnightblue')
-                .attr('x', d => x(d.name))
-                .attr('y', d => y(d.size))   
-            
-            xAxisGroup.call(xAxis)       
-            yAxisGroup.call(yAxis)
-            
-            xAxisGroup.selectAll('text')
-                .attr('transform', 'rotate(30)')
-                .attr('text-anchor', 'start')
-                .attr('fill', '#2c3e50')
-                .style('font', '16px Avenir')
+                y.domain([0, d3.max(data, function(d) { return +d.size; })])
+                    .range([graphHeight, 0])
 
-            yAxisGroup.selectAll('text')
-                .attr('fill', '#2c3e50')
-                .style('font', '16px Avenir')
+                x.domain(data.map(item => item.name))
+                    .range([0, graphWidth])
+                    .paddingInner(0.2)
+                    .paddingOuter(0.2)
 
-        })
+                const rects = graph.selectAll('rect').data(data)
+
+                rects.exit().remove()
+
+                rects.attr('width', x.bandwidth)                    
+                    .attr('height', d => (graphHeight - y(d.size)))    
+                    .attr('fill', 'midnightblue')              
+                    .attr('x', d => x(d.name))                 
+                    .attr('y', d => y(d.size))
+                    
+                rects.enter()
+                    .append('rect')
+                    .attr('width', x.bandwidth)
+                    .attr('height', d => (graphHeight - y(d.size)))
+                    .attr('fill', 'midnightblue')
+                    .attr('x', d => x(d.name))
+                    .attr('y', d => y(d.size))   
+                
+                xAxisGroup.call(xAxis)       
+                yAxisGroup.call(yAxis)
+                
+                xAxisGroup.selectAll('text')
+                    .attr('transform', 'rotate(30)')
+                    .attr('text-anchor', 'start')
+                    .attr('fill', '#2c3e50')
+                    .style('font', '16px Avenir')
+
+                yAxisGroup.selectAll('text')
+                    .attr('fill', '#2c3e50')
+                    .style('font', '16px Avenir')
+            })
+            .catch((error) => {
+                console.error(error);
+            });
       }
 
   }

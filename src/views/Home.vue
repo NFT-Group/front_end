@@ -3,8 +3,6 @@
   <h1 class="title">Quantum</h1>
   <h2>AN NFT MARKET ANALYSER AND VISUALISER</h2>
   <br><br>
-  <hr class="solid">
-  <br><br>
   <div>
     <chart/>
   </div>
@@ -53,6 +51,10 @@ import Chart from '../components/Chart.vue'
 <style>
   h1.title{
     font-size: 50px;
+  }
+  h2{
+    color: #666e77;
+    font-weight: 500;
   }
   p.input{
     color: #444; 

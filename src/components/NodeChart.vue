@@ -1,127 +1,184 @@
 <template>
     <div id="charts">
-        <svg id="nodeChart" width="1800" height="1800"></svg>
+        <svg id="nodeChart" width="1350" height="1150"></svg>
     </div>
 </template>
 
 <script>
     import * as d3 from 'd3'
-    // import transaction_data from '../../public/node_graph_data/whale_transactions_doodles_node_graph.json';
-    // console.log(transaction_data)
+    import data from '../../public/node_graph_data/boredApeYachtClub.json'
+
     export default {
             mounted: function() {
-                var diameter = 1500,
-                radius = diameter / 2,
-                innerRadius = radius - 300;
+                var diameter = 1350,
+                innerCircle = 200,
+                radius = diameter / 2 - innerCircle;
 
-                var cluster = d3.cluster()
-                    .size([360, innerRadius]);
+            var svg = d3.select("#nodeChart")
+                .attr("width", diameter)
+                .attr("height", diameter);
 
-                var line = d3.radialLine()
-                    .curve(d3.curveBundle.beta(0.85))
-                    .radius(function(d) { return d.y; })
-                    .angle(function(d) { return d.x / 180 * Math.PI; });
+            var stratify = d3.stratify()
+                .id(d => d.name);
 
-                var svg = d3.select("#nodeChart")
-                    .append("svg")
-                    .attr("width", diameter)
-                    .attr("height", diameter)
-                    .append("g")
-                    .attr("transform", "translate(" + radius + "," + radius + ")");
+            var cluster = d3.cluster()
+                .size([Math.PI * 2, radius]);
 
-                var link = svg.append("g").selectAll(".link"),
-                    node = svg.append("g").selectAll(".node");
+            var line = d3.line()
+                .x(d => getX(d))
+                .y(d => getY(d))
+                .curve(d3.curveBundle);
 
-                d3.json('localhost:8000/doodles.json', function(error, classes) {
-                    if (error) throw error;
-                    var root = packageHierarchy(classes)
-                        .sum(function(d) { return d.size; });
+            var node,
+                link;
 
-                    cluster(root);
-                    link = link
-                    .data(packageImports(root.leaves()))
-                    .enter().append("path")
-                        .each(function(d) { d.source = d[0], d.target = d[d.length - 1]; })
-                        .attr("class", "link")
-                        .attr("d", line);
+            addParentNode(data);
+            var root = stratify(data);
+            cluster(root);
+            var leaves = root.leaves();
 
-                    node = node
-                    .data(root.leaves())
-                    .enter().append("text")
-                        .attr("class", "node")
-                        .attr("dy", "0.31em")
-                        .attr("transform", function(d) { return "rotate(" + (d.x - 90) + ")translate(" + (d.y + 8) + ",0)" + (d.x < 180 ? "" : "rotate(180)"); })
-                        .attr("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
-                        .text(function(d) { return d.data.key; });
-                });
+            var g = svg.append("g")
+                .attr("transform", "translate(" + [diameter / 2, diameter / 2] + ")");
 
-                // Lazily construct the package hierarchy from class names.
-                function packageHierarchy(classes) {
-                    var map = {};
+            node = g.append("g")
+                .selectAll("text")
+                .data(leaves)
+                .enter().append("text")
+                .attr("transform", d => "translate(" + [getX(d), getY(d)] + ") " + //if not translate, rotate will behave strange
+                    "rotate(" + (d.x * 180 / Math.PI - (isLeft(d) ? 180 : 0)) + ")")
+                .attr("text-anchor", d => isLeft(d) ? "end" : "start")
+                .attr("dx", d => isLeft(d) ? "-0.7em" : "0.7em")
+                .attr("dy", "0.3em")
+                .text(d => d.data.shortName)
+                .on("mouseover", mouseovered)
+                .on("mouseout", mouseouted);
 
-                    function find(name, data) {
-                    var node = map[name], i;
-                    if (!node) {
-                        node = map[name] = data || {name: name, children: []};
-                        if (name.length) {
-                        node.parent = find(name.substring(0, i = name.lastIndexOf(".")));
-                        node.parent.children.push(node);
-                        node.key = name.substring(i + 1);
-                        }
+            link = g.append("g")
+                .selectAll("path")
+                .data(getPaths(leaves))
+                .enter().append("path")
+                .each(d => { d.source = d[0]; d.target = d[d.length - 1]; })
+                .attr("d", line);
+
+            function addParentNode(data) {
+                var map = {};
+                data.forEach(node => { map[node.name] = node; });
+
+                var node,
+                    newNode,
+                    index,
+                    id;
+                for (var i = 0; i < data.length; i++) {
+                    node = data[i];
+                    index = node.name.lastIndexOf(".");
+                    id = node.name.substring(0, index);
+                    node.parentId = id;
+                    node.shortName = node.name.substring(index + 1);
+                    if (!map[id]) {
+                        newNode = { name: id };
+                        data.push(newNode);
+                        map[id] = newNode;
                     }
-                    return node;
-                    }
-
-                    classes.forEach(function(d) {
-                    find(d.name, d);
-                    });
-
-                    return d3.hierarchy(map[""]);
                 }
+                data.pop(); //remove the one with name "", since it causes multi-root error.
+            }
 
-                // Return a list of imports for the given array of nodes.
-                function packageImports(nodes) {
-                    var map = {},
-                        imports = [];
+            function getPaths(leaves) {
+                var map = {};
+                leaves.forEach(leaf => { map[leaf.data.name] = leaf; });
 
-                    // Compute a map from name to node.
-                    nodes.forEach(function(d) {
-                    map[d.data.name] = d;
-                    });
-
-                    // For each import, construct a link from the source to target node.
-                    nodes.forEach(function(d) {
-                    if (d.data.imports) d.data.imports.forEach(function(i) {
-                        imports.push(map[d.data.name].path(map[i]));
+                var paths = [];
+                leaves.forEach(leaf => {
+                    leaf.data.imports.forEach(name => {
+                        paths.push(leaf.path(map[name]));
                     });
                 });
-                return imports;
+                return paths;
+            }
+
+            function mouseovered(d) {
+                node.each(n => { n.target = n.source = false; });
+                link.classed("link--target", l => { if (l.target === d) return l.source.source = true; })
+                    .classed("link--source", l => { if (l.source === d) return l.target.target = true; })
+                    .filter(l => l.target === d || l.source === d)
+                    .raise();
+                node.classed("node--source", n => n.source)
+                    .classed("node--target", n => n.target)
+                console.log(d3.selectAll(".link--target"));
+            }
+
+            function mouseouted(d) {
+                link.classed("link--source", false)
+                    .classed("link--target", false);
+                node.classed("node--source", false)
+                    .classed("node--target", false);
+            }
+
+            function getX(d) {
+                return d.y * Math.cos(d.x);
+            }
+
+            function getY(d) {
+                return d.y * Math.sin(d.x);
+            }
+
+            function isLeft(d) {
+                return d.x > Math.PI * 0.5 && d.x < Math.PI * 1.5;
             }
         }
     }
 </script>
 
+
 <style>
-		.link
-        {
-            stroke: navy;
-            stroke-opacity: .4;
-            fill: none;
-            pointer-events: none;
-        }
-		.link--source, .link--target
-        {
-            stroke-opacity: 1;
-            stroke-width: 2px;
-        }
-        
-        .link--source
-        {
-            stroke: #2ca02c;
-        }
-        
-        .link--target
-        {
-            stroke: #d62728;
-        }
+    text {
+        font: 8px Avenir;
+    }
+    
+    text:hover,
+    .node--source,
+    .node--target {
+        font-weight: bold;
+    }
+    
+    text:hover {
+        fill: black;
+    }
+    
+    .node--source {
+        fill: blue;
+    }
+    
+    .node--target {
+        fill: red;
+    }
+    
+    path {
+        fill: none;
+        stroke: steelblue;
+        stroke-width: 1px;
+        opacity: 0.5;
+    }
+    
+    .link--source, 
+    .link--target {
+        stroke-width: 2px;
+        opacity: 1;
+    }
+    
+    .link--source {
+        stroke: red;
+    }
+    
+    .link--target {
+        stroke: blue;
+    }
+
+	/* 
+    NOTE:
+    
+    RED = SALE
+    BLUE = PURCHASE
+    
+    */
 </style>

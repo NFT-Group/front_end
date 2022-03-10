@@ -2,11 +2,28 @@
     <div class="whalewatching">
         <h1>Whale Watching</h1>
     </div>
-    <br><br><br><br>
+    <br>
     <h2> What's hot?</h2>
     <grid :data="gridData" :columns="gridColumns"></grid>
-    <br><br><br><br>
+    <br><br>
     <hr class="solid">
+    <h1> Whale transactions node graph:</h1>
+    <form @submit="onSubmit">
+      <label>Choose a Collection:</label>
+        <select value="collection" id="collection" name="collection">
+            <option value="punk" id="punk" name="collection">CryptoPunks</option>
+            <option value="boredape" id="boredape" name="collection">Bored Ape Yacht Club</option>
+            <option value="boredapekennel" id="boredapekennel" name="collection">Bored Ape Kennel Club</option>
+            <option value="doodle" id="doodle" name="collection">Doodles</option>
+            <option value="coolcat" id="coolcat" name="collection">Cool Cats</option>
+            <option value="cryptoad" id="cryptoad" name="collection">CrypToadz</option>
+            <option value="penguin" id="penguin" name="collection">Pudgy Penguins</option>
+            <option value="clonex" id="clonex" name="collection">cloneX</option>
+        </select>
+    </form>
+    <p> Hover for transaction destination/ origin. <br>
+    Red link = Sale <br>
+    Blue link = Purchase </p>
     <div>
       <nodeChart/>
     </div>

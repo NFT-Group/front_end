@@ -13,3 +13,5 @@ pytest==6.2.5
 python-dotenv==0.19.2
 toml==0.10.2
 Werkzeug==2.0.2
+datetime
+firebase_admin
