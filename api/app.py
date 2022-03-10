@@ -47,7 +47,10 @@ def api():
 @app.route('/api/get_weeks_transactions', methods=["GET"])
 def get_weeks_transactions():
     cred = credentials.Certificate(firebase_key)
-    firebase_admin.initialize_app(cred, { 'databaseURL': "https://allcollections-6e66c-default-rtdb.europe-west1.firebasedatabase.app/" } )
+    try:
+        firebase_admin.initialize_app(cred, { 'databaseURL': "https://allcollections-6e66c-default-rtdb.europe-west1.firebasedatabase.app/" } )
+    except:
+        a = cred # dummy operation
     ref = db.reference('/')
     one_week_ago = time.time() - 604800 #number of seconds in a week
     one_week_ago = datetime.utcfromtimestamp(int(current_time)).strftime('%Y-%m-%d')
