@@ -5,7 +5,7 @@ from datetime import datetime
 from firebase_admin import credentials, firestore, db
 import json
 import pickle
-#from pandas import predict
+import sklearn
 
 apeAddress = '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D'
 cryptoPunkAddress = '0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB'
@@ -53,7 +53,8 @@ def find_price_predictor_from_tokenid(request):
 
     # find model
     filename = "../node_graph_data/" + collection_name + "_model.pkl"
-    loaded_model = pickle.load(open(filename, 'rb'))
+
+    #loaded_model = pickle.load(open(filename, 'rb')) ## FUCK
 
     # find input
     nft_string = collection_name+tokenid
@@ -65,7 +66,10 @@ def find_price_predictor_from_tokenid(request):
     data_for_input_json = data_for_input_json.drop(['NameOfCollection', 'ethprice'], axis=1)
     data_for_input_json['timestamp'] = 0
 
-    predicted_price = loaded_model.predict(data_for_input_json)
+    #predicted_price = loaded_model.predict(data_for_input_json) # SHIT
+
+    predicted_price = 0
+
     return predicted_price
 
 #@app.route('/', defaults={'path': ''})
