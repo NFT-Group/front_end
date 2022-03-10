@@ -53,7 +53,7 @@ def get_weeks_transactions():
         a = cred # dummy operation
     ref = db.reference('/')
     one_week_ago = time.time() - 604800 #number of seconds in a week
-    one_week_ago = datetime.utcfromtimestamp(int(current_time)).strftime('%Y-%m-%d')
+    one_week_ago = datetime.utcfromtimestamp(int(one_week_ago)).strftime('%Y-%m-%d')
     weeks_transactions = ref.order_by_child('timestamp').start_at(one_week_ago).get()
     transaction_keys = weeks_transactions.keys()
     total_transaction_counts = [0, 0, 0, 0, 0, 0, 0, 0]
