@@ -55,7 +55,7 @@ def find_price_predictor_from_tokenid(request):
     # find model
     filename = "../node_graph_data/" + collection_name + "_model.pkl"
 
-    #loaded_model = pickle.load(open(filename, 'rb')) ## FUCK
+    loaded_model = pickle.load(open(filename, 'rb'))
 
     # find input
     nft_string = collection_name+tokenID
@@ -67,7 +67,7 @@ def find_price_predictor_from_tokenid(request):
     data_for_input_json = data_for_input_json.drop(['NameOfCollection', 'ethprice'], axis=1)
     data_for_input_json['timestamp'] = 0
 
-    #predicted_price = loaded_model.predict(data_for_input_json) # SHIT
+    predicted_price = loaded_model.predict(data_for_input_json)
 
     predicted_price = 0
 
