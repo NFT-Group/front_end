@@ -12,13 +12,7 @@ import axios from 'axios';
 
 // CHART 1 - NFT COLLECTION COUNTS
 export default {
-
-    methods: {
-
-    },
     mounted: function() {
-
-        this.test()
         
         const svg = d3.select("#barChart")
             .attr('width', 700)
