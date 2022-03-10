@@ -2,11 +2,10 @@ from flask import Flask, Response, jsonify, request
 from random import randint
 import time
 from datetime import datetime
-import firebase_admin
 from firebase_admin import credentials, firestore, db
 import json
 import pickle
-import pandas
+from pandas import predict
 
 apeAddress = '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D'
 cryptoPunkAddress = '0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB'
