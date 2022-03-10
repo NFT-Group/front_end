@@ -38,7 +38,11 @@ default_app = firebase_admin.initialize_app(cred_push, {
     })
 
 
-def find_price_predictor_from_tokenid(collection_name, tokenid):
+def find_price_predictor_from_tokenid(request):
+    # process request 
+    collection_name = request['collection']
+    tokenID = request['tokenid']
+    
     # find model
     filename = collection_name + "_model.pkl"
     loaded_model = pickle.load(open(filename, 'rb'))
@@ -71,8 +75,8 @@ def api():
         #return jsonify(response_object)
     #return Response("<h1>Flask</h1><p>You visited: /%s</p>" % (path), mimetype="text/html")
 
-#def machine_learning(a):
-    #return a+1
+def machine_learning(a):
+    return a+1
 
 @app.route('/api/get_weeks_transactions', methods=["GET"])
 def get_weeks_transactions():
