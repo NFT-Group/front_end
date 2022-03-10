@@ -2,7 +2,7 @@ from flask import Flask, Response, jsonify, request
 from random import randint
 import time
 from datetime import datetime
-from firebase_admin import credentials, firestore, db initialise_app
+from firebase_admin import credentials, firestore, db, initialise_app
 import json
 import pickle
 #import sklearn
