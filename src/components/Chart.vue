@@ -138,20 +138,15 @@ export default {
             console.log("data_array")
             console.log(data_array)
             
-            data = data_array
-
-            console.log("data")
-            console.log(data)
-            
-            y.domain([0, d3.max(data, function(d) { return +d.size; })])
+            y.domain([0, d3.max(data_array, function(d) { return +d.size; })])
                 .range([graphHeight, 0])
 
-            x.domain(data.map(item => item.name))
+            x.domain(data_array.map(item => item.name))
                 .range([0, graphWidth])
                 .paddingInner(0.2)
                 .paddingOuter(0.2)
 
-            const rects = graph.selectAll('rect').data(data)
+            const rects = graph.selectAll('rect').data(data_array)
 
             rects.exit().remove()
 
