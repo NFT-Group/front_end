@@ -97,7 +97,7 @@ def machine_learning(a):
 def get_weeks_transactions():
     cred = credentials.Certificate(firebase_key)
     try:
-        transactions_app = firebase_admin.initialize_app(cred, { 'databaseURL': "https://allcollections-6e66c-default-rtdb.europe-west1.firebasedatabase.app/" }, 'transactions_app')
+        transactions_app = firebase_admin.initialize_app(cred, { 'databaseURL': "https://allcollections-6e66c-default-rtdb.europe-west1.firebasedatabase.app/" } )
     except:
         a = cred # dummy operation
     ref = db.reference('/')
