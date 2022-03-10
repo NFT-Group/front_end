@@ -86,98 +86,64 @@ export default {
             .attr('fill', '#2c3e50')
             .style('font-weight', 600);
 
-        const reference = ref(db, '/'); ////.orderByChild('timestamp').startAt('2022-02-10');
-
-        var apeAddress = '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D'
-        var cryptoPunkAddress = '0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB'
-        var doodlesAddress = '0x8a90CAb2b38dba80c64b7734e58Ee1dB38B8992e'
-        var coolCatsAddress = '0x1A92f7381B9F03921564a437210bB9396471050C'
-        var cloneXAddress = '0x49cF6f5d44E70224e2E23fDcdd2C053F30aDA28B'
-        var crypToadzAddress = '0x1CB1A5e65610AEFF2551A50f76a87a7d3fB649C6'
-        var boredApeKennelAddress = '0xba30E5F9Bb24caa003E9f2f0497Ad287FDF95623'
-        var pudgyPenguinAddress = '0xBd3531dA5CF5857e7CfAA92426877b022e612cf8'
-
-        onValue(reference, (snapshot) => {
-            const data = Object.values(snapshot.val())
-            console.log(data)
-
-            //get number of historical transactions for all collections
-            //format data into Array object of 8 elements with 'name' and 'size' fields
-
-
-            var collection_names = ['Bored Ape Yacht Club', 'CryptoPunks', 'Bored Ape Kennel Club', 'Cool Cats', 'cloneX', 'CrypToadz', 'Doodles', 'Pudgy Penguins'];
-            var total_transaction_counts = [0, 0, 0, 0, 0, 0, 0, 0];
-            console.log(collection_names)
-            console.log(total_transaction_counts)
-            //var transaction_keys = Object.keys(data);
-            //console.log("keys")
-            //console.log(transaction_keys)
-            var i = 0;
-            for (; i < data.length; i += 1)
-            {
-                if (data[i]['timestamp'] > '2022-02-10')
+        const path = 'https://front-end-one-smoky.vercel.app/api/get_weeks_transactions';
+        axios.get(path)
+            .then((res) => {
+                console.log(res)
+                console.log(res.data)
+                this.new_data(data)
+                var data_array = [];
+                var i = 0;
+                for (; i < 8; i += 1)
                 {
-                    if (data[i]['contracthash'] == apeAddress) { total_transaction_counts[0] += 1 };
-                    if (data[i]['contracthash'] == cryptoPunkAddress) { total_transaction_counts[1] += 1 };
-                    if (data[i]['contracthash'] == boredApeKennelAddress) { total_transaction_counts[2] += 1 };
-                    if (data[i]['contracthash'] == coolCatsAddress) { total_transaction_counts[3] += 1 };
-                    if (data[i]['contracthash'] == cloneXAddress) { total_transaction_counts[4] += 1 };
-                    if (data[i]['contracthash'] == crypToadzAddress) { total_transaction_counts[5] += 1 };
-                    if (data[i]['contracthash'] == doodlesAddress) { total_transaction_counts[6] += 1 };
-                    if (data[i]['contracthash'] == pudgyPenguinAddress) { total_transaction_counts[7] += 1 };
+                    data_array[i] = data[toString(i)]
                 }
-            }
 
-            var data_array = [];
-            var i = 0;
-            for (; i < 8; i += 1)
-            {
-                data_array[i] = { 'name' : collection_names[i], 'size' : total_transaction_counts[i] }
-            }
-
-            console.log("data_array")
-            console.log(data_array)
-            
-            y.domain([0, d3.max(data_array, function(d) { return +d.size; })])
-                .range([graphHeight, 0])
-
-            x.domain(data_array.map(item => item.name))
-                .range([0, graphWidth])
-                .paddingInner(0.2)
-                .paddingOuter(0.2)
-
-            const rects = graph.selectAll('rect').data(data_array)
-
-            rects.exit().remove()
-
-            rects.attr('width', x.bandwidth)                    
-                .attr('height', d => (graphHeight - y(d.size)))    
-                .attr('fill', 'midnightblue')              
-                .attr('x', d => x(d.name))                 
-                .attr('y', d => y(d.size))
+                console.log("data_array")
+                console.log(data_array)
                 
-            rects.enter()
-                .append('rect')
-                .attr('width', x.bandwidth)
-                .attr('height', d => (graphHeight - y(d.size)))
-                .attr('fill', 'midnightblue')
-                .attr('x', d => x(d.name))
-                .attr('y', d => y(d.size))   
-            
-            xAxisGroup.call(xAxis)       
-            yAxisGroup.call(yAxis)
-            
-            xAxisGroup.selectAll('text')
-                .attr('transform', 'rotate(30)')
-                .attr('text-anchor', 'start')
-                .attr('fill', '#2c3e50')
-                .style('font', '16px Avenir')
+                y.domain([0, d3.max(data_array, function(d) { return +d.size; })])
+                    .range([graphHeight, 0])
 
-            yAxisGroup.selectAll('text')
-                .attr('fill', '#2c3e50')
-                .style('font', '16px Avenir')
+                x.domain(data_array.map(item => item.name))
+                    .range([0, graphWidth])
+                    .paddingInner(0.2)
+                    .paddingOuter(0.2)
 
-        })
+                const rects = graph.selectAll('rect').data(data_array)
+
+                rects.exit().remove()
+
+                rects.attr('width', x.bandwidth)                    
+                    .attr('height', d => (graphHeight - y(d.size)))    
+                    .attr('fill', 'midnightblue')              
+                    .attr('x', d => x(d.name))                 
+                    .attr('y', d => y(d.size))
+                    
+                rects.enter()
+                    .append('rect')
+                    .attr('width', x.bandwidth)
+                    .attr('height', d => (graphHeight - y(d.size)))
+                    .attr('fill', 'midnightblue')
+                    .attr('x', d => x(d.name))
+                    .attr('y', d => y(d.size))   
+                
+                xAxisGroup.call(xAxis)       
+                yAxisGroup.call(yAxis)
+                
+                xAxisGroup.selectAll('text')
+                    .attr('transform', 'rotate(30)')
+                    .attr('text-anchor', 'start')
+                    .attr('fill', '#2c3e50')
+                    .style('font', '16px Avenir')
+
+                yAxisGroup.selectAll('text')
+                    .attr('fill', '#2c3e50')
+                    .style('font', '16px Avenir')
+            })
+            .catch((error) => {
+                console.error(error);
+            });
       }
 
   }
