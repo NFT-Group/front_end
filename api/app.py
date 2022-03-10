@@ -76,12 +76,14 @@ def find_price_predictor_from_tokenid(request):
 def api():
     #cred_push_key = str(pathlib.Path(__file__).parent.resolve()) + '/database_store_keys/key_for_ML-prepped-database.json'
     cred_push = firebase_admin.credentials.Certificate(cred_push_key)
-    default_app = firebase_admin.initialize_app(cred_push, {
-        'databaseURL':'https://ml-prepped-database-default-rtdb.europe-west1.firebasedatabase.app/'
-    })
+    try:
+        ml_app = firebase_admin.initialize_app(cred_push, { 'databaseURL':'https://ml-prepped-database-default-rtdb.europe-west1.firebasedatabase.app/' }, 'ml_app' )
+    except:
+        a = cred_push # dummy operation
     collection = json.loads(str(request.data)[2:-1])
     price = find_price_predictor_from_tokenid(collection) #randint(100, 10000000)
     response_json = {"price" : "That " + str(collection)[2:-1] + " would cost £" + str(price) + "! Wow!"}
+    firebase_admin.delete_app(ml_app) # there will DEFINITELY be a better way of doing this!!
     return jsonify(response_json)
     #if request.method == 'GET':
         #response_object = {"price": "1000"}
@@ -95,7 +97,7 @@ def machine_learning(a):
 def get_weeks_transactions():
     cred = credentials.Certificate(firebase_key)
     try:
-        firebase_admin.initialize_app(cred, { 'databaseURL': "https://allcollections-6e66c-default-rtdb.europe-west1.firebasedatabase.app/" } )
+        transactions_app = firebase_admin.initialize_app(cred, { 'databaseURL': "https://allcollections-6e66c-default-rtdb.europe-west1.firebasedatabase.app/" }, 'transactions_app')
     except:
         a = cred # dummy operation
     ref = db.reference('/')
@@ -127,5 +129,7 @@ def get_weeks_transactions():
 
     for i in range(8):
         response_json_array.append({'name': collection_names[i], 'size': total_transaction_counts[i]})
+
+    firebase_admin.delete_app(transactions_app) # there will DEFINITELY be a better way of doing this!!
 
     return jsonify(response_json_array)
