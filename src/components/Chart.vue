@@ -1,6 +1,6 @@
 <template>
     <div id="charts">
-        <svg id="barChart" width="700" height="500"></svg>
+        <svg id="barChart" width="750" height="650"></svg>
     </div>
 </template>
 
@@ -9,24 +9,14 @@ import * as d3 from 'd3'
 import { ref, onValue } from "firebase/database"
 import { db } from '../assets/javascripts/firebaseConfig'
 
-// CHART 1 - NFT COLLECTION COUNTS
+// NFT VOLUME PAST 30 DAYS
 export default {
 
-    methods: {
-        test() {
-            console.log('test')
-        },
-        anotherTest() {
-            console.log('hello')
-        }
-    },
     mounted: function() {
-
-        this.test()
         
         const svg = d3.select("#barChart")
-            .attr('width', 700)
-            .attr('height', 500);
+            .attr('width', 750)
+            .attr('height', 700);
 
         const margin = {
             top: 80,
@@ -61,8 +51,8 @@ export default {
         svg.append('text')
             .attr('text-anchor', 'middle')
             .attr('x', graphWidth/2 + margin.left)
-            .attr('y', graphHeight + margin.top + margin.bottom)
-            .text('NFT Collections')
+            .attr('y', graphHeight + margin.top + margin.bottom + (margin.bottom/2))
+            .text('NFT Collection')
             .style('font', '18px Avenir')
             .attr('fill', '#2c3e50')
             .style('font-weight', 400);
@@ -71,7 +61,7 @@ export default {
             .attr('text-anchor', 'middle')
             .attr('y', margin.left/3)
             .attr('x', -(margin.top) + -(graphHeight/2))
-            .text('size of Collection (No. of NFTs)')
+            .text('No. of transactions')
             .style('font', '18px Avenir')
             .attr('fill', '#2c3e50')
             .attr('transform', 'rotate(-90)')
@@ -81,12 +71,12 @@ export default {
             .attr('text-anchor', 'middle')
             .attr('y', margin.top/2)
             .attr('x', margin.left + graphWidth/2)
-            .text('Transaction volumes in the past month')
+            .text('Transaction Volumes (Past 30 days)')
             .style('font', '25px Avenir')
             .attr('fill', '#2c3e50')
             .style('font-weight', 600);
 
-        const reference = ref(db, '/'); ////.orderByChild('timestamp').startAt('2022-02-10');
+        const reference = ref(db, '/');
 
         var apeAddress = '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D'
         var cryptoPunkAddress = '0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB'
@@ -99,19 +89,14 @@ export default {
 
         onValue(reference, (snapshot) => {
             const data = Object.values(snapshot.val())
-            console.log(data)
+            // console.log(data)
 
             //get number of historical transactions for all collections
             //format data into Array object of 8 elements with 'name' and 'size' fields
 
-
             var collection_names = ['Bored Ape Yacht Club', 'CryptoPunks', 'Bored Ape Kennel Club', 'Cool Cats', 'cloneX', 'CrypToadz', 'Doodles', 'Pudgy Penguins'];
             var total_transaction_counts = [0, 0, 0, 0, 0, 0, 0, 0];
-            console.log(collection_names)
-            console.log(total_transaction_counts)
-            //var transaction_keys = Object.keys(data);
-            //console.log("keys")
-            //console.log(transaction_keys)
+
             var i = 0;
             for (; i < data.length; i += 1)
             {
@@ -134,9 +119,6 @@ export default {
             {
                 data_array[i] = { 'name' : collection_names[i], 'size' : total_transaction_counts[i] }
             }
-
-            console.log("data_array")
-            console.log(data_array)
             
             y.domain([0, d3.max(data_array, function(d) { return +d.size; })])
                 .range([graphHeight, 0])
