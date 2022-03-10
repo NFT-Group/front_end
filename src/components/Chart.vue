@@ -81,7 +81,8 @@ export default {
             .then((res) => {
                 console.log(res)
                 console.log(res.data)
-                this.new_data(res.data)
+
+                var data = res.data
                 
                 y.domain([0, d3.max(data, function(d) { return +d.size; })])
                     .range([graphHeight, 0])
