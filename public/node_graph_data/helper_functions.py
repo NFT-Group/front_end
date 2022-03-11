@@ -1,7 +1,8 @@
 import pickle
-import firebase
+import firebase_admin
 from firebase_admin import credentials, firestore, db
 import pandas as pd
+import sklearn
 
 
 def find_price_predictor_from_tokenid(request):
