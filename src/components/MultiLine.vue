@@ -12,6 +12,7 @@
     export default {
         mounted: function () {
             function chart(data) {
+                console.log(data)
                 // Set dimensions
                 var margin = {
                         top: 30, 
@@ -31,7 +32,7 @@
 
 
                 // Parse date / time
-                var parseTime = d3.timeParse("%Y");
+                var parseTime = d3.timeParse("%Y-%m-%d");
 
                 // Set the ranges
                 var x = d3.scaleTime()
@@ -57,10 +58,10 @@
                         d.Exports = +d.Exports;
                     });
 
-                    // sort years ascending
-                    data.sort(function(a, b){
-                        return a["Date"]-b["Date"];
-                        })
+                    // // sort years ascending
+                    // data.sort(function(a, b){
+                    //     return a["Date"]-b["Date"];
+                    //     })
                     
                     // Scale the range of the data
                     x.domain(d3.extent(data, function(d) { return d.Date; }));

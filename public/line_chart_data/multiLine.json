@@ -1,89 +1,90 @@
 {
     "Afghanistan": [
        {
-          "Date": "2021-06-19",
+          "Date": "2021-06-01",
           "Imports": "15",
           "Exports": "20"
        },
        {
-          "Date": "2021-06-20",
+         "Date": "2021-06-02",
+         "Imports": "25",
+         "Exports": "25"
+       },
+       {
+         "Date": "2021-06-03",
+         "Imports": "17",
+         "Exports": "29"
+       },
+       {
+         "Date": "2021-06-04",
+         "Imports": "18",
+         "Exports": "23"
+       },
+       {
+         "Date": "2021-06-05",
+         "Imports": "21",
+         "Exports": "36"
+       },
+       {
+         "Date": "2021-06-06",
+         "Imports": "34",
+         "Exports": "41"
+       },
+       {
+         "Date": "2021-06-07",
+         "Imports": "28",
+         "Exports": "48"
+       },
+       {
+         "Date": "2021-06-08",
+         "Imports": "44",
+         "Exports": "69"
+       },
+       {
+         "Date": "2021-06-09",
+         "Imports": "29",
+         "Exports": "79"
+       },
+       {
+          "Date": "2021-06-10",
           "Imports": "42",
           "Exports": "115"
        },
        {
-          "Date": "2021-06-21",
-          "Imports": "29",
-          "Exports": "79"
-       },
-       {
-          "Date": "2021-06-22",
+          "Date": "2021-06-11",
           "Imports": "346",
           "Exports": "324"
        },
+
        {
-          "Date": "2021-06-23",
-          "Imports": "44",
-          "Exports": "69"
-       },
-       {
-          "Date": "2021-06-24",
+          "Date": "2021-06-12",
           "Imports": "424",
           "Exports": "503"
        },
        {
-          "Date": "2021-06-25",
-          "Imports": "28",
-          "Exports": "48"
-       },
-       {
-          "Date": "2021-06-26",
+          "Date": "2021-06-13",
           "Imports": "413",
           "Exports": "603"
        },
        {
-          "Date": "2021-06-27",
-          "Imports": "34",
-          "Exports": "41"
-       },
-       {
-          "Date": "2021-06-28",
+          "Date": "2021-06-14",
           "Imports": "313",
           "Exports": "517"
        },
        {
-          "Date": "2021-06-29",
-          "Imports": "21",
-          "Exports": "36"
-       },
-       {
-          "Date": "2021-06-30",
+          "Date": "2021-06-15",
           "Imports": "513",
           "Exports": "615"
        },
        {
-          "Date": "2021-07-01",
-          "Imports": "18",
-          "Exports": "23"
-       },
-       {
-          "Date": "2021-07-02",
+          "Date": "2021-06-16",
           "Imports": "471",
           "Exports": "766"
        },
        {
-          "Date": "2021-07-03",
-          "Imports": "17",
-          "Exports": "29"
-       },
-       {
-          "Date": "2021-07-04",
+          "Date": "2021-06-17",
           "Imports": "119",
           "Exports": "181"
-       },
-       {
-          "Date": "2021-07-05",
-          "Imports": "25",
-          "Exports": "25"
        }
     ]
  }
