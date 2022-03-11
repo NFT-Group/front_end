@@ -9,7 +9,8 @@ import pickle
 #import sklearn
 # from NFTProject.graph_creation.Node_graph.helper_functions import find_price_predictor_from_tokenid
 import sys
-sys.path.insert(0, '/graph_creation/Node_graph/')
+sys.path.insert(1, '/public/node_graph_data/')
+import helper_functions
 from helper_functions import find_price_predictor_from_tokenid
 
 
