@@ -7,7 +7,7 @@ from firebase_admin import credentials, firestore, db
 import json
 # import pickle
 #import sklearn
-# from front_end.public.node_graph_data.helper_functions import find_price_predictor_from_tokenid
+from public.node_graph_data.helper_functions import find_price_predictor_from_tokenid
 # import sys
 # sys.path.insert(1, '/public/node_graph_data/')
 # import helper_functions
