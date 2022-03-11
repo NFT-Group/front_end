@@ -71,7 +71,7 @@ def api():
     
     # price = find_price_predictor_from_tokenid(collection) 
     price = randint(100, 10000000)
-    response_json = {"price" : "That " + str(collection)[2:-1] + " would cost £" + str(price) + "! Wow!"}
+    response_json = {"price" : "That " + str(collection) + " would cost £" + str(price) + "! Wow!"}
     firebase_admin.delete_app(ml_app) # there will DEFINITELY be a better way of doing this!!
     return jsonify(response_json)
     #if request.method == 'GET':
