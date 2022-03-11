@@ -6,7 +6,7 @@
 
 <script>
     import * as d3 from 'd3'
-    import data from '../../public/line_chart_data/multiLine.json'
+    import data from '../../public/line_chart_data/multiline.json'
     console.log(data);
 
     export default {
@@ -74,14 +74,41 @@
                         .attr("stroke", "#000")
                         .attr("x1", 10).attr("x2", 10)
                         .attr("y1", 0).attr("y2", graphHeight)
-                        .attr("transform", `translate(0, ${margin.top})`);;
-                var hoverTT = hoverLineGroup.append('text')
-                   .attr("class", "hover-tex capo")
-                   .attr('dy', "0.35em");
+                        .attr("transform", `translate(0, ${margin.top})`);
 
-                var hoverTT2 = hoverLineGroup.append('text')
-                   .attr("class", "hover-text capo")
-                   .attr('dy', "0.55em");
+                // Add labels
+                var boredapeLabel = hoverLineGroup
+                    .append('text')
+                    .attr("class", "hover-tex capo")
+                    .attr('dy', "0.35em");
+                var boredapekennelLabel = hoverLineGroup
+                    .append('text')
+                    .attr("class", "hover-text capo")
+                    .attr('dy', "0.35em");
+                var clonexLabel = hoverLineGroup
+                    .append('text')
+                    .attr("class", "hover-text capo")
+                    .attr('dy', "0.35em");
+                var coolcatLabel = hoverLineGroup
+                    .append('text')
+                    .attr("class", "hover-text capo")
+                    .attr('dy', "0.35em");
+                var cryptoadLabel = hoverLineGroup
+                    .append('text')
+                    .attr("class", "hover-text capo")
+                    .attr('dy', "0.35em");
+                var doodleLabel = hoverLineGroup
+                    .append('text')
+                    .attr("class", "hover-text capo")
+                    .attr('dy', "0.35em");
+                var penguinLabel = hoverLineGroup
+                    .append('text')
+                    .attr("class", "hover-text capo")
+                    .attr('dy', "0.35em");
+                var punkLabel = hoverLineGroup  
+                    .append('text')
+                    .attr("class", "hover-text capo")
+                    .attr('dy', "0.35em");
 
                 var rectHover = svg.append("rect")
                   .data(data)
@@ -93,7 +120,7 @@
                 svg.on("mouseout", hoverMouseOff)
                     .on("mousemove", hoverMouseOn);
                 
-                var bisectDate = d3.bisector(function(d) { return d.Date; }).left;
+                var bisectDate = d3.bisector(function(d) { return d.timestamp; }).left;
                 
                 function hoverMouseOn() {
                     var mouse_x = d3.mouse(this)[0];
@@ -106,14 +133,39 @@
                     var d1 = data[i];
                     // work out which date value is closest to the mouse
                     var d = mouseDate - d0[0] > d1[0] - mouseDate ? d1 : d0;
-                    hoverTT.text("Exports: " + Math.round(d.Exports))
-                            .style('font', '12px Avenir')
+                    boredapeLabel.text("Bored Ape Yacht Club: " + Math.round(d.boredape))
+                            .style('font', '10px Avenir')
                             .attr('x', mouse_x + 10)
                             .attr('y', mouse_y);
-                    hoverTT2.text("Imports: " + Math.round(d.Imports))
-                            .style('font', '12px Avenir')
+                    boredapekennelLabel.text("Bored Ape Kennel Club: " + Math.round(d.boredapekennel))
+                            .style('font', '10px Avenir')
                             .attr('x', mouse_x + 10)
                             .attr('y', mouse_y + 10);
+                    clonexLabel.text("Clonex: " + Math.round(d.clonex))
+                            .style('font', '10px Avenir')
+                            .attr('x', mouse_x + 10)
+                            .attr('y', mouse_y + 20);
+                    coolcatLabel.text("CoolCats: " + Math.round(d.coolcat))
+                            .style('font', '10px Avenir')
+                            .attr('x', mouse_x + 10)
+                            .attr('y', mouse_y + 30);
+                    cryptoadLabel.text("Cryptoadz: " + Math.round(d.cryptoad))
+                            .style('font', '10px Avenir')
+                            .attr('x', mouse_x + 10)
+                            .attr('y', mouse_y + 40);
+                    doodleLabel.text("Doodles: " + Math.round(d.doodle))
+                            .style('font', '10px Avenir')
+                            .attr('x', mouse_x + 10)
+                            .attr('y', mouse_y + 50);
+                    penguinLabel.text("Penguin: " + Math.round(d.penguin))
+                            .style('font', '10px Avenir')
+                            .attr('x', mouse_x + 10)
+                            .attr('y', mouse_y + 60);
+                    punkLabel.text("Punk: " + Math.round(d.boredapekennel))
+                            .style('font', '10px Avenir')
+                            .attr('x', mouse_x + 10)
+                            .attr('y', mouse_y + 70);
+
                     hoverLine.attr("x1", mouse_x).attr("x2", mouse_x)
                     hoverLineGroup.style("opacity", 1);
                 }
@@ -124,7 +176,7 @@
                 function renderGraph(data) {
                     // format the data
                     data.forEach(function(d) {
-                        d.Date = parseTime(d.timestamp);
+                        d.timestamp = parseTime(d.timestamp);
                         d.boredape = +d.boredape;
                         d.boredapekennel = +d.boredapekennel;
                         d.clonex = +d.clonex;
@@ -134,60 +186,78 @@
                         d.penguin = +d.penguin;
                         d.punk = +d.punk;
                     });
-
                     // Scale the range of the data
-                    x.domain(d3.extent(data, function(d) { return d.Date; }));
+                    x.domain(d3.extent(data, function(d) { return d.timestamp; }));
                     y.domain([0, d3.max(data, function(d) {
-                        return Math.max(d.Imports, d.Exports); })]);
+                        // return Math.max(d.boredape, d.boredapekennel, d.clonex, d.coolcat, d.cryptoad, d. doodle, d.penguin, d.punk); })]);
+                        return 150; })]);
                     
                     // Add the line paths 
                     svg.append("path")
                         .data([data])
                         .attr("transform", `translate(${margin.left}, ${margin.top})`)
-                        .style("stroke-width", 4) 
+                        .style("stroke-width", 2) 
                         .style("stroke", "black")
                         .attr("class", "line")
                         .attr("d", boredape);
                     svg.append("path")
                         .data([data])
                         .attr("transform", `translate(${margin.left}, ${margin.top})`)
-                        .style("stroke-width", 4)
+                        .style("stroke-width", 2)
                         .style("stroke", "midnight-blue")    
                         .attr("class", "line")
                         .attr("d", boredapekennel);  
                     svg.append("path")
                         .data([data])
                         .attr("transform", `translate(${margin.left}, ${margin.top})`)
-                        .style("stroke-width", 4)
+                        .style("stroke-width", 2)
                         .style("stroke", "yellow")    
                         .attr("class", "line")
                         .attr("d", clonex);  
                     svg.append("path")
                         .data([data])
                         .attr("transform", `translate(${margin.left}, ${margin.top})`)
-                        .style("stroke-width", 4)
+                        .style("stroke-width", 2)
                         .style("stroke", "red")    
                         .attr("class", "line")
                         .attr("d", cryptoad);  
                     svg.append("path")
                         .data([data])
                         .attr("transform", `translate(${margin.left}, ${margin.top})`)
-                        .style("stroke-width", 4)
+                        .style("stroke-width", 2)
                         .style("stroke", "midnight-blue")    
                         .attr("class", "line")
-                        .attr("d", doodle);  
-
-
-
+                        .attr("d", doodle);
+                    svg.append("path")
+                        .data([data])
+                        .attr("transform", `translate(${margin.left}, ${margin.top})`)
+                        .style("stroke-width", 2)
+                        .style("stroke", "orange")    
+                        .attr("class", "line")
+                        .attr("d", coolcat);  
+                    svg.append("path")
+                        .data([data])
+                        .attr("transform", `translate(${margin.left}, ${margin.top})`)
+                        .style("stroke-width", 2)
+                        .style("stroke", "purple")    
+                        .attr("class", "line")
+                        .attr("d", penguin);
+                    svg.append("path")
+                        .data([data])
+                        .attr("transform", `translate(${margin.left}, ${margin.top})`)
+                        .style("stroke-width", 2)
+                        .style("stroke", "green")    
+                        .attr("class", "line")
+                        .attr("d", punk); 
                     
                     // Add the X Axis
                     svg.append("g")
-                        .attr("class", "axis")
+                        .attr("class", "Xaxis")
                         .attr("transform", `translate(${margin.left}, ${graphHeight + margin.top})`)
                         .call(d3.axisBottom(x));
                     // Add the Y Axis
                     svg.append("g")
-                        .attr("class", "axis")
+                        .attr("class", "Yaxis")
                         .attr('fill', '#2c3e50')
                         .attr("transform", `translate(${margin.left}, ${margin.top})`)
                         .call(d3.axisLeft(y)
@@ -212,14 +282,20 @@
                         .attr('fill', '#2c3e50')
                         .style('font-weight', 600);
 
-                    // Set font for ticks 
-                    d3.selectAll(".axis>.tick>text")
+                    // Format ticks for  both axes
+                    d3.selectAll(".Xaxis>.tick>text")
                         .each(function(d, i){
-                            d3.select(this).style("font-size", "14px");
+                            d3.select(this).style("font-size", "14px")
+                                            .attr('transform', 'rotate(20)')
+                                            .attr('text-anchor', 'start');
+                        });
+                    d3.selectAll(".Yaxis>.tick>text")
+                        .each(function(d, i){
+                            d3.select(this).style("font-size", "14px")
                         });
 
                 }
-                renderGraph(data, "Afghanistan");
+                renderGraph(data);
             };
             chart(data);
         } 
@@ -227,12 +303,17 @@
 </script>
 
 <style>
-.axis line{ 
+.Xaxis line{ 
     stroke: black; 
 }
-.axis path{ 
+.Xaxis path{ 
     stroke: black; 
 }
-
+.Yaxis line{ 
+    stroke: black; 
+}
+.Yaxis path{ 
+    stroke: black; 
+}
 
 </style>
