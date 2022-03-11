@@ -1,9 +1,8 @@
-<template>
-  <h1>Price Predictor</h1>
+
+  <hr class="solid">
   <br><br>
-  <h2>Predict the value of your next NFT</h2>
-  <br><br>
-  <form @submit="onSubmit">
+  <h2 >Curate your own NFT</h2>
+  <form @submit="onSubmit2">
     <label>Enter a Collection:</label>
       <select value="collection" id="collection" name="collection">
           <option value="punk" id="punk" name="collection">CryptoPunks</option>
@@ -21,24 +20,13 @@
     <br><br>
     <input type="submit" name="submit_button">
   </form>
-  <br><br>
-  <h3 id="nft_price_display">Your NFT price will appear here... </h3>
-  <br><br>
-  <hr class="solid">
-  <br><br>
-  <h2 >Curate your own NFT</h2>
   <br><br><br><br>
 </template>
 
 <script>
 import axios from 'axios';
-
 export default {
   name: 'Predictions',
-  data:{
-    selectbox1: undefined,
-    selectbox2: undefined,
-  },
   created() {
     
   },
@@ -71,11 +59,37 @@ export default {
           console.error(error);
         });
     },
+    onSubmit2(evt) {
+      console.log(evt);
+      console.log("which element is checked?")
+      var collection = evt.srcElement.collection.value
+      var tokenid = evt.srcElement.tokenid.value
+      console.log("collection")
+      console.log(collection)
+      console.log("tokenid")
+      console.log(tokenid)
+      var query_object = {"collection": collection, "tokenid": tokenid}
+      console.log(query_object)
+      //console.log(evt.srcElement.collection.value)
+      //var collection_value = evt.srcElement.collection.value
+      evt.preventDefault();
+      console.log("entering onSubmit")
+      const path = 'https://front-end-one-smoky.vercel.app/api/get_price';
+      console.log(JSON.stringify(query_object))
+      axios.post(path, JSON.stringify(query_object), { headers: { 'content-type': 'text/json' }})
+        .then((res) => {
+          console.log(res)
+          console.log(res.data)
+          document.getElementById('nft_price_display').innerHTML=res.data["price"];
+        })
+        .catch((error) => {
+           //eslint-disable-next-line
+          console.error(error);
+        });
+    },
   },
 };
 </script>
-
-
 <style>
   h2{
     color: #666e77;
