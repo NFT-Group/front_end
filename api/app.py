@@ -5,9 +5,8 @@ from datetime import datetime
 import firebase_admin
 from firebase_admin import credentials, firestore, db
 import json
-import pickle
-import sklearn
-import pandas as pd
+# import pickle
+#import sklearn
 from front_end.public.node_graph_data.helper_functions import find_price_predictor_from_tokenid
 # import sys
 # sys.path.insert(1, '/public/node_graph_data/')
@@ -69,31 +68,10 @@ def api():
     except:
         a = cred_push # dummy operation
     collection = json.loads(str(request.data)[2:-1])
-
-    # process request
-    collection_name = request['collection']
-    tokenID = request['tokenid']
-
-    # find model
-    filename = "../node_graph_data/" + collection_name + "_model.pkl"
-
-    loaded_model = pickle.load(open(filename, 'rb'))
-
-    # find input
-    nft_string = collection_name+tokenID
-    ref = db.reference(nft_string)
-    data_for_input = ref.get()
-
-    # format input 
-    data_for_input_json = pd.DataFrame([data_for_input])
-    data_for_input_json = data_for_input_json.drop(['NameOfCollection', 'ethprice'], axis=1)
-    data_for_input_json['timestamp'] = 0
-
-    price = loaded_model.predict(data_for_input_json)
-
-    # price = find_price_predictor_from_tokenid(collection) #randint(100, 10000000)
+    
+    price = find_price_predictor_from_tokenid(collection) #randint(100, 10000000)
     response_json = {"price" : "That " + str(collection)[2:-1] + " would cost £" + str(price) + "! Wow!"}
-    firebase_admin.delete_app(ml_app) # there will DEFINITELY be a better way of doing this!!
+    # firebase_admin.delete_app(ml_app) # there will DEFINITELY be a better way of doing this!!
     return jsonify(response_json)
     #if request.method == 'GET':
         #response_object = {"price": "1000"}
