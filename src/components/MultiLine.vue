@@ -40,7 +40,7 @@
                 var y = d3.scaleLinear()
                             .range([graphHeight, 0]);
 
-                // Define collection lines 
+                // Define lines x8
                 var boredape = d3.line()
                     .x(function(d) { return x(d.timestamp); })
                     .y(function(d) { return y(d.boredape); });
@@ -58,7 +58,7 @@
                     .y(function(d) { return y(d.cryptoad); });
                 var doodle = d3.line()
                     .x(function(d) { return x(d.timestamp); })
-                    .y(function(d) { return y(d.doodle); });]
+                    .y(function(d) { return y(d.doodle); });
                 var penguin = d3.line()
                     .x(function(d) { return x(d.timestamp); })
                     .y(function(d) { return y(d.penguin); });
@@ -140,22 +140,42 @@
                     y.domain([0, d3.max(data, function(d) {
                         return Math.max(d.Imports, d.Exports); })]);
                     
-                    // Add the valueline path.
+                    // Add the line paths 
                     svg.append("path")
                         .data([data])
                         .attr("transform", `translate(${margin.left}, ${margin.top})`)
                         .style("stroke-width", 4) 
                         .style("stroke", "black")
                         .attr("class", "line")
-                        .attr("d", valueline);
-                    // Add the valueline path.
+                        .attr("d", boredape);
                     svg.append("path")
                         .data([data])
                         .attr("transform", `translate(${margin.left}, ${margin.top})`)
                         .style("stroke-width", 4)
                         .style("stroke", "midnight-blue")    
                         .attr("class", "line")
-                        .attr("d", valueline2);  
+                        .attr("d", boredapekennel);  
+                    svg.append("path")
+                        .data([data])
+                        .attr("transform", `translate(${margin.left}, ${margin.top})`)
+                        .style("stroke-width", 4)
+                        .style("stroke", "yellow")    
+                        .attr("class", "line")
+                        .attr("d", clonex);  
+                    svg.append("path")
+                        .data([data])
+                        .attr("transform", `translate(${margin.left}, ${margin.top})`)
+                        .style("stroke-width", 4)
+                        .style("stroke", "red")    
+                        .attr("class", "line")
+                        .attr("d", cryptoad);  
+                    svg.append("path")
+                        .data([data])
+                        .attr("transform", `translate(${margin.left}, ${margin.top})`)
+                        .style("stroke-width", 4)
+                        .style("stroke", "midnight-blue")    
+                        .attr("class", "line")
+                        .attr("d", doodle);  
 
 
 
