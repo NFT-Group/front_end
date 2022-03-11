@@ -98,7 +98,8 @@ export default {
       const path = 'https://front-end-one-smoky.vercel.app/api/get_price';
       console.log(JSON.stringify(query_object))
     },
-    computed: {
+  };
+  computed: {
     setOptions: function(){
       if (this.selectbox1 === 'food'){
          var options = [{val: 'pizza', text: 'Pizza'},
@@ -116,8 +117,8 @@ export default {
       }
       return options
     }
-  },
 };
+
 </script>
 
 
