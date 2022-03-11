@@ -99,25 +99,25 @@ export default {
       console.log(JSON.stringify(query_object))
     },
   },
-  computed: {
-    setOptions: function(){
-      if (this.selectbox1 === 'food'){
-         var options = [{val: 'pizza', text: 'Pizza'},
-                        {val: 'lasagna', text: 'Lasagna'},
-                        {val: 'salad', text: 'Salad'}]
-      } else if (this.selectbox1 === 'drink'){
-         var options = [{val: 'beer', text: 'Beer'},
-                        {val: 'wine', text: 'Wine'},
-                        {val: 'coke', text: 'Coke'},
-                        {val: 'water', text: 'Water'}]
-      } else if (this.selectbox1 === 'desert'){
-         var options = [{val: 'tiramisu', text: 'Tiramisu'},
-                        {val: 'icecream', text: 'Icecream'},
-                        {val: 'espresso', text: 'Espresso'}]
-      }
-      return options
-    }
-  },
+  // computed: {
+  //   setOptions: function(){
+  //     if (this.selectbox1 === 'food'){
+  //        var options = [{val: 'pizza', text: 'Pizza'},
+  //                       {val: 'lasagna', text: 'Lasagna'},
+  //                       {val: 'salad', text: 'Salad'}]
+  //     } else if (this.selectbox1 === 'drink'){
+  //        var options = [{val: 'beer', text: 'Beer'},
+  //                       {val: 'wine', text: 'Wine'},
+  //                       {val: 'coke', text: 'Coke'},
+  //                       {val: 'water', text: 'Water'}]
+  //     } else if (this.selectbox1 === 'desert'){
+  //        var options = [{val: 'tiramisu', text: 'Tiramisu'},
+  //                       {val: 'icecream', text: 'Icecream'},
+  //                       {val: 'espresso', text: 'Espresso'}]
+  //     }
+  //     return options
+  //   }
+  // },
 };
 </script>
 
