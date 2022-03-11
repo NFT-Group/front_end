@@ -1,8 +1,8 @@
 import pickle
 import firebase_admin
 from firebase_admin import credentials, firestore, db
-import pandas as pd
-import sklearn
+from pandas import DataFrame
+from sklearn.ensemble import RandomForestRegressor
 
 cred_push_key = {
   "type": "service_account",
@@ -46,7 +46,7 @@ def find_price_predictor_from_tokenid(request):
     data_for_input = ref.get()
 
     # format input 
-    data_for_input_json = pd.DataFrame([data_for_input])
+    data_for_input_json = DataFrame([data_for_input])
     data_for_input_json = data_for_input_json.drop(['NameOfCollection', 'ethprice'], axis=1)
     data_for_input_json['timestamp'] = 0
 
