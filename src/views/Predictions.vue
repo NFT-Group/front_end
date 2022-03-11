@@ -1,4 +1,29 @@
-
+<template>
+  <h1>Price Predictor</h1>
+  <br><br>
+  <h2>Predict the value of your next NFT</h2>
+  <br>
+  <form @submit="onSubmit">
+    <label>Enter a Collection:</label>
+      <select value="collection" id="collection" name="collection">
+          <option value="punk" id="punk" name="collection">CryptoPunks</option>
+          <option value="boredape" id="boredape" name="collection">Bored Ape Yacht Club</option>
+          <option value="boredapekennel" id="boredapekennel" name="collection">Bored Ape Kennel Club</option>
+          <option value="doodle" id="doodle" name="collection">Doodles</option>
+          <option value="coolcat" id="coolcat" name="collection">Cool Cats</option>
+          <option value="cryptoad" id="cryptoad" name="collection">CrypToadz</option>
+          <option value="penguin" id="penguin" name="collection">Pudgy Penguins</option>
+          <option value="clonex" id="clonex" name="collection">cloneX</option>
+      </select>
+    <br><br>
+    <label>Enter a Token ID:</label>
+    <input type="number" required v-model="tokenID" id="tokenid" name="tokenid"> 
+    <br><br>
+    <input type="submit" name="submit_button">
+  </form>
+  <br><br>
+  <h3 id="nft_price_display">Your NFT price will appear here... </h3>
+  <br><br>
   <hr class="solid">
   <br><br>
   <h2 >Curate your own NFT</h2>
