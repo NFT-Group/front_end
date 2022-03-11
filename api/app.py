@@ -5,7 +5,7 @@ from datetime import datetime
 import firebase_admin
 from firebase_admin import credentials, firestore, db
 import json
-import pickle
+# import pickle
 #import sklearn
 # from NFTProject.graph_creation.Node_graph.helper_functions import find_price_predictor_from_tokenid
 import sys
