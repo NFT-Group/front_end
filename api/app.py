@@ -7,6 +7,11 @@ from firebase_admin import credentials, firestore, db
 import json
 import pickle
 #import sklearn
+# from NFTProject.graph_creation.Node_graph.helper_functions import find_price_predictor_from_tokenid
+import sys
+sys.path.insert(1, '/graph_creation/Node_graph/')
+from NFTProject.graph_creation.Node_graph.helper_functions import find_price_predictor_from_tokenid
+
 
 apeAddress = '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D'
 cryptoPunkAddress = '0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB'
@@ -48,34 +53,6 @@ app = Flask(__name__)
 ml_app = None
 transactions_app = None
 
-# CREATE LINK FOR 'FULL DATABASE'
-
-def find_price_predictor_from_tokenid(request):
-    # process request
-    collection_name = request['collection']
-    tokenID = request['tokenid']
-
-    # find model
-    filename = "../node_graph_data/" + collection_name + "_model.pkl"
-
-    loaded_model = pickle.load(open(filename, 'rb'))
-
-    # find input
-    nft_string = collection_name+tokenID
-    ref = db.reference(nft_string)
-    data_for_input = ref.get()
-
-    # format input 
-    data_for_input_json = pd.DataFrame([data_for_input])
-    data_for_input_json = data_for_input_json.drop(['NameOfCollection', 'ethprice'], axis=1)
-    data_for_input_json['timestamp'] = 0
-
-    predicted_price = loaded_model.predict(data_for_input_json)
-
-    predicted_price = 0
-
-    return predicted_price
-
 #@app.route('/', defaults={'path': ''})
 @app.route('/api/get_price', methods=["POST"])
 def api():
@@ -99,8 +76,6 @@ def api():
         #return jsonify(response_object)
     #return Response("<h1>Flask</h1><p>You visited: /%s</p>" % (path), mimetype="text/html")
 
-def machine_learning(a):
-    return 
 
 @app.route('/api/get_weeks_transactions', methods=["GET"])
 def get_weeks_transactions():
