@@ -7,7 +7,7 @@ from firebase_admin import credentials, firestore, db
 import json
 # import pickle
 #import sklearn
-from front_end.public.node_graph_data.helper_functions import find_price_predictor_from_tokenid
+# from front_end.public.node_graph_data.helper_functions import find_price_predictor_from_tokenid
 # import sys
 # sys.path.insert(1, '/public/node_graph_data/')
 # import helper_functions
@@ -71,7 +71,7 @@ def api():
     
     price = find_price_predictor_from_tokenid(collection) #randint(100, 10000000)
     response_json = {"price" : "That " + str(collection)[2:-1] + " would cost £" + str(price) + "! Wow!"}
-    # firebase_admin.delete_app(ml_app) # there will DEFINITELY be a better way of doing this!!
+    firebase_admin.delete_app(ml_app) # there will DEFINITELY be a better way of doing this!!
     return jsonify(response_json)
     #if request.method == 'GET':
         #response_object = {"price": "1000"}
