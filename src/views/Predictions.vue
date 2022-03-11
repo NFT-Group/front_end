@@ -27,25 +27,16 @@
   <hr class="solid">
   <br><br>
   <h2 >Curate your own NFT</h2>
-  <form @submit="onSubmit2">
-    <label>Enter a Collection:</label>
-      <select value="collection" id="collection" name="collection">
-          <option value="punk" id="punk" name="collection">CryptoPunks</option>
-          <option value="boredape" id="boredape" name="collection">Bored Ape Yacht Club</option>
-          <option value="boredapekennel" id="boredapekennel" name="collection">Bored Ape Kennel Club</option>
-          <option value="doodle" id="doodle" name="collection">Doodles</option>
-          <option value="coolcat" id="coolcat" name="collection">Cool Cats</option>
-          <option value="cryptoad" id="cryptoad" name="collection">CrypToadz</option>
-          <option value="penguin" id="penguin" name="collection">Pudgy Penguins</option>
-          <option value="clonex" id="clonex" name="collection">cloneX</option>
-      </select>
-    <br><br>
-    <label>Enter a Token ID:</label>
-    <input type="number" required v-model="tokenID" id="tokenid" name="tokenid"> 
-    <br><br>
-    <input type="submit" name="submit_button">
-  </form>
-  <br><br><br><br>
+  <select v-model="selectbox1">
+    <option value="food">Food</option>
+    <option value="drink">Drink</option>
+    <option value="desert">Desert</option>
+  </select>
+  <select v-model="selectbox2">
+    <option v-for="option in setOptions" v-bind:value="option.val">{{option.text}}</option>
+  </select>
+  <br><br>
+  <span>selected: {{selectbox1}} {{selectbox2}}</span>
 </template>
 
 <script>
@@ -53,6 +44,10 @@ import axios from 'axios';
 
 export default {
   name: 'Predictions',
+  data:{
+    selectbox1: undefined,
+    selectbox2: undefined,
+  },
   created() {
     
   },
@@ -102,18 +97,27 @@ export default {
       console.log("entering onSubmit")
       const path = 'https://front-end-one-smoky.vercel.app/api/get_price';
       console.log(JSON.stringify(query_object))
-      axios.post(path, JSON.stringify(query_object), { headers: { 'content-type': 'text/json' }})
-        .then((res) => {
-          console.log(res)
-          console.log(res.data)
-          document.getElementById('nft_price_display').innerHTML=res.data["price"];
-        })
-        .catch((error) => {
-           //eslint-disable-next-line
-          console.error(error);
-        });
     },
   },
+  // computed: {
+  //   setOptions: function(){
+  //     if (this.selectbox1 === 'food'){
+  //        var options = [{val: 'pizza', text: 'Pizza'},
+  //                       {val: 'lasagna', text: 'Lasagna'},
+  //                       {val: 'salad', text: 'Salad'}]
+  //     } else if (this.selectbox1 === 'drink'){
+  //        var options = [{val: 'beer', text: 'Beer'},
+  //                       {val: 'wine', text: 'Wine'},
+  //                       {val: 'coke', text: 'Coke'},
+  //                       {val: 'water', text: 'Water'}]
+  //     } else if (this.selectbox1 === 'desert'){
+  //        var options = [{val: 'tiramisu', text: 'Tiramisu'},
+  //                       {val: 'icecream', text: 'Icecream'},
+  //                       {val: 'espresso', text: 'Espresso'}]
+  //     }
+  //     return options
+  //   }
+  // },
 };
 </script>
 
