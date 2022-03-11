@@ -3,9 +3,15 @@
   <h1 class="title">Quantum</h1>
   <h2>AN NFT MARKET ANALYSER AND VISUALISER</h2>
   <br><br>
-    <div>
-    <multiLine/>
+  <button @click = "refreshing">Refresh</button>
+  <div>
+    <chart/>
   </div>
+    <p>Select:</p>
+    <input type="radio" id="transfer" value="transfer" name="transfer">
+    <label for="transfer">Transfer Volume</label>
+    <input type="radio" id="price" value="price" name="transfer">
+    <label for="price">Price Volume</label>
   <div>
     <chart/>
   </div>
@@ -22,10 +28,9 @@
       <input type="email" required v-model="emailInput">
       <label>Message:</label>
       <input type="text" required v-model="messageInput">
- 
- <div class="submit">
-   <button>Submit</button>
- </div>
+    <div class="submit">
+      <button>Submit</button>
+    </div>
  </form>
  
 </template>
@@ -48,6 +53,9 @@ import MultiLine from '../components/MultiLine.vue'
       handleSubmit(){
         console.log('form submitted')
         //at this point, submit result to database
+      },
+      refreshing(){
+        console.log('refreshing the page')
       }
     }
   }
