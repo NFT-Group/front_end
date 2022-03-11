@@ -1,9 +1,9 @@
-from flask import Flask, Response, jsonify, request
+from flask import Flask, jsonify, request
 # from random import randint
-import time
-from datetime import datetime
-import firebase_admin
-from firebase_admin import credentials, firestore, db
+# import time
+# from datetime import datetime
+# import firebase_admin
+# from firebase_admin import credentials, firestore, db
 import json
 from public.node_graph_data.helper_functions import find_price_predictor_from_tokenid
 
@@ -51,47 +51,47 @@ def api():
     #return Response("<h1>Flask</h1><p>You visited: /%s</p>" % (path), mimetype="text/html")
 
 
-@app.route('/api/get_weeks_transactions', methods=["GET"])
-def get_weeks_transactions():
-    cred = credentials.Certificate(firebase_key)
-    try:
-        firebase_admin.delete_app(ml_app)
-    except:
-        a = cred # dummy operation
-    try:
-        transactions_app = firebase_admin.initialize_app(cred, { 'databaseURL': "https://allcollections-6e66c-default-rtdb.europe-west1.firebasedatabase.app/" } )
-    except:
-        a = cred # dummy operation
-    ref = db.reference('/')
-    one_week_ago = time.time() - 604800 #number of seconds in a week
-    one_week_ago = datetime.utcfromtimestamp(int(one_week_ago)).strftime('%Y-%m-%d')
-    weeks_transactions = ref.order_by_child('timestamp').start_at(one_week_ago).get()
-    transaction_keys = weeks_transactions.keys()
-    total_transaction_counts = [0, 0, 0, 0, 0, 0, 0, 0]
-    collection_names = ['Bored Ape Yacht Club', 'CryptoPunks', 'Bored Ape Kennel Club', 'Cool Cats', 'cloneX', 'CrypToadz', 'Doodles', 'Pudgy Penguins']
-    for key in transaction_keys:
-        if weeks_transactions[key]['contracthash'] == apeAddress:
-            total_transaction_counts[0] += 1
-        if weeks_transactions[key]['contracthash'] == cryptoPunkAddress:
-            total_transaction_counts[1] += 1
-        if weeks_transactions[key]['contracthash'] == boredApeKennelAddress:
-            total_transaction_counts[2] += 1
-        if weeks_transactions[key]['contracthash'] == coolCatsAddress:
-            total_transaction_counts[3] += 1
-        if weeks_transactions[key]['contracthash'] == cloneXAddress:
-            total_transaction_counts[4] += 1
-        if weeks_transactions[key]['contracthash'] == crypToadzAddress:
-            total_transaction_counts[5] += 1
-        if weeks_transactions[key]['contracthash'] == doodlesAddress:
-            total_transaction_counts[6] += 1
-        if weeks_transactions[key]['contracthash'] == pudgyPenguinAddress:
-            total_transaction_counts[7] += 1
+# @app.route('/api/get_weeks_transactions', methods=["GET"])
+# def get_weeks_transactions():
+#     cred = credentials.Certificate(firebase_key)
+#     try:
+#         firebase_admin.delete_app(ml_app)
+#     except:
+#         a = cred # dummy operation
+#     try:
+#         transactions_app = firebase_admin.initialize_app(cred, { 'databaseURL': "https://allcollections-6e66c-default-rtdb.europe-west1.firebasedatabase.app/" } )
+#     except:
+#         a = cred # dummy operation
+#     ref = db.reference('/')
+#     one_week_ago = time.time() - 604800 #number of seconds in a week
+#     one_week_ago = datetime.utcfromtimestamp(int(one_week_ago)).strftime('%Y-%m-%d')
+#     weeks_transactions = ref.order_by_child('timestamp').start_at(one_week_ago).get()
+#     transaction_keys = weeks_transactions.keys()
+#     total_transaction_counts = [0, 0, 0, 0, 0, 0, 0, 0]
+#     collection_names = ['Bored Ape Yacht Club', 'CryptoPunks', 'Bored Ape Kennel Club', 'Cool Cats', 'cloneX', 'CrypToadz', 'Doodles', 'Pudgy Penguins']
+#     for key in transaction_keys:
+#         if weeks_transactions[key]['contracthash'] == apeAddress:
+#             total_transaction_counts[0] += 1
+#         if weeks_transactions[key]['contracthash'] == cryptoPunkAddress:
+#             total_transaction_counts[1] += 1
+#         if weeks_transactions[key]['contracthash'] == boredApeKennelAddress:
+#             total_transaction_counts[2] += 1
+#         if weeks_transactions[key]['contracthash'] == coolCatsAddress:
+#             total_transaction_counts[3] += 1
+#         if weeks_transactions[key]['contracthash'] == cloneXAddress:
+#             total_transaction_counts[4] += 1
+#         if weeks_transactions[key]['contracthash'] == crypToadzAddress:
+#             total_transaction_counts[5] += 1
+#         if weeks_transactions[key]['contracthash'] == doodlesAddress:
+#             total_transaction_counts[6] += 1
+#         if weeks_transactions[key]['contracthash'] == pudgyPenguinAddress:
+#             total_transaction_counts[7] += 1
     
-    response_json_array = []
+#     response_json_array = []
 
-    for i in range(8):
-        response_json_array.append({'name': collection_names[i], 'size': total_transaction_counts[i]})
+#     for i in range(8):
+#         response_json_array.append({'name': collection_names[i], 'size': total_transaction_counts[i]})
 
-    firebase_admin.delete_app(transactions_app) # there will DEFINITELY be a better way of doing this!!
+#     firebase_admin.delete_app(transactions_app) # there will DEFINITELY be a better way of doing this!!
 
-    return jsonify(response_json_array)
+#     return jsonify(response_json_array)
