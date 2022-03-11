@@ -30,7 +30,7 @@ def find_price_predictor_from_tokenid(request):
         ml_app = firebase_admin.initialize_app(cred_push, { 'databaseURL':'https://ml-prepped-database-default-rtdb.europe-west1.firebasedatabase.app/' } )
     except:
         a = cred_push # dummy operation
-
+    
     # process request
     collection_name = request['collection']
     tokenID = request['tokenid']
