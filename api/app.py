@@ -67,9 +67,10 @@ def api():
         ml_app = firebase_admin.initialize_app(cred_push, { 'databaseURL':'https://ml-prepped-database-default-rtdb.europe-west1.firebasedatabase.app/' } )
     except:
         a = cred_push # dummy operation
-    collection = json.loads(str(request.data)[2:-1])
+    collection = json.loads(str(request.data)[2:-1])["collection"]
     
-    price = find_price_predictor_from_tokenid(collection) #randint(100, 10000000)
+    # price = find_price_predictor_from_tokenid(collection) 
+    price = randint(100, 10000000)
     response_json = {"price" : "That " + str(collection)[2:-1] + " would cost £" + str(price) + "! Wow!"}
     firebase_admin.delete_app(ml_app) # there will DEFINITELY be a better way of doing this!!
     return jsonify(response_json)
