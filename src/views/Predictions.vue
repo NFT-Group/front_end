@@ -99,13 +99,13 @@ export default {
       //var collection_value = evt.srcElement.collection.value
       evt.preventDefault();
       console.log("entering onSubmit")
-      const path = 'https://front-end-one-smoky.vercel.app/api/get_price';
+      const path = 'https://pgm21-simplewebapp.herokuapp.com/';
       console.log(JSON.stringify(query_object))
       axios.post(path, JSON.stringify(query_object), { headers: { 'content-type': 'text/json' }})
         .then((res) => {
           console.log(res)
           console.log(res.data)
-          document.getElementById('nft_price_display').innerHTML=res.data["price"];
+          document.getElementById('nft_price_display').innerHTML=res.data;
         })
         .catch((error) => {
            //eslint-disable-next-line
