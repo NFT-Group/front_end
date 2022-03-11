@@ -7,6 +7,11 @@
   <div>
     <chart/>
   </div>
+    <p>Select:</p>
+    <input type="radio" id="transfer" value="transfer" name="transfer">
+    <label for="transfer">Transfer Volume</label>
+    <input type="radio" id="price" value="price" name="transfer">
+    <label for="price">Price Volume</label>
   <div>
     <chart/>
   </div>
