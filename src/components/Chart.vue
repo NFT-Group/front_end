@@ -94,6 +94,7 @@ export default {
 
                 const rects = graph.selectAll('rect').data(data)
 
+
                 rects.exit().remove()
 
                 rects.attr('width', x.bandwidth)                    
