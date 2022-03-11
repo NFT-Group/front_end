@@ -3,11 +3,11 @@
   <h1 class="title">Quantum</h1>
   <h2>AN NFT MARKET ANALYSER AND VISUALISER</h2>
   <br><br>
-  <div>
-    <chart/>
+    <div>
+    <multiLine/>
   </div>
   <div>
-    <multiLine/>
+    <chart/>
   </div>
   <br><br>
   <hr class="solid">
