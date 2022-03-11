@@ -3,14 +3,19 @@
   <h1 class="title">Quantum</h1>
   <h2>AN NFT MARKET ANALYSER AND VISUALISER</h2>
   <br><br>
+<<<<<<< HEAD
   <div class="refresh">
    <button @click = "refreshing">Refresh</button>
  </div>
   <div>
     <chart/>
+=======
+    <div>
+    <multiLine/>
+>>>>>>> a1f41f44cca1bc684720f858468dffe4012ea3ac
   </div>
   <div>
-    <multiLine/>
+    <chart/>
   </div>
   <br><br>
   <hr class="solid">
