@@ -27,7 +27,16 @@
   <hr class="solid">
   <br><br>
   <h2 >Curate your own NFT</h2>
-  <br><br><br><br>
+  <select v-model="selectbox1">
+    <option value="food">Food</option>
+    <option value="drink">Drink</option>
+    <option value="desert">Desert</option>
+  </select>
+  <select v-model="selectbox2">
+    <option v-for="option in setOptions" v-bind:value="option.val">{{option.text}}</option>
+  </select>
+  <br><br>
+  <span>selected: {{selectbox1}} {{selectbox2}}</span>
 </template>
 
 <script>
@@ -35,6 +44,10 @@ import axios from 'axios';
 
 export default {
   name: 'Predictions',
+  data:{
+    selectbox1: undefined,
+    selectbox2: undefined,
+  },
   created() {
     
   },
@@ -67,7 +80,44 @@ export default {
           console.error(error);
         });
     },
+    onSubmit2(evt) {
+      console.log(evt);
+      console.log("which element is checked?")
+      var collection = evt.srcElement.collection.value
+      var tokenid = evt.srcElement.tokenid.value
+      console.log("collection")
+      console.log(collection)
+      console.log("tokenid")
+      console.log(tokenid)
+      var query_object = {"collection": collection, "tokenid": tokenid}
+      console.log(query_object)
+      //console.log(evt.srcElement.collection.value)
+      //var collection_value = evt.srcElement.collection.value
+      evt.preventDefault();
+      console.log("entering onSubmit")
+      const path = 'https://front-end-one-smoky.vercel.app/api/get_price';
+      console.log(JSON.stringify(query_object))
+    },
   },
+  // computed: {
+  //   setOptions: function(){
+  //     if (this.selectbox1 === 'food'){
+  //        var options = [{val: 'pizza', text: 'Pizza'},
+  //                       {val: 'lasagna', text: 'Lasagna'},
+  //                       {val: 'salad', text: 'Salad'}]
+  //     } else if (this.selectbox1 === 'drink'){
+  //        var options = [{val: 'beer', text: 'Beer'},
+  //                       {val: 'wine', text: 'Wine'},
+  //                       {val: 'coke', text: 'Coke'},
+  //                       {val: 'water', text: 'Water'}]
+  //     } else if (this.selectbox1 === 'desert'){
+  //        var options = [{val: 'tiramisu', text: 'Tiramisu'},
+  //                       {val: 'icecream', text: 'Icecream'},
+  //                       {val: 'espresso', text: 'Espresso'}]
+  //     }
+  //     return options
+  //   }
+  // },
 };
 </script>
 
