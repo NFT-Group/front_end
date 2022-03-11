@@ -17,7 +17,8 @@ cred_push_key = {
   "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-u7cos%40ml-prepped-database.iam.gserviceaccount.com"
 }
 
-
+transactions_app = None
+ml_app = None
 
 def find_price_predictor_from_tokenid(request):
     cred_push = firebase_admin.credentials.Certificate(cred_push_key)

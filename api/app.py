@@ -1,5 +1,5 @@
 from flask import Flask, Response, jsonify, request
-from random import randint
+# from random import randint
 import time
 from datetime import datetime
 import firebase_admin
@@ -57,17 +57,18 @@ transactions_app = None
 #@app.route('/', defaults={'path': ''})
 @app.route('/api/get_price', methods=["POST"])
 def api():
-    #cred_push_key = str(pathlib.Path(__file__).parent.resolve()) + '/database_store_keys/key_for_ML-prepped-database.json'
-    # cred_push = firebase_admin.credentials.Certificate(cred_push_key)
-    # try:
-    #     firebase_admin.delete_app(transactions_app)
-    # except:
-    #     a = cred_push # dummy operation
-    # try:
-    #     ml_app = firebase_admin.initialize_app(cred_push, { 'databaseURL':'https://ml-prepped-database-default-rtdb.europe-west1.firebasedatabase.app/' } )
-    # except:
-    #     a = cred_push # dummy operation
+    # cred_push_key = str(pathlib.Path(__file__).parent.resolve()) + '/database_store_keys/key_for_ML-prepped-database.json'
+    cred_push = firebase_admin.credentials.Certificate(cred_push_key)
+    try:
+        firebase_admin.delete_app(transactions_app)
+    except:
+        a = cred_push # dummy operation
+    try:
+        ml_app = firebase_admin.initialize_app(cred_push, { 'databaseURL':'https://ml-prepped-database-default-rtdb.europe-west1.firebasedatabase.app/' } )
+    except:
+        a = cred_push # dummy operation
     collection = json.loads(str(request.data)[2:-1])
+    
     price = find_price_predictor_from_tokenid(collection) #randint(100, 10000000)
     response_json = {"price" : "That " + str(collection)[2:-1] + " would cost £" + str(price) + "! Wow!"}
     # firebase_admin.delete_app(ml_app) # there will DEFINITELY be a better way of doing this!!
