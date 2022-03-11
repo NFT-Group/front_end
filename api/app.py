@@ -2,20 +2,9 @@ from flask import Flask, Response, jsonify, request
 # from random import randint
 import time
 from datetime import datetime
-import firebase_admin
 from firebase_admin import credentials, firestore, db
 import json
-<<<<<<< HEAD
 from public.node_graph_data.helper_functions import find_price_predictor_from_tokenid
-=======
-# import pickle
-#import sklearn
-#from public.node_graph_data.helper_functions import find_price_predictor_from_tokenid
-# import sys
-# sys.path.insert(1, '/public/node_graph_data/')
-# import helper_functions
-# from helper_functions import find_price_predictor_from_tokenid
->>>>>>> b607db9a9fcc480098f5df8337fe21e02aca4b6c
 
 
 apeAddress = '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D'
