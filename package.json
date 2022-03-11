@@ -18,6 +18,8 @@
     "gridjs": "^5.0.2",
     "gridjs-vue": "^5.0.4",
     "http2": "^3.3.7",
+    "pandas": "^0.0.3",
+    "scikit-learn": "^0.1.0",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0"
   },
