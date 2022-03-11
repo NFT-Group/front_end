@@ -1,12 +1,12 @@
 <template>
     <div id="charts">
-        <svg id="multiLineChart" width="900" height="800"></svg>
+        <svg id="multiLineChart" width="900" height="600"></svg>
     </div>
 </template>
 
 <script>
     import * as d3 from 'd3'
-    import data from '../../public/line_chart_data/MergedData.json'
+    import data from '../../public/line_chart_data/multiLine.json'
     console.log(data);
 
     export default {

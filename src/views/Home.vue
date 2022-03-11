@@ -6,6 +6,9 @@
   <div>
     <chart/>
   </div>
+  <div>
+    <multiLine/>
+  </div>
   <br><br>
   <hr class="solid">
   <p class="news">Latest News</p>
@@ -29,9 +32,12 @@
 
 <script>
 import Chart from '../components/Chart.vue'
+import MultiLine from '../components/MultiLine.vue'
   export default{
     name: 'App',
-    components: { Chart },
+    components: { Chart,
+                  MultiLine 
+    },
     data(){
       return{
         emailInput: '',

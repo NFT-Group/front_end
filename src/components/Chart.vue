@@ -1,6 +1,6 @@
 <template>
     <div id="charts">
-        <svg id="barChart" width="700" height="500"></svg>
+        <svg id="barChart" width="750" height="500"></svg>
     </div>
 </template>
 
@@ -15,8 +15,8 @@ export default {
     mounted: function() {
         
         const svg = d3.select("#barChart")
-            .attr('width', 700)
-            .attr('height', 500);
+            .attr('width', 750)
+            .attr('height', 700);
 
         const margin = {
             top: 80,
@@ -51,8 +51,8 @@ export default {
         svg.append('text')
             .attr('text-anchor', 'middle')
             .attr('x', graphWidth/2 + margin.left)
-            .attr('y', graphHeight + margin.top + margin.bottom)
-            .text('NFT Collections')
+            .attr('y', graphHeight + margin.top + margin.bottom + (margin.bottom/2))
+            .text('NFT Collection')
             .style('font', '18px Avenir')
             .attr('fill', '#2c3e50')
             .style('font-weight', 400);
@@ -61,7 +61,7 @@ export default {
             .attr('text-anchor', 'middle')
             .attr('y', margin.left/3)
             .attr('x', -(margin.top) + -(graphHeight/2))
-            .text('size of Collection (No. of NFTs)')
+            .text('No. of transactions')
             .style('font', '18px Avenir')
             .attr('fill', '#2c3e50')
             .attr('transform', 'rotate(-90)')
@@ -71,7 +71,7 @@ export default {
             .attr('text-anchor', 'middle')
             .attr('y', margin.top/2)
             .attr('x', margin.left + graphWidth/2)
-            .text('Transaction volumes (last 7 days)')
+            .text('Transaction Volumes (Past 30 days)')
             .style('font', '25px Avenir')
             .attr('fill', '#2c3e50')
             .style('font-weight', 600);
