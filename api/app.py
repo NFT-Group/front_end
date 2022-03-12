@@ -5,7 +5,7 @@ from datetime import datetime
 import firebase_admin
 from firebase_admin import credentials, firestore, db
 import json
-from public.node_graph_data.helper_functions import find_price_predictor_from_tokenid
+#from public.node_graph_data.helper_functions import find_price_predictor_from_tokenid
 
 
 apeAddress = '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D'
@@ -38,12 +38,12 @@ transactions_app = None
 #@app.route('/', defaults={'path': ''})
 @app.route('/api/get_price', methods=["POST"])
 def api():
+    a = 1
+    #collection = json.loads(str(request.data))["collection"]
    
-    collection = json.loads(str(request.data)[2:-1])
-   
-    price = find_price_predictor_from_tokenid(collection) #randint(100, 10000000)
-    response_json = {"price" : "That " + str(collection)[2:-1] + " would cost £" + str(price) + "! Wow!"}
-    return jsonify(response_json)
+    #price = 10 # find_price_predictor_from_tokenid(collection) #randint(100, 10000000)
+    #response_json = {"price" : "That " + str(collection)[2:-1] + " would cost £" + str(price) + "! Wow!"}
+    #return jsonify(response_json)
 
     #if request.method == 'GET':
         #response_object = {"price": "1000"}
