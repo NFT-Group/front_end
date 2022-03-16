@@ -51,7 +51,7 @@ export default {
       //var collection_value = evt.srcElement.collection.value
       evt.preventDefault();
       console.log("entering onSubmit")
-      const path = 'https://pgm21-simplewebapp.herokuapp.com/';
+      const path = 'https://nft-back-end-py.herokuapp.com/';
       console.log(JSON.stringify(query_object))
       axios.post(path, JSON.stringify(query_object), { headers: { 'content-type': 'text/json' }})
         .then((res) => {
