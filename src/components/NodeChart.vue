@@ -10,9 +10,9 @@
 
     export default {
             mounted: function() {
-                var diameter = 1350,
-                innerCircle = 200,
-                radius = diameter / 2 - innerCircle;
+            var diameter = 1350,
+            innerCircle = 200,
+            radius = diameter / 2 - innerCircle;
 
             var svg = d3.select("#nodeChart")
                 .attr("width", diameter)
@@ -44,14 +44,21 @@
                 .selectAll("text")
                 .data(leaves)
                 .enter().append("text")
-                .attr("transform", d => "translate(" + [getX(d), getY(d)] + ") " + //if not translate, rotate will behave strange
+                .attr("transform", d => "translate(" + [getX(d), getY(d)] + ") " + 
                     "rotate(" + (d.x * 180 / Math.PI - (isLeft(d) ? 180 : 0)) + ")")
                 .attr("text-anchor", d => isLeft(d) ? "end" : "start")
                 .attr("dx", d => isLeft(d) ? "-0.7em" : "0.7em")
                 .attr("dy", "0.3em")
                 .text(d => d.data.shortName)
                 .on("mouseover", mouseovered)
-                .on("mouseout", mouseouted);
+                .on("mouseout", mouseouted)
+                .on("click", d => window.location.replace("https://opensea.io/" + d.data.shortName));
+
+            // var url = "https://www.facebook.com/";
+
+            // Add link to labels 
+            // g.selectAll("node")
+            //     .attr("xlink:href", "http://en.wikipedia.org/wiki/"+word)
 
             link = g.append("g")
                 .selectAll("path")
@@ -79,6 +86,8 @@
                         data.push(newNode);
                         map[id] = newNode;
                     }
+                    // console.log(node.shortName)
+                    // console.log(node.)
                 }
                 data.pop(); //remove the one with name "", since it causes multi-root error.
             }
