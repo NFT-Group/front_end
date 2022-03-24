@@ -3,18 +3,20 @@
   <h1 class="title">Quantum</h1>
   <h2>AN NFT MARKET ANALYSER AND VISUALISER</h2>
   <br><br>
-  <button @click = "refreshing">Refresh</button>
+  <div>
+    <MultiLine/>
+  </div>
   <div>
     <chart/>
   </div>
     <p>Select:</p>
+    <form>
     <input type="radio" id="transfer" value="transfer" name="transfer">
     <label for="transfer">Transfer Volume</label>
     <input type="radio" id="price" value="price" name="transfer">
     <label for="price">Price Volume</label>
-  <div>
-    <chart/>
-  </div>
+    <button @click = "refreshing">Refresh</button>
+    </form>
   <br><br>
   <hr class="solid">
   <p class="news">Latest News</p>
@@ -55,7 +57,7 @@ import MultiLine from '../components/MultiLine.vue'
         //at this point, submit result to database
       },
       refreshing(){
-        console.log('refreshing the page')
+        console.log('refreshing the bar chart')
       }
     }
   }
