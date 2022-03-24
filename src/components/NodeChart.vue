@@ -1,11 +1,14 @@
 <template>
     <div id="charts">
-        <svg id="nodeChart" width="1350" height="1150"></svg>
+        <svg id="nodeChart" width="1350" height="1000"></svg>
     </div>
 </template>
 
 <script>
-    import * as d3 from 'd3'
+    import * as d3 from 'd3';
+    import { ethers } from 'ethers';
+    import * as ENS from 'ethereum-ens';
+    import * as Web3 from 'web3';
     import data from '../../public/node_graph_data/boredApeYachtClub.json'
 
     export default {
@@ -49,16 +52,44 @@
                 .attr("text-anchor", d => isLeft(d) ? "end" : "start")
                 .attr("dx", d => isLeft(d) ? "-0.7em" : "0.7em")
                 .attr("dy", "0.3em")
-                .text(d => d.data.shortName)
+                .text(function(d) {
+                    if(d.data.shortName[0] == '0' && d.data.shortName[1] == 'x') {
+                        var startOfWalletID = d.data.shortName.substring(0,10);
+                        startOfWalletID += '...'
+                        return startOfWalletID
+                    }
+                    else {
+                        return d.data.shortName;
+                    }
+                })
                 .on("mouseover", mouseovered)
                 .on("mouseout", mouseouted)
-                .on("click", d => window.location.replace("https://opensea.io/" + d.data.shortName));
+                .on("click", function(d) {
+                    if(d.data.shortName[0] == '0' && d.data.shortName[1] == 'x') {
+                        window.location.replace("https://opensea.io/" + d.data.shortName)
+                    }
+                    else {
+                        var nameInclFullstops = d.data.shortName.replaceAll("_", ".")
+                        window.location.replace("https://opensea.io/" + nameInclFullstops)
+                    }
+                });
 
-            // var url = "https://www.facebook.com/";
-
-            // Add link to labels 
-            // g.selectAll("node")
-            //     .attr("xlink:href", "http://en.wikipedia.org/wiki/"+word)
+            // async function findName(name) {
+            //     var infuraUrl = 'https://mainnet.infura.io/v3/28b465e090554529bb7913d0504a71bd';
+            //     var provider = new ethers.providers.JsonRpcProvider(infuraUrl);
+            //     var address = await provider.lookupAddress(name);
+            //     if(address == null)
+            //     {
+            //         address = name.substring(0,8);
+            //         address += "...";
+            //     }
+            //     console.log(address)
+            //     return address
+            // }
+            // var example = "0x4e064ddcc82194c12c7ff5712a6e1938aee9abe8";
+            // var example2 = "0x5555763613a12D8F3e73be831DFf8598089d3dCa";
+            // findName(example);
+            // findName(example2);
 
             link = g.append("g")
                 .selectAll("path")
@@ -141,7 +172,7 @@
 
 <style>
     text {
-        font: 8px Avenir;
+        font: 12px Avenir;
     }
     
     text:hover,
@@ -164,7 +195,7 @@
     
     path {
         fill: none;
-        stroke: steelblue;
+        stroke: lightseagreen;
         stroke-width: 1px;
         opacity: 0.5;
     }

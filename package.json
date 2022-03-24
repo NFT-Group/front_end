@@ -12,6 +12,8 @@
     "core-js": "^3.6.5",
     "d3": "^4.13.0",
     "dns": "^0.2.2",
+    "ethereum-ens": "^0.8.0",
+    "ethers": "^5.6.1",
     "firebase": "^9.6.7",
     "firebase-admin": "^10.0.2",
     "grid.js": "^1.0.0",
@@ -21,7 +23,8 @@
     "pandas": "^0.0.3",
     "scikit-learn": "^0.1.0",
     "vue": "^3.0.0",
-    "vue-router": "^4.0.0-0"
+    "vue-router": "^4.0.0-0",
+    "web3": "^1.7.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

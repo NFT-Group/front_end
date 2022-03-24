@@ -22,6 +22,7 @@
         </select>
     </form>
     <p> Hover for transaction destination/ origin. <br>
+    Click on Wallet Names/ Wallet IDs to view OpenSea account. <br>
     Red link = Sale <br>
     Blue link = Purchase </p>
     <div>
