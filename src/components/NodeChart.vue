@@ -55,11 +55,12 @@
                 .text(function(d) {
                     if(d.data.shortName[0] == '0' && d.data.shortName[1] == 'x') {
                         var startOfWalletID = d.data.shortName.substring(0,10);
-                        startOfWalletID += '...'
+                        startOfWalletID += ' ...'
                         return startOfWalletID
                     }
                     else {
-                        return d.data.shortName;
+                        var tempLabel = d.data.shortName.replaceAll("_", ".")
+                        return tempLabel;
                     }
                 })
                 .on("mouseover", mouseovered)
