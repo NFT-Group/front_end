@@ -13,8 +13,8 @@
 
     export default {
             mounted: function() {
-            var diameter = 1350,
-            innerCircle = 200,
+            var diameter = 1000,
+            innerCircle = 100,
             radius = diameter / 2 - innerCircle;
 
             var svg = d3.select("#nodeChart")
