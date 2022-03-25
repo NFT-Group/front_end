@@ -97,27 +97,27 @@ def get_transactions():
                 transaction_data[2] += 1
             elif (data_type == 'value'):
                 transaction_data[2] += transaction_list[key]['ethprice']
-        if weeks_transactions[key]['contracthash'] == coolCatsAddress:
+        if transaction_list[key]['contracthash'] == coolCatsAddress:
             if (data_type == 'liquidity'):
                 transaction_data[3] += 1
             elif (data_type == 'value'):
                 transaction_data[3] += transaction_list[key]['ethprice']
-        if weeks_transactions[key]['contracthash'] == cloneXAddress:
+        if transaction_list[key]['contracthash'] == cloneXAddress:
             if (data_type == 'liquidity'):
                 transaction_data[4] += 1
             elif (data_type == 'value'):
                 transaction_data[4] += transaction_list[key]['ethprice']
-        if weeks_transactions[key]['contracthash'] == crypToadzAddress:
+        if transaction_list[key]['contracthash'] == crypToadzAddress:
             if (data_type == 'liquidity'):
                 transaction_data[5] += 1
             elif (data_type == 'value'):
                 transaction_data[5] += transaction_list[key]['ethprice']
-        if weeks_transactions[key]['contracthash'] == doodlesAddress:
+        if transaction_list[key]['contracthash'] == doodlesAddress:
             if (data_type == 'liquidity'):
                 transaction_data[6] += 1
             elif (data_type == 'value'):
                 transaction_data[6] += transaction_list[key]['ethprice']
-        if weeks_transactions[key]['contracthash'] == pudgyPenguinAddress:
+        if transaction_list[key]['contracthash'] == pudgyPenguinAddress:
             if (data_type == 'liquidity'):
                 transaction_data[7] += 1
             elif (data_type == 'value'):
