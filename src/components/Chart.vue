@@ -104,7 +104,7 @@ export default {
 	else
 	{
 	  console.log("evt is not empty")
-	  request_json = {'timeframe': evt.srcElement.timeframe.value, 'data_type': evt.srcElement.datatype.value}
+	  request_json = {'timeframe': evt.srcElement.timeframe.value, 'data_type': evt.srcElement.data_type.value}
 	  console.log("request_json is")
 	  console.log(request_json)
 	}
