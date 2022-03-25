@@ -51,8 +51,8 @@ def api():
     #return Response("<h1>Flask</h1><p>You visited: /%s</p>" % (path), mimetype="text/html")
 
 
-@app.route('/api/get_weeks_transactions', methods=["GET"])
-def get_weeks_transactions():
+@app.route('/api/get_transactions', methods=["POST"])
+def get_transactions():
     cred = credentials.Certificate(firebase_key)
     try:
         firebase_admin.delete_app(ml_app)
@@ -63,34 +63,70 @@ def get_weeks_transactions():
     except:
         a = cred # dummy operation
     ref = db.reference('/')
-    one_week_ago = time.time() - 604800 #number of seconds in a week
-    one_week_ago = datetime.utcfromtimestamp(int(one_week_ago)).strftime('%Y-%m-%d')
-    weeks_transactions = ref.order_by_child('timestamp').start_at(one_week_ago).get()
-    transaction_keys = weeks_transactions.keys()
-    total_transaction_counts = [0, 0, 0, 0, 0, 0, 0, 0]
+    request_data = json.loads(request.data)
+    timeframe = request_data['timeframe']
+    data_type = request_data['data_type']
+    if (timeframe == 'year'):
+        start_time = time.time() - 31556952
+    elif (timeframe == 'month'):
+        start_time = time.time() - 2419200
+    elif (timeframe == 'week'):
+        start_time = time.time() - 604800
+    elif (timeframe == 'day'):
+        start_time = time.time() - 86400
+    #one_week_ago = time.time() - 604800 #number of seconds in a week
+    #one_week_ago = datetime.utcfromtimestamp(int(one_week_ago)).strftime('%Y-%m-%d')
+    start_time = datetime.utcfromtimestamp(int(start_time)).strftime('%Y-%m-%d')
+    transaction_list = ref.order_by_child('timestamp').start_at(start_time).get()
+    transaction_keys = transaction_list.keys()
+    transaction_data = [0, 0, 0, 0, 0, 0, 0, 0]
     collection_names = ['Bored Ape Yacht Club', 'CryptoPunks', 'Bored Ape Kennel Club', 'Cool Cats', 'cloneX', 'CrypToadz', 'Doodles', 'Pudgy Penguins']
     for key in transaction_keys:
-        if weeks_transactions[key]['contracthash'] == apeAddress:
-            total_transaction_counts[0] += 1
-        if weeks_transactions[key]['contracthash'] == cryptoPunkAddress:
-            total_transaction_counts[1] += 1
-        if weeks_transactions[key]['contracthash'] == boredApeKennelAddress:
-            total_transaction_counts[2] += 1
+        if transaction_list[key]['contracthash'] == apeAddress:
+            if (data_type == 'liquidity'):
+                transaction_data[0] += 1
+            elif (data_type == 'value')
+                transaction_data[0] += transaction_list[key]['ethprice']
+        if transaction_list[key]['contracthash'] == cryptoPunkAddress:
+            if (data_type == 'liquidity'):
+                transaction_data[1] += 1
+            elif (data_type == 'value')
+                transaction_data[1] += transaction_list[key]['ethprice']
+        if transaction_list[key]['contracthash'] == boredApeKennelAddress:
+            if (data_type == 'liquidity'):
+                transaction_data[2] += 1
+            elif (data_type == 'value')
+                transaction_data[2] += transaction_list[key]['ethprice']
         if weeks_transactions[key]['contracthash'] == coolCatsAddress:
-            total_transaction_counts[3] += 1
+            if (data_type == 'liquidity'):
+                transaction_data[3] += 1
+            elif (data_type == 'value')
+                transaction_data[3] += transaction_list[key]['ethprice']
         if weeks_transactions[key]['contracthash'] == cloneXAddress:
-            total_transaction_counts[4] += 1
+            if (data_type == 'liquidity'):
+                transaction_data[4] += 1
+            elif (data_type == 'value')
+                transaction_data[4] += transaction_list[key]['ethprice']
         if weeks_transactions[key]['contracthash'] == crypToadzAddress:
-            total_transaction_counts[5] += 1
+            if (data_type == 'liquidity'):
+                transaction_data[5] += 1
+            elif (data_type == 'value')
+                transaction_data[5] += transaction_list[key]['ethprice']
         if weeks_transactions[key]['contracthash'] == doodlesAddress:
-            total_transaction_counts[6] += 1
+            if (data_type == 'liquidity'):
+                transaction_data[6] += 1
+            elif (data_type == 'value')
+                transaction_data[6] += transaction_list[key]['ethprice']
         if weeks_transactions[key]['contracthash'] == pudgyPenguinAddress:
-            total_transaction_counts[7] += 1
+            if (data_type == 'liquidity'):
+                transaction_data[7] += 1
+            elif (data_type == 'value')
+                transaction_data[7] += transaction_list[key]['ethprice']
     
     response_json_array = []
 
     for i in range(8):
-        response_json_array.append({'name': collection_names[i], 'size': total_transaction_counts[i]})
+        response_json_array.append({'name': collection_names[i], 'size': transaction_data[i]})
 
     firebase_admin.delete_app(transactions_app) # there will DEFINITELY be a better way of doing this!!
 
