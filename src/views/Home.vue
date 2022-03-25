@@ -9,14 +9,6 @@
   <div>
     <chart/>
   </div>
-    <p>Select:</p>
-    <form>
-    <input type="radio" id="transfer" value="transfer" name="transfer">
-    <label for="transfer">Transfer Volume</label>
-    <input type="radio" id="price" value="price" name="transfer">
-    <label for="price">Price Volume</label>
-    <button @click = "refreshing">Refresh</button>
-    </form>
   <br><br>
   <hr class="solid">
   <p class="news">Latest News</p>

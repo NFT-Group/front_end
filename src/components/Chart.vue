@@ -2,6 +2,20 @@
     <div id="charts">
         <svg id="barChart" width="750" height="500"></svg>
     </div>
+    <p>Select:</p>
+    <form @submit="refreshData">
+    <input type="radio" id="liquidity" value="liquidity" name="data_type" checked="checked">
+    <label for="liquidity">Liquidity</label>
+    <input type="radio" id="value" value="value" name="data_type">
+    <label for="price">Cumulative value</label>
+    <input type="radio" id="month" value="month" name="timeframe">
+    <label for="month">Month</label>
+    <input type="radio" id="week" value="week" name="timeframe" checked="checked">
+    <label for="week">Week</label>
+    <input type="radio" id="day" value="day" name="timeframe">
+    <label for="day">Day</label>
+    <input type="submit" name="submit_button" onload="click">
+    </form>
 </template>
 
 <script>
@@ -12,8 +26,12 @@ import axios from 'axios';
 
 // CHART 1 - NFT COLLECTION COUNTS
 export default {
-    mounted: function() {
-        
+    methods: {
+      buildBarChart(evt) {
+        console.log("EVENT")
+	console.log(evt)
+	var svg_reset = d3.select("#barChart")
+	svg_reset.selectAll("*").remove()
         const svg = d3.select("#barChart")
             .attr('width', 750)
             .attr('height', 700);
@@ -23,8 +41,8 @@ export default {
             right: 20,
             bottom: 100,
             left: 140
-        }; 
-
+        };
+	
         const graphWidth = 700 - margin.left - margin.right;
         const graphHeight = 500 - margin.top - margin.bottom;
         const graph = svg.append('g')
@@ -76,8 +94,23 @@ export default {
             .attr('fill', '#2c3e50')
             .style('font-weight', 600);
 
-        const path = 'https://front-end-one-smoky.vercel.app/api/get_weeks_transactions';
-        axios.get(path)
+        const path = 'https://front-end-one-smoky.vercel.app/api/get_transactions';
+	var request_json = ''
+	if (evt == '')
+	{
+	  console.log("evt is empty!?")
+	  request_json = {'timeframe': 'week', 'data_type': 'liquidity'}
+	}
+	else
+	{
+	  console.log("evt is not empty")
+	  request_json = {'timeframe': evt.srcElement.timeframe.value, 'data_type': evt.srcElement.value.value}
+	  console.log("request_json is")
+	  console.log(request_json)
+	}
+	console.log("request json")
+	console.log(request_json)
+        axios.post(path, request_json)
             .then((res) => {
                 console.log(res)
                 console.log(res.data)
@@ -127,7 +160,17 @@ export default {
             .catch((error) => {
                 console.error(error);
             });
+      },
+      refreshData(evt) {
+        evt.preventDefault()
+	console.log(evt)
+        this.buildBarChart(evt)
       }
+    },
+    mounted: function() {
+    	var evt = ''
+        this.buildBarChart(evt)
+    }
 
   }
 </script>
