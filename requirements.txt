@@ -15,3 +15,4 @@ toml==0.10.2
 Werkzeug==2.0.2
 datetime
 firebase_admin
+flask_cors
