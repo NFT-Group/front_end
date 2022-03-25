@@ -2,10 +2,10 @@
     <form @submit="onSubmit">
       <label>Choose a Collection:</label>
         <select value="collection" id="collection" name="collection">
-            <option value="cryptoPunks" id="punk" name="collection">CryptoPunks</option>
-            <option value="boredApeYachtClub" id="boredape" name="collection" selected="selected">Bored Ape Yacht Club</option>
+            <option value="crypto_punks" id="punk" name="collection">CryptoPunks</option>
+            <option value="bored_ape_yacht_club" id="boredape" name="collection" selected="selected">Bored Ape Yacht Club</option>
             <option value="boredapekennel" id="boredapekennel" name="collection">Bored Ape Kennel Club</option>
-            <option value="doodle" id="doodle" name="collection">Doodles</option>
+            <option value="doodles" id="doodle" name="collection">Doodles</option>
             <option value="coolcat" id="coolcat" name="collection">Cool Cats</option>
             <option value="cryptoad" id="cryptoad" name="collection">CrypToadz</option>
             <option value="penguin" id="penguin" name="collection">Pudgy Penguins</option>
@@ -24,35 +24,67 @@
 </template>
 
 <script>
+    // Import D3 & relevant data JSONs
     import * as d3 from 'd3';
-    import data1 from '../../public/node_graph_data/boredApeYachtClub.json'
-    import data2 from '../../public/node_graph_data/cryptoPunks.json'
+    import BAYCdata from '../../public/node_graph_data/bored_ape_yacht_club.json'
+    import BAKCdata from '../../public/node_graph_data/bored_ape_kennel_club.json'
+    import CPdata from '../../public/node_graph_data/crypto_punks.json'
+    import Ddata from  '../../public/node_graph_data/doodles.json'
+    import CTdata from '../../public/node_graph_data/cryptoadz.json'
+    import PPdata from '../../public/node_graph_data/pudgy_penguins.json'
+    // Not yet working... 
+    import CCdata from '../../public/node_graph_data/bored_ape_yacht_club.json'
+    import CXdata from '../../public/node_graph_data/bored_ape_yacht_club.json'
+
+
 
     export default {
         mounted: function () {
-            this.renderChart('boredApeYachtClub');
+            // Set bored ape yacht club as default view 
+            this.renderChart('bored_ape_yacht_club');
         },
         methods: {
             onSubmit(evt) {
                 // Refresh SVG 
+                evt.preventDefault();
                 var svg_reset = d3.select("#nodeChart")
 	            svg_reset.selectAll("*").remove()
-                evt.preventDefault();
-                var collection = evt.srcElement.collection.value
-                this.renderChart(collection)
+                var JSONname = evt.srcElement.collection.value
+                this.renderChart(JSONname)
             },
             renderChart(JSONname)
             {   
                 var data;
-                if(JSONname == 'boredApeYachtClub')
-                {
-                    data = data1;
+                console.log(JSONname)
+                // Determine dataset from click 
+                switch (JSONname){
+                    case 'bored_ape_yacht_club':
+                        data = BAYCdata;
+                        break;
+                    case 'bored_ape_kennel_club':
+                        data = BAKCdata;
+                        break;
+                    case 'doodles':
+                        data = Ddata;
+                        break;
+                    case 'cryptoadz':
+                        data = CTdata;
+                        break;
+                    case 'pudgy_penguins':
+                        data = PPdata;
+                        break;
+                    case 'crypto_punks':
+                        data = CPdata;
+                        break;
+                    case 'cool_cats':
+                        data = CCdata;
+                        break;
+                    case 'cloneX':
+                        data = CXdata;
+                        break;
+                    default:
+                        data = BAYCdata;
                 }
-                if(JSONname == 'cryptoPunks')
-                {
-                    data = data2;
-                }
-                
                 var diameter = 1000,
                 innerCircle = 100,
                 radius = diameter / 2 - innerCircle;
