@@ -18,6 +18,7 @@
 
 <script>
     import * as d3 from 'd3'
+    import axios from 'axios';
     //import data from '../../public/line_chart_data/multiline.json'
     //console.log(data);
 
@@ -26,6 +27,7 @@
         {
             chart(evt)
             {
+		console.log("entering chart function")
                 evt.preventDefault();
                 const path = 'https://nft-back-end-py.herokuapp.com/get_line_graph_data';
                 var request_json = ''
@@ -43,7 +45,7 @@
                 }
                 console.log("request json")
                 console.log(request_json)
-                console.log(data);
+                //console.log(data);
 
                 var margin = {
                         top: 30, 
@@ -378,9 +380,11 @@
         },
         mounted: function () {
             var evt = '';
-            chart(evt)
+	    console.log("calling chart")
+            this.chart(evt)
         } 
     }
+}
 </script>
 
 <style>
