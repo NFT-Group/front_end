@@ -1,4 +1,5 @@
 from flask import Flask, Response, jsonify, request
+from flask_cors import CORS
 # from random import randint
 import time
 from datetime import datetime
@@ -32,23 +33,22 @@ firebase_key = {
 
 app = Flask(__name__)
 
+CORS(app)
+
 ml_app = None
 transactions_app = None
 
 #@app.route('/', defaults={'path': ''})
-@app.route('/api/get_price', methods=["POST"])
-def api():
-    a = 1
-    #collection = json.loads(str(request.data))["collection"]
-   
-    #price = 10 # find_price_predictor_from_tokenid(collection) #randint(100, 10000000)
-    #response_json = {"price" : "That " + str(collection)[2:-1] + " would cost £" + str(price) + "! Wow!"}
-    #return jsonify(response_json)
+#collection = json.loads(str(request.data))["collection"]
 
-    #if request.method == 'GET':
-        #response_object = {"price": "1000"}
-        #return jsonify(response_object)
-    #return Response("<h1>Flask</h1><p>You visited: /%s</p>" % (path), mimetype="text/html")
+#price = 10 # find_price_predictor_from_tokenid(collection) #randint(100, 10000000)
+#response_json = {"price" : "That " + str(collection)[2:-1] + " would cost £" + str(price) + "! Wow!"}
+#return jsonify(response_json)
+
+#if request.method == 'GET':
+    #response_object = {"price": "1000"}
+    #return jsonify(response_object)
+#return Response("<h1>Flask</h1><p>You visited: /%s</p>" % (path), mimetype="text/html")
 
 
 @app.route('/api/get_transactions', methods=["POST"])
@@ -85,42 +85,42 @@ def get_transactions():
         if transaction_list[key]['contracthash'] == apeAddress:
             if (data_type == 'liquidity'):
                 transaction_data[0] += 1
-            elif (data_type == 'value')
+            elif (data_type == 'value'):
                 transaction_data[0] += transaction_list[key]['ethprice']
         if transaction_list[key]['contracthash'] == cryptoPunkAddress:
             if (data_type == 'liquidity'):
                 transaction_data[1] += 1
-            elif (data_type == 'value')
+            elif (data_type == 'value'):
                 transaction_data[1] += transaction_list[key]['ethprice']
         if transaction_list[key]['contracthash'] == boredApeKennelAddress:
             if (data_type == 'liquidity'):
                 transaction_data[2] += 1
-            elif (data_type == 'value')
+            elif (data_type == 'value'):
                 transaction_data[2] += transaction_list[key]['ethprice']
-        if weeks_transactions[key]['contracthash'] == coolCatsAddress:
+        if transaction_list[key]['contracthash'] == coolCatsAddress:
             if (data_type == 'liquidity'):
                 transaction_data[3] += 1
-            elif (data_type == 'value')
+            elif (data_type == 'value'):
                 transaction_data[3] += transaction_list[key]['ethprice']
-        if weeks_transactions[key]['contracthash'] == cloneXAddress:
+        if transaction_list[key]['contracthash'] == cloneXAddress:
             if (data_type == 'liquidity'):
                 transaction_data[4] += 1
-            elif (data_type == 'value')
+            elif (data_type == 'value'):
                 transaction_data[4] += transaction_list[key]['ethprice']
-        if weeks_transactions[key]['contracthash'] == crypToadzAddress:
+        if transaction_list[key]['contracthash'] == crypToadzAddress:
             if (data_type == 'liquidity'):
                 transaction_data[5] += 1
-            elif (data_type == 'value')
+            elif (data_type == 'value'):
                 transaction_data[5] += transaction_list[key]['ethprice']
-        if weeks_transactions[key]['contracthash'] == doodlesAddress:
+        if transaction_list[key]['contracthash'] == doodlesAddress:
             if (data_type == 'liquidity'):
                 transaction_data[6] += 1
-            elif (data_type == 'value')
+            elif (data_type == 'value'):
                 transaction_data[6] += transaction_list[key]['ethprice']
-        if weeks_transactions[key]['contracthash'] == pudgyPenguinAddress:
+        if transaction_list[key]['contracthash'] == pudgyPenguinAddress:
             if (data_type == 'liquidity'):
                 transaction_data[7] += 1
-            elif (data_type == 'value')
+            elif (data_type == 'value'):
                 transaction_data[7] += transaction_list[key]['ethprice']
     
     response_json_array = []
