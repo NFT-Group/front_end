@@ -1,4 +1,5 @@
 from flask import Flask, Response, jsonify, request
+from flask_cors import CORS
 # from random import randint
 import time
 from datetime import datetime
@@ -31,6 +32,8 @@ firebase_key = {
 }
 
 app = Flask(__name__)
+
+CORS(app)
 
 ml_app = None
 transactions_app = None
