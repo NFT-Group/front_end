@@ -39,19 +39,16 @@ ml_app = None
 transactions_app = None
 
 #@app.route('/', defaults={'path': ''})
-@app.route('/api/get_price', methods=["POST"])
-def api():
-    a = 1
-    #collection = json.loads(str(request.data))["collection"]
-   
-    #price = 10 # find_price_predictor_from_tokenid(collection) #randint(100, 10000000)
-    #response_json = {"price" : "That " + str(collection)[2:-1] + " would cost £" + str(price) + "! Wow!"}
-    #return jsonify(response_json)
+#collection = json.loads(str(request.data))["collection"]
 
-    #if request.method == 'GET':
-        #response_object = {"price": "1000"}
-        #return jsonify(response_object)
-    #return Response("<h1>Flask</h1><p>You visited: /%s</p>" % (path), mimetype="text/html")
+#price = 10 # find_price_predictor_from_tokenid(collection) #randint(100, 10000000)
+#response_json = {"price" : "That " + str(collection)[2:-1] + " would cost £" + str(price) + "! Wow!"}
+#return jsonify(response_json)
+
+#if request.method == 'GET':
+    #response_object = {"price": "1000"}
+    #return jsonify(response_object)
+#return Response("<h1>Flask</h1><p>You visited: /%s</p>" % (path), mimetype="text/html")
 
 
 @app.route('/api/get_transactions', methods=["POST"])
