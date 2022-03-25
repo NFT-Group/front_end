@@ -6,7 +6,7 @@
     <form @submit="refreshData">
     <input type="radio" id="liquidity" value="liquidity" name="data_type" checked="checked">
     <label for="liquidity">Liquidity</label>
-    <input type="radio" id="value" value="value" name="data_type">
+    <input type="radio" id="cumvalue" value="cumvalue" name="data_type">
     <label for="price">Cumulative value</label>
     <input type="radio" id="month" value="month" name="timeframe">
     <label for="month">Month</label>
@@ -104,7 +104,7 @@ export default {
 	else
 	{
 	  console.log("evt is not empty")
-	  request_json = {'timeframe': evt.srcElement.timeframe.value, 'data_type': evt.srcElement.value.value}
+	  request_json = {'timeframe': evt.srcElement.timeframe.value, 'data_type': evt.srcElement.datatype.value}
 	  console.log("request_json is")
 	  console.log(request_json)
 	}
