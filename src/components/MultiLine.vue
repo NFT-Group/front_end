@@ -1,18 +1,18 @@
 <template>
     <div id="charts">
-        <svg id="multiLineChart" width="1100" height="600"></svg>
+        <svg id="multiLineChart" width="1100" height="600" onload="chart('')"></svg>
     </div>
     <p>Select:</p>
-    <form @submit="chart">
+    <form @submit="refreshMultiLine">
+    <input type="radio" id="month" value="month" name="timeframe">
+    <label for="month">1 Month</label>
+    <input type="radio" id="3months" value="3months" name="timeframe" checked="checked">
+    <label for="week">3 Months</label>
+    <input type="radio" id="6months" value="6months" name="timeframe">
+    <label for="day">6 Months</label>
     <input type="radio" id="year" value="year" name="timeframe">
-    <label for="year">Year</label>
-    <input type="radio" id="month" value="month" name="timeframe" checked="checked">
-    <label for="month">Month</label>
-    <input type="radio" id="week" value="week" name="timeframe">
-    <label for="week">Week</label>
-    <input type="radio" id="day" value="day" name="timeframe">
-    <label for="day">Day</label>
-    <input type="submit" name="submit_button" onload="click">
+    <label for="year">1 Year</label>
+    <input type="submit" name="submit_button_2">
     </form>
 </template>
 
@@ -28,13 +28,13 @@
             chart(evt)
             {
 		console.log("entering chart function")
-                evt.preventDefault();
+		
                 const path = 'https://nft-back-end-py.herokuapp.com/get_line_graph_data';
                 var request_json = ''
                 if (evt == '')
                 {
                     console.log("evt is empty!?")
-                    request_json = {'timeframe': 'week'}
+                    request_json = {'timeframe': '3months'}
                 }
                 else
                 {
@@ -46,6 +46,9 @@
                 console.log("request json")
                 console.log(request_json)
                 //console.log(data);
+
+		var svg_reset = d3.select("#multiLineChart")
+	    	svg_reset.selectAll("*").remove()
 
                 var margin = {
                         top: 30, 
@@ -64,8 +67,10 @@
                     .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
 
-                axios.post(path, request_json)
+                axios.post(path, request_json, {timeout : 60000, maxContentLength : 100000000, maxBodyLength : 100000000})
                     .then((res) => {
+		       	
+			
                         console.log(res)
                         console.log(res.data)
 
@@ -76,7 +81,7 @@
 
                         // Set max Value for domain/ range 
                         var maxValue = d3.max(data, function(d) {
-                                return Math.max(d.boredape, d.boredapekennel, d.clonex, d.coolcat, d.cryptoad, d. doodle, d.penguin, d.punk)/5;})
+                                return Math.max(d.boredape, d.boredapekennel, d.clonex, d.coolcat, d.cryptoad, d. doodle, d.penguin, d.punk);})
 
                         // Set the ranges
                         var x = d3.scaleTime()
@@ -110,7 +115,7 @@
                             .y(function(d) { return y(d.penguin); });
                         var punk = d3.line()
                             .x(function(d) { return x(d.timestamp); })
-                            .y(function(d) { return y(d.boredapekennel); });
+                            .y(function(d) { return y(d.punk); });
                         
                         // Add hover objects 
                         var hoverLineGroup = svg.append("g")
@@ -169,24 +174,24 @@
                             .on("mousemove", hoverMouseOn);
 
                         // Add legend circles
-                        svg.append("circle").attr("cx",100).attr("cy",40).attr("r", 6).style("fill", "black").attr('fill-opacity', 0.5)
-                        svg.append("circle").attr("cx",100).attr("cy",60).attr("r", 6).style("fill", "blue").attr('fill-opacity', 0.5)
-                        svg.append("circle").attr("cx",100).attr("cy",80).attr("r", 6).style("fill", "yellow").attr('fill-opacity', 0.5)
-                        svg.append("circle").attr("cx",100).attr("cy",100).attr("r", 6).style("fill", "red").attr('fill-opacity', 0.5)
-                        svg.append("circle").attr("cx",100).attr("cy",120).attr("r", 6).style("fill", "purple").attr('fill-opacity', 0.5)
-                        svg.append("circle").attr("cx",100).attr("cy",140).attr("r", 6).style("fill", "orange").attr('fill-opacity', 0.5)
-                        svg.append("circle").attr("cx",100).attr("cy",160).attr("r", 6).style("fill", "brown").attr('fill-opacity', 0.5)
-                        svg.append("circle").attr("cx",100).attr("cy",180).attr("r", 6).style("fill", "green").attr('fill-opacity', 0.5)
+                        svg.append("circle").attr("cx",850).attr("cy",40).attr("r", 6).style("fill", "black").attr('fill-opacity', 0.5)
+                        svg.append("circle").attr("cx",850).attr("cy",60).attr("r", 6).style("fill", "blue").attr('fill-opacity', 0.5)
+                        svg.append("circle").attr("cx",850).attr("cy",80).attr("r", 6).style("fill", "yellow").attr('fill-opacity', 0.5)
+                        svg.append("circle").attr("cx",850).attr("cy",100).attr("r", 6).style("fill", "red").attr('fill-opacity', 0.5)
+                        svg.append("circle").attr("cx",850).attr("cy",120).attr("r", 6).style("fill", "purple").attr('fill-opacity', 0.5)
+                        svg.append("circle").attr("cx",850).attr("cy",140).attr("r", 6).style("fill", "orange").attr('fill-opacity', 0.5)
+                        svg.append("circle").attr("cx",850).attr("cy",160).attr("r", 6).style("fill", "brown").attr('fill-opacity', 0.5)
+                        svg.append("circle").attr("cx",850).attr("cy",180).attr("r", 6).style("fill", "green").attr('fill-opacity', 0.5)
 
                         // Add legend text
-                        svg.append("text").attr("x", 120).attr("y", 40).text("Bored Ape Yacht Club").style("font-size", "12px").attr("alignment-baseline","middle")
-                        svg.append("text").attr("x", 120).attr("y", 60).text("Bored Ape Kennel Club").style("font-size", "12px").attr("alignment-baseline","middle")
-                        svg.append("text").attr("x", 120).attr("y", 80).text("Clonex").style("font-size", "12px").attr("alignment-baseline","middle")
-                        svg.append("text").attr("x", 120).attr("y", 100).text("CoolCats").style("font-size", "12px").attr("alignment-baseline","middle")
-                        svg.append("text").attr("x", 120).attr("y", 120).text("Cryptoadz").style("font-size", "12px").attr("alignment-baseline","middle")
-                        svg.append("text").attr("x", 120).attr("y", 140).text("Doodles").style("font-size", "12px").attr("alignment-baseline","middle")
-                        svg.append("text").attr("x", 120).attr("y", 160).text("Penguins").style("font-size", "12px").attr("alignment-baseline","middle")
-                        svg.append("text").attr("x", 120).attr("y", 180).text("Punks").style("font-size", "12px").attr("alignment-baseline","middle")
+                        svg.append("text").attr("x", 870).attr("y", 40).text("Bored Ape Yacht Club").style("font-size", "12px").attr("alignment-baseline","middle")
+                        svg.append("text").attr("x", 870).attr("y", 60).text("Bored Ape Kennel Club").style("font-size", "12px").attr("alignment-baseline","middle")
+                        svg.append("text").attr("x", 870).attr("y", 80).text("Clonex").style("font-size", "12px").attr("alignment-baseline","middle")
+                        svg.append("text").attr("x", 870).attr("y", 100).text("CoolCats").style("font-size", "12px").attr("alignment-baseline","middle")
+                        svg.append("text").attr("x", 870).attr("y", 120).text("Cryptoadz").style("font-size", "12px").attr("alignment-baseline","middle")
+                        svg.append("text").attr("x", 870).attr("y", 140).text("Doodles").style("font-size", "12px").attr("alignment-baseline","middle")
+                        svg.append("text").attr("x", 870).attr("y", 160).text("Penguins").style("font-size", "12px").attr("alignment-baseline","middle")
+                        svg.append("text").attr("x", 870).attr("y", 180).text("Punks").style("font-size", "12px").attr("alignment-baseline","middle")
 
                         var bisectDate = d3.bisector(function(d) { return d.timestamp; }).left;
                         
@@ -257,13 +262,14 @@
                                 d.timestamp = parseTime(d.timestamp);
                                 d.boredape = +d.boredape;
                                 d.boredapekennel = +d.boredapekennel;
+				console.log(d.boredapekennel)
                                 d.clonex = +d.clonex;
                                 d.coolcat = +d.coolcat;
                                 d.cryptoad = +d.cryptoad;
                                 d.doodle = +d.doodle;
                                 d.penguin = +d.penguin;
                                 d.punk = +d.punk;
-                                console.log(d.punk)
+                                //console.log(d.punk)
                             });
 
                             // Scale the range of the data
@@ -360,7 +366,7 @@
                                 .attr('fill', '#2c3e50')
                                 .style('font-weight', 600);
 
-                            // Format ticks for  both axes
+                            // Format ticks for both axes
                             d3.selectAll(".Xaxis>.tick>text")
                                 .each(function(d, i){
                                     d3.select(this).style("font-size", "14px")
@@ -378,13 +384,18 @@
                 console.error(error);
             });
         },
+	refreshMultiLine(evt) {
+	  evt.preventDefault()
+	  this.chart(evt)
+	}
+	},
         mounted: function () {
+	    console.log("multiline mounted")
             var evt = '';
 	    console.log("calling chart")
             this.chart(evt)
         } 
     }
-}
 </script>
 
 <style>

@@ -14,7 +14,7 @@
     <label for="week">Week</label>
     <input type="radio" id="day" value="day" name="timeframe">
     <label for="day">Day</label>
-    <input type="submit" name="submit_button" onload="click">
+    <input type="submit" name="submit_button">
     </form>
 </template>
 
@@ -30,8 +30,10 @@ export default {
       buildBarChart(evt) {
         console.log("EVENT")
 	console.log(evt)
+	
 	var svg_reset = d3.select("#barChart")
 	svg_reset.selectAll("*").remove()
+	
         const svg = d3.select("#barChart")
             .attr('width', 750)
             .attr('height', 700);
@@ -169,6 +171,7 @@ export default {
     },
     mounted: function() {
     	var evt = ''
+	console.log("clicking from mounted")
         this.buildBarChart(evt)
     }
 
