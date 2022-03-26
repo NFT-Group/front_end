@@ -3,6 +3,7 @@
   <br><br>
   <h2>Predict the value of your next NFT</h2>
   <br>
+  <img src="" id="nft_img">
   <form @submit="onSubmit">
     <label>Enter a Collection:</label>
       <select value="collection" id="collection" name="collection">
@@ -58,6 +59,15 @@ export default {
           console.log(res)
           console.log(res.data)
           document.getElementById('nft_price_display').innerHTML=res.data;
+	  var link = res.data['ipfs']
+	  console.log("link")
+	  console.log(link)
+	  if (link.substring(0, 4) == 'ipfs')
+	  {
+	    link = 'https://ipfs.io/ipfs/' + link.substring(7);
+	  }
+	  console.log(link)
+	  document.getElementById('nft_img').src=link
         })
         .catch((error) => {
            //eslint-disable-next-line
