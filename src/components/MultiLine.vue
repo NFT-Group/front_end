@@ -60,6 +60,8 @@
 		        left: 50},
 		        graphWidth = 850 - margin.left - margin.right,
 		        graphHeight = 500 - margin.top - margin.bottom;
+
+			var legendSpace = graphWidth / 8;
 		      
 		        // Append SVG to page
 		        var svg = d3.select("#multiLineChart")
@@ -93,7 +95,7 @@
                         // Define lines x8
                         var boredape = d3.line()
                             .x(function(d) { return x(d.timestamp); })
-                            .y(function(d) { return y(d.boredape); });
+                            .y(function(d) { return y(d.boredape); })
                         var boredapekennel = d3.line()
                             .x(function(d) { return x(d.timestamp); })
                             .y(function(d) { return y(d.boredapekennel); });
@@ -183,14 +185,142 @@
                         svg.append("circle").attr("cx",850).attr("cy",180).attr("r", 6).style("fill", "green").attr('fill-opacity', 0.5)
 
                         // Add legend text
-                        svg.append("text").attr("x", 870).attr("y", 40).text("Bored Ape Yacht Club").style("font-size", "12px").attr("alignment-baseline","middle")
-                        svg.append("text").attr("x", 870).attr("y", 60).text("Bored Ape Kennel Club").style("font-size", "12px").attr("alignment-baseline","middle")
-                        svg.append("text").attr("x", 870).attr("y", 80).text("Clonex").style("font-size", "12px").attr("alignment-baseline","middle")
-                        svg.append("text").attr("x", 870).attr("y", 100).text("CoolCats").style("font-size", "12px").attr("alignment-baseline","middle")
-                        svg.append("text").attr("x", 870).attr("y", 120).text("Cryptoadz").style("font-size", "12px").attr("alignment-baseline","middle")
-                        svg.append("text").attr("x", 870).attr("y", 140).text("Doodles").style("font-size", "12px").attr("alignment-baseline","middle")
-                        svg.append("text").attr("x", 870).attr("y", 160).text("Penguins").style("font-size", "12px").attr("alignment-baseline","middle")
-                        svg.append("text").attr("x", 870).attr("y", 180).text("Punks").style("font-size", "12px").attr("alignment-baseline","middle")
+                        svg.append("text")
+			  .attr("x", 870)
+			  .attr("y", 40)
+			  .text("Bored Ape Yacht Club")
+			  .style("font-size", "12px")
+			  .attr("alignment-baseline","middle")
+			  .on("click", function(){
+				  console.log("ba active")
+				  var ba = d3.select('#boredapeline')
+				  console.log(ba.classed("active"))
+				  var active = ba.classed("active")
+				  var new_opacity = active ? 0.5 : 0;
+				  d3.select("#boredapeline")
+					.transition().duration(0)
+					.style("opacity", new_opacity)
+				  ba.classed("active", !active);
+				})
+                        svg.append("text")
+			  .attr("x", 870)
+			  .attr("y", 60)
+			  .text("Bored Ape Kennel Club")
+			  .style("font-size", "12px")
+			  .attr("alignment-baseline","middle")
+			  .on("click", function(){
+				  console.log("bakc active")
+				  var bakc = d3.select('#boredapekennelline')
+				  console.log(bakc.classed("active"))
+				  var active = bakc.classed("active")
+				  var new_opacity = active ? 0.5 : 0;
+				  d3.select("#boredapekennelline")
+					.transition().duration(0)
+					.style("opacity", new_opacity)
+				  bakc.classed("active", !active);
+				})
+                        svg.append("text")
+			  .attr("x", 870)
+			  .attr("y", 80)
+			  .text("CloneX")
+			  .style("font-size", "12px")
+			  .attr("alignment-baseline","middle")
+			  .on("click", function(){
+				  console.log("clonex active")
+				  var cx = d3.select('#clonexline')
+				  console.log(cx.classed("active"))
+				  var active = cx.classed("active")
+				  var new_opacity = active ? 0.5 : 0;
+				  d3.select("#clonexline")
+					.transition().duration(0)
+					.style("opacity", new_opacity)
+				  cx.classed("active", !active);
+				})
+                        svg.append("text")
+			  .attr("x", 870)
+			  .attr("y", 100)
+			  .text("CoolCats")
+			  .style("font-size", "12px")
+			  .attr("alignment-baseline","middle")
+			  .on("click", function(){
+				  console.log("cc active")
+				  var cc = d3.select('#coolcatline')
+				  console.log(cc.classed("active"))
+				  var active = cc.classed("active")
+				  var new_opacity = active ? 0.5 : 0;
+				  d3.select("#coolcatline")
+					.transition().duration(0)
+					.style("opacity", new_opacity)
+				  cc.classed("active", !active);
+				})
+                        svg.append("text")
+			  .attr("x", 870)
+			  .attr("y", 120)
+			  .text("CrypToadz")
+			  .style("font-size", "12px")
+			  .attr("alignment-baseline","middle")
+			  .on("click", function(){
+				  console.log("ct active")
+				  var ct = d3.select('#cryptoadline')
+				  console.log(ct.classed("active"))
+				  var active = ct.classed("active")
+				  var new_opacity = active ? 0.5 : 0;
+				  d3.select("#cryptoadline")
+					.transition().duration(0)
+					.style("opacity", new_opacity)
+				  ct.classed("active", !active);
+				})
+                        svg.append("text")
+			  .attr("x", 870)
+			  .attr("y", 140)
+			  .text("Doodles")
+			  .style("font-size", "12px")
+			  .attr("alignment-baseline","middle")
+			  .on("click", function(){
+				  console.log("dd active")
+				  var dd = d3.select('#doodleline')
+				  console.log(dd.classed("active"))
+				  var active = dd.classed("active")
+				  var new_opacity = active ? 0.5 : 0;
+				  d3.select("#doodleline")
+					.transition().duration(0)
+					.style("opacity", new_opacity)
+				  dd.classed("active", !active);
+				})
+                        svg.append("text")
+			  .attr("x", 870)
+			  .attr("y", 160)
+			  .text("Pudgy Penguins")
+			  .style("font-size", "12px")
+			  .attr("alignment-baseline","middle")
+			  .on("click", function(){
+				  console.log("pp active")
+				  var pp = d3.select('#penguinline')
+				  console.log(pp.classed("active"))
+				  var active = pp.classed("active")
+				  var new_opacity = active ? 0.5 : 0;
+				  d3.select("#penguinline")
+					.transition().duration(0)
+					.style("opacity", new_opacity)
+				  pp.classed("active", !active);
+				})
+                        svg.append("text")
+			  .attr("x", 870)
+			  .attr("y", 180)
+			  .text("CryptoPunks")
+			  .style("font-size", "12px")
+			  .attr("alignment-baseline","middle")
+			  .on("click", function(){
+				  console.log("punk active")
+				  var punk = d3.select('#punkline')
+				  console.log(punk.classed("active"))
+				  var active = punk.classed("active")
+				  var new_opacity = active ? 0.5 : 0;
+				  d3.select("#punkline")
+					.transition().duration(0)
+					.style("opacity", new_opacity)
+				  punk.classed("active", !active);
+				})
 
                         var bisectDate = d3.bisector(function(d) { return d.timestamp; }).left;
                         
@@ -203,6 +333,10 @@
                             var i = bisectDate(data, mouseDate); // returns the index to the current data item
                             var d0 = data[i - 1]
                             var d1 = data[i];
+			    if (!d0 || !d1)
+			    {
+				return; //this was trying to find the date when hovering beyond the end of the graph
+			    }
                             // work out which date value is closest to the mouse
                             var d = mouseDate - d0[0] > d1[0] - mouseDate ? d1 : d0;
                             boredapeLabel.text("Bored Ape Yacht Club: " + showValue(d.boredape))
@@ -282,56 +416,64 @@
                                 .style("stroke-width", 2) 
                                 .style("stroke", "black")
                                 .attr("class", "line")
-                                .attr("d", boredape);
+                                .attr("d", boredape)
+				.attr("id", "boredapeline");
                             svg.append("path")
                                 .data([data])
                                 .attr("transform", `translate(${margin.left}, ${margin.top})`)
                                 .style("stroke-width", 2)
                                 .style("stroke", "blue")    
                                 .attr("class", "line")
-                                .attr("d", boredapekennel);  
+                                .attr("d", boredapekennel)
+				.attr("id", "boredapekennelline");
                             svg.append("path")
                                 .data([data])
                                 .attr("transform", `translate(${margin.left}, ${margin.top})`)
                                 .style("stroke-width", 2)
                                 .style("stroke", "yellow")    
                                 .attr("class", "line")
-                                .attr("d", clonex);  
+                                .attr("d", clonex)
+				.attr("id", "clonexline");
                             svg.append("path")
                                 .data([data])
                                 .attr("transform", `translate(${margin.left}, ${margin.top})`)
                                 .style("stroke-width", 2)
                                 .style("stroke", "red")    
                                 .attr("class", "line")
-                                .attr("d", cryptoad);  
+                                .attr("d", cryptoad)
+				.attr("id", "cryptoadline");
                             svg.append("path")
                                 .data([data])
                                 .attr("transform", `translate(${margin.left}, ${margin.top})`)
                                 .style("stroke-width", 2)
                                 .style("stroke", "purple")    
                                 .attr("class", "line")
-                                .attr("d", doodle);
+                                .attr("d", doodle)
+				.attr("id", "doodleline");
                             svg.append("path")
                                 .data([data])
                                 .attr("transform", `translate(${margin.left}, ${margin.top})`)
                                 .style("stroke-width", 2)
                                 .style("stroke", "orange")    
                                 .attr("class", "line")
-                                .attr("d", coolcat);  
+                                .attr("d", coolcat)
+				.attr("id", "coolcatline");
                             svg.append("path")
                                 .data([data])
                                 .attr("transform", `translate(${margin.left}, ${margin.top})`)
                                 .style("stroke-width", 2)
                                 .style("stroke", "brown")    
                                 .attr("class", "line")
-                                .attr("d", penguin);
+                                .attr("d", penguin)
+				.attr("id", "penguinline");
                             svg.append("path")
                                 .data([data])
                                 .attr("transform", `translate(${margin.left}, ${margin.top})`)
                                 .style("stroke-width", 2)
                                 .style("stroke", "green")    
                                 .attr("class", "line")
-                                .attr("d", punk); 
+                                .attr("d", punk)
+				.attr("id", "punkline");
                             
                             // Add the X Axis
                             svg.append("g")
