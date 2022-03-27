@@ -94,7 +94,7 @@ import MultiLine2 from '../components/MultiLine2.vue'
     font-weight: bold;
   }
   input{
-    display: block; 
+    display: inline; 
     padding: 10px 6px; 
     width: 100%;
     box-sizing: border-box;
@@ -108,7 +108,7 @@ import MultiLine2 from '../components/MultiLine2.vue'
     padding: 10px 20px; 
     margin-top: 20px; 
     color: white;
-    border-radius: 20px; 
+    border-radius: 20px;
   }
   .submit{
     text-align: center;

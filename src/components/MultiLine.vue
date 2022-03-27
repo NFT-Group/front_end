@@ -2,7 +2,7 @@
     <div id="charts">
         <svg id="multiLineChart" width="1100" height="600"></svg>
     </div>
-    <p>Select:</p>
+    <p>Timescale:</p>
     <form @submit="refreshMultiLine">
     <input type="radio" id="month" value="month" name="timeframe">
     <label for="month">1 Month</label>
