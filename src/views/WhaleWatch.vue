@@ -7,9 +7,6 @@
       <nodeChart/>
     </div>
     <br><br><br><br>
-    <hr class="solid">
-    <h2>Live Updating Whales</h2>
-    <br><br><br><br>
 </template>
 
 <script>
