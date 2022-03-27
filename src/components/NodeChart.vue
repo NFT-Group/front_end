@@ -174,8 +174,8 @@
                 svg.append("circle").attr("cx", 850).attr("cy",40).attr("r", 6).style("fill", "blue").attr('fill-opacity', 0.9)
                 svg.append("circle").attr("cx", 850).attr("cy",60).attr("r", 6).style("fill", "red").attr('fill-opacity', 0.9)
                 svg.append("text").attr("x", 844). attr("y", 20).text("On hover:").style("font-size", "12px").attr("alignment-baseline","middle").attr("text-anchor", "start").attr("font-weight", 800)
-                svg.append("text").attr("x", 870).attr("y", 40).text("Sale").style("font-size", "12px").attr("alignment-baseline","middle")
-                svg.append("text").attr("x", 870).attr("y", 60).text("Purchase").style("font-size", "12px").attr("alignment-baseline","middle")
+                svg.append("text").attr("x", 870).attr("y", 40).text("Purchase").style("font-size", "12px").attr("alignment-baseline","middle")
+                svg.append("text").attr("x", 870).attr("y", 60).text("Sale").style("font-size", "12px").attr("alignment-baseline","middle")
 
 
                 function addParentNode(data) {

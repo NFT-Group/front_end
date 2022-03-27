@@ -115,7 +115,7 @@ export default {
 			.attr('text-anchor', 'middle')
 			.attr('y', margin.top/2)
 			.attr('x', margin.left + graphWidth/2)
-			.text('Transaction overview')
+			.text('Cumulative overview')
 			.style('font', '25px Avenir')
 			.attr('fill', '#2c3e50')
 	                .style('font-weight', 600);
