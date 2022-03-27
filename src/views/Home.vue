@@ -7,6 +7,9 @@
     <MultiLine/>
   </div>
   <div>
+    <MultiLine2/>
+  </div>
+  <div>
     <chart/>
   </div>
   <br><br>
@@ -32,10 +35,12 @@
 <script>
 import Chart from '../components/Chart.vue'
 import MultiLine from '../components/MultiLine.vue'
+import MultiLine2 from '../components/MultiLine2.vue'
   export default{
     name: 'App',
     components: { Chart,
-                  MultiLine 
+                  MultiLine,
+		  MultiLine2
     },
     data(){
       return{
