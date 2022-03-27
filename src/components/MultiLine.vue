@@ -1,6 +1,6 @@
 <template>
     <div id="charts">
-        <svg id="multiLineChart" width="1100" height="600" onload="chart('')"></svg>
+        <svg id="multiLineChart" width="1100" height="600"></svg>
     </div>
     <p>Select:</p>
     <form @submit="refreshMultiLine">
@@ -47,29 +47,28 @@
                 console.log(request_json)
                 //console.log(data);
 
-		var svg_reset = d3.select("#multiLineChart")
-	    	svg_reset.selectAll("*").remove()
-
-                var margin = {
-                        top: 30, 
-                        right: 50, 
-                        bottom: 30, 
-                        left: 50},
-                    graphWidth = 850 - margin.left - margin.right,
-                    graphHeight = 500 - margin.top - margin.bottom;
-
-                // Append SVG to page
-                var svg = d3.select("#multiLineChart")
-                    .append("svg")
-                    .attr("graphWidth", graphWidth + margin.left + margin.right)
-                    .attr("graphHeight", graphHeight + margin.top + margin.bottom)
-                    .append("g")
-                    .attr("transform", `translate(${margin.left}, ${margin.top})`);
-
-
                 axios.post(path, request_json, {timeout : 60000, maxContentLength : 100000000, maxBodyLength : 100000000})
                     .then((res) => {
-		       	
+
+		        var svg_reset = d3.select("#multiLineChart")
+	    	        svg_reset.selectAll("*").remove()
+
+		        var margin = {
+		        top: 30, 	     
+		        right: 50, 
+		        bottom: 30, 
+		        left: 50},
+		        graphWidth = 850 - margin.left - margin.right,
+		        graphHeight = 500 - margin.top - margin.bottom;
+		      
+		        // Append SVG to page
+		        var svg = d3.select("#multiLineChart")
+		      	  .append("svg")
+		      	  .attr("graphWidth", graphWidth + margin.left + margin.right)
+		      	  .attr("graphHeight", graphHeight + margin.top + margin.bottom)
+		     		  .append("g")
+			  .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
 			
                         console.log(res)
                         console.log(res.data)
@@ -214,7 +213,7 @@
                                     .style('font', '10px Avenir')
                                     .attr('x', mouse_x + 10)
                                     .attr('y', mouse_y + 10);
-                            clonexLabel.text("Clonex: " + showValue(d.clonex))
+                            clonexLabel.text("CloneX: " + showValue(d.clonex))
                                     .style('font', '10px Avenir')
                                     .attr('x', mouse_x + 10)
                                     .attr('y', mouse_y + 20);
@@ -222,7 +221,7 @@
                                     .style('font', '10px Avenir')
                                     .attr('x', mouse_x + 10)
                                     .attr('y', mouse_y + 30);
-                            cryptoadLabel.text("Cryptoadz: " + showValue(d.cryptoad))
+                            cryptoadLabel.text("CrypToadz: " + showValue(d.cryptoad))
                                     .style('font', '10px Avenir')
                                     .attr('x', mouse_x + 10)
                                     .attr('y', mouse_y + 40);
@@ -230,11 +229,11 @@
                                     .style('font', '10px Avenir')
                                     .attr('x', mouse_x + 10)
                                     .attr('y', mouse_y + 50);
-                            penguinLabel.text("Penguins: " + showValue(d.penguin))
+                            penguinLabel.text("Pudgy Penguins: " + showValue(d.penguin))
                                     .style('font', '10px Avenir')
                                     .attr('x', mouse_x + 10)
                                     .attr('y', mouse_y + 60);
-                            punkLabel.text("Punks: " + showValue(d.boredapekennel))
+                            punkLabel.text("CryptoPunks: " + showValue(d.punk))
                                     .style('font', '10px Avenir')
                                     .attr('x', mouse_x + 10)
                                     .attr('y', mouse_y + 70);
@@ -262,7 +261,7 @@
                                 d.timestamp = parseTime(d.timestamp);
                                 d.boredape = +d.boredape;
                                 d.boredapekennel = +d.boredapekennel;
-				console.log(d.boredapekennel)
+				//console.log(d.boredapekennel)
                                 d.clonex = +d.clonex;
                                 d.coolcat = +d.coolcat;
                                 d.cryptoad = +d.cryptoad;
@@ -361,7 +360,7 @@
                                 .attr('text-anchor', 'middle')
                                 .attr('y', 0)
                                 .attr('x', margin.left + graphWidth/2)
-                                .text('Average transaction values (All collections):')
+                                .text('Daily average sale prices')
                                 .style('font', '25px Avenir')
                                 .attr('fill', '#2c3e50')
                                 .style('font-weight', 600);
@@ -403,7 +402,7 @@
     stroke: black; 
 }
 .Xaxis path{ 
-    stroke: black; 
+    stroke: black;
 }
 .Yaxis line{ 
     stroke: black; 
@@ -411,5 +410,4 @@
 .Yaxis path{ 
     stroke: black; 
 }
-
 </style>

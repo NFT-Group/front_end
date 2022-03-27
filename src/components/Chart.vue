@@ -31,71 +31,7 @@ export default {
         console.log("EVENT")
 	console.log(evt)
 	
-	var svg_reset = d3.select("#barChart")
-	svg_reset.selectAll("*").remove()
 	
-        const svg = d3.select("#barChart")
-            .attr('width', 750)
-            .attr('height', 700);
-
-        const margin = {
-            top: 80,
-            right: 20,
-            bottom: 100,
-            left: 140
-        };
-	
-        const graphWidth = 700 - margin.left - margin.right;
-        const graphHeight = 500 - margin.top - margin.bottom;
-        const graph = svg.append('g')
-            .attr('width', graphWidth)
-            .attr('height', graphHeight)
-            .attr('transform', `translate(${margin.left}, ${margin.top})`);
-
-        const xAxisGroup = graph.append('g')
-            .attr('transform', `translate(0, ${graphHeight})`);
-        const yAxisGroup = graph.append('g');
-
-        const y = d3.scaleLinear()
-            .range([graphHeight, 0]);
-        const x = d3.scaleBand()
-            .range([0, graphWidth])
-            .paddingInner(0.2)
-            .paddingOuter(0.2);
-
-        const xAxis = d3.axisBottom(x);
-        const yAxis = d3.axisLeft(y)
-            .ticks(5)
-            .tickFormat(d => d);
-
-        svg.append('text')
-            .attr('text-anchor', 'middle')
-            .attr('x', graphWidth/2 + margin.left)
-            .attr('y', graphHeight + margin.top + margin.bottom + (margin.bottom/2))
-            .text('NFT Collection')
-            .style('font', '18px Avenir')
-            .attr('fill', '#2c3e50')
-            .style('font-weight', 400);
-
-        svg.append('text')
-            .attr('text-anchor', 'middle')
-            .attr('y', margin.left/3)
-            .attr('x', -(margin.top) + -(graphHeight/2))
-            .text('No. of transactions')
-            .style('font', '18px Avenir')
-            .attr('fill', '#2c3e50')
-            .attr('transform', 'rotate(-90)')
-            .style('font-weight', 400);
-
-        svg.append('text')
-            .attr('text-anchor', 'middle')
-            .attr('y', margin.top/2)
-            .attr('x', margin.left + graphWidth/2)
-            .text('Transaction Volumes (Past 7 days)')
-            .style('font', '25px Avenir')
-            .attr('fill', '#2c3e50')
-            .style('font-weight', 600);
-
         const path = 'https://front-end-one-smoky.vercel.app/api/get_transactions';
 	var request_json = ''
 	if (evt == '')
@@ -118,6 +54,72 @@ export default {
                 console.log(res.data)
 
                 var data = res.data
+
+		var svg_reset = d3.select("#barChart")
+		svg_reset.selectAll("*").remove()
+		
+		const svg = d3.select("#barChart")
+			.attr('width', 750)
+			.attr('height', 700);
+
+		const margin = {
+		  top: 80,
+		  right: 20,
+		  bottom: 100,
+		  left: 140
+		};
+
+		const graphWidth = 700 - margin.left - margin.right;
+		const graphHeight = 500 - margin.top - margin.bottom;
+		const graph = svg.append('g')
+		  .attr('width', graphWidth)
+		  .attr('height', graphHeight)
+		  .attr('transform', `translate(${margin.left}, ${margin.top})`);
+
+		const xAxisGroup = graph.append('g')
+		      .attr('transform', `translate(0, ${graphHeight})`);
+		const yAxisGroup = graph.append('g');
+
+		const y = d3.scaleLinear()
+		      .range([graphHeight, 0]);
+		const x = d3.scaleBand()
+		      .range([0, graphWidth])
+		      .paddingInner(0.2)
+		      .paddingOuter(0.2);
+
+		const xAxis = d3.axisBottom(x);
+		const yAxis = d3.axisLeft(y)
+		  .ticks(5)
+		  .tickFormat(d => d);
+
+	    	svg.append('text')
+			.attr('text-anchor', 'middle')
+			.attr('x', graphWidth/2 + margin.left)
+			.attr('y', graphHeight + margin.top + margin.bottom + (margin.bottom/2))
+			.text('NFT Collection')
+			.style('font', '18px Avenir')
+			.attr('fill', '#2c3e50')
+			.style('font-weight', 400);
+
+	        svg.append('text')
+			.attr('text-anchor', 'middle')
+			.attr('y', margin.left/3)
+			.attr('x', -(margin.top) + -(graphHeight/2))
+			.text('No. of transactions')
+			.style('font', '18px Avenir')
+			.attr('fill', '#2c3e50')
+			.attr('transform', 'rotate(-90)')
+			.style('font-weight', 400);
+
+	    	svg.append('text')
+			.attr('text-anchor', 'middle')
+			.attr('y', margin.top/2)
+			.attr('x', margin.left + graphWidth/2)
+			.text('Transaction overview')
+			.style('font', '25px Avenir')
+			.attr('fill', '#2c3e50')
+	                .style('font-weight', 600);
+
                 
                 y.domain([0, d3.max(data, function(d) { return +d.size; })])
                     .range([graphHeight, 0])

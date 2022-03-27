@@ -75,7 +75,7 @@ import MultiLine from '../components/MultiLine.vue'
     max-width: 420px; 
     margin: 30px auto; 
     background: white;
-    text-align: left; 
+    text-align: center; 
     padding: 40px; 
     border-radius: 10px;  
     }
@@ -86,7 +86,7 @@ import MultiLine from '../components/MultiLine.vue'
     font-size: 0.6em;
     text-transform: uppercase;
     letter-spacing: 1px; 
-    font-weight: bold; 
+    font-weight: bold;
   }
   input{
     display: block; 

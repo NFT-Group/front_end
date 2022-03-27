@@ -78,6 +78,12 @@ export default {
 };
 </script>
 <style>
+  img{
+    max-width: 400px;
+    max-height: 600px;
+    width: auto;
+    height: auto;
+  }
   h2{
     color: #666e77;
     font-weight: 500;
