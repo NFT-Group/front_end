@@ -16,9 +16,6 @@
   </div>
   <br><br>
   <hr class="solid">
-  <p class="news">Latest News</p>
-  <br><br>
-  <hr class="solid">
   <p class="input">Contact us</p>
   <br><br>
   <p> Enter your email and a message here. Our team will get back to you ASAP.</p>
