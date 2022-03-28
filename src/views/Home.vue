@@ -6,9 +6,11 @@
   <div>
     <MultiLine/>
   </div>
+  <br>
   <div>
     <MultiLine2/>
   </div>
+  <br><br>
   <div>
     <chart/>
   </div>

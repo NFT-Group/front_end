@@ -1,18 +1,22 @@
 <template>
     <div id="charts">
-        <svg id="multiLineChart2" width="1100" height="600"></svg>
+        <svg id="multiLineChart2" width="1100" height="550"></svg>
     </div>
-    <p>Select:</p>
-    <form @submit="refreshMultiLine2">
-    <input type="radio" id="month" value="month" name="timeframe">
-    <label for="month">1 Month</label>
-    <input type="radio" id="3months" value="3months" name="timeframe" checked="checked">
-    <label for="week">3 Months</label>
-    <input type="radio" id="6months" value="6months" name="timeframe">
-    <label for="day">6 Months</label>
-    <input type="radio" id="year" value="year" name="timeframe">
-    <label for="year">1 Year</label>
-    <input type="submit" name="submit_button_2">
+    <p>Timescale:</p>
+    <form @submit="refreshMultiLine2" class="radioGroup">
+      <label for="month">1 Month<br />
+        <input type="radio" id="month" value="month" name="timeframe">
+      </label>
+      <label for="week">3 Months<br />
+        <input type="radio" id="3months" value="3months" name="timeframe" checked="checked">
+      </label>
+      <label for="day">6 Months<br />
+        <input type="radio" id="6months" value="6months" name="timeframe">
+      </label>
+      <label for="year">1 Year<br />
+        <input type="radio" id="year" value="year" name="timeframe">
+      </label>
+      <input type="submit" name="submit_button_2">
     </form>
 </template>
 
@@ -652,5 +656,13 @@
 }
 .Yaxis path{ 
     stroke: black; 
+}
+.radioGroup label {
+  display: inline-block;
+  margin: 0 2.5em;
+  text-align: center;
+}
+.radioGroup label input[type="radio"] {
+  margin: 1em auto;
 }
 </style>

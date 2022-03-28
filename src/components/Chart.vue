@@ -1,27 +1,31 @@
 <template>
     <div id="charts">
-        <svg id="barChart" width="750" height="500"></svg>
+        <svg id="barChart" width="750" height="505"></svg>
     </div>
-    <p>Select:</p>
-    <form @submit="refreshData">
-		<input type="radio" id="liquidity" value="liquidity" name="data_type" checked="checked">
-		<label for="liquidity">Liquidity</label>
-		<input type="radio" id="cumvalue" value="cumvalue" name="data_type">
-		<label for="price">Cumulative value</label>
-		<input type="radio" id="month" value="month" name="timeframe">
-		<label for="month">Month</label>
-		<input type="radio" id="week" value="week" name="timeframe" checked="checked">
-		<label for="week">Week</label>
-		<input type="radio" id="day" value="day" name="timeframe">
-		<label for="day">Day</label>
+    <p>Select Liquidity or Cumulative Value against preferred timescale:</p>
+    <form @submit="refreshData" class="radioGroup">
+		<label for="liquidity">Liquidity<br />
+			<input type="radio" id="liquidity" value="liquidity" name="data_type" checked="checked">
+		</label>
+		<label for="price">Cumulative value<br />
+			<input type="radio" id="cumvalue" value="cumvalue" name="data_type">
+		</label>
+		<br>
+		<label for="day">Day<br />
+			<input type="radio" id="day" value="day" name="timeframe">
+		</label>
+		<label for="week">Week<br />
+			<input type="radio" id="week" value="week" name="timeframe" checked="checked">
+		</label>
+		<label for="month">Month<br />
+			<input type="radio" id="month" value="month" name="timeframe">
+		</label>
 		<input type="submit" name="submit_button">
     </form>
 </template>
 
 <script>
 import * as d3 from 'd3'
-import { ref, onValue } from "firebase/database"
-//import { db } from '../assets/javascripts/firebaseConfig'
 import axios from 'axios';
 
 // CHART 1 - NFT COLLECTION COUNTS
@@ -87,14 +91,14 @@ export default {
 		  .ticks(5)
 		  .tickFormat(d => d);
 
-		svg.append('text')
-			.attr('text-anchor', 'middle')
-			.attr('x', graphWidth/2 + margin.left)
-			.attr('y', graphHeight + margin.top + margin.bottom + (margin.bottom/2))
-			.text('NFT Collection')
-			.style('font', '18px Avenir')
-			.attr('fill', '#2c3e50')
-			.style('font-weight', 400);
+		// svg.append('text')
+		// 	.attr('text-anchor', 'middle')
+		// 	.attr('x', graphWidth/2 + margin.left)
+		// 	.attr('y', graphHeight + margin.top + margin.bottom + (margin.bottom/4))
+		// 	.text('NFT Collection')
+		// 	.style('font', '18px Avenir')
+		// 	.attr('fill', '#2c3e50')
+		// 	.style('font-weight', 400);
 
 		svg.append('text')
 			.attr('text-anchor', 'middle')
@@ -209,4 +213,18 @@ export default {
 .Yaxis path{ 
     stroke: black; 
 }
+.radioGroup {
+	text-align: center;
+}
+.radioGroup label {
+  display: inline-block;
+  margin: 0.2em;
+  margin-left: 10em;
+  text-align: center;
+}
+.radioGroup label input[type="radio"] {
+	display: inline-block;	
+	margin-left: 10em;
+  	margin: 1em auto;
+} 
 </style>
