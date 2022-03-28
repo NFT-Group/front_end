@@ -40,7 +40,7 @@ import MultiLine2 from '../components/MultiLine2.vue'
     name: 'App',
     components: { Chart,
                   MultiLine,
-		  MultiLine2
+		              MultiLine2
     },
     data(){
       return{

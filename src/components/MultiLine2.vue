@@ -173,16 +173,16 @@
                             .on("mousemove", hoverMouseOn);
 
                         // Add legend circles
-			svg.append("circle").attr("cx",850).attr("cy",40).attr("r", 6).style("fill", "black").attr('fill-opacity', 0.5)
+			                  svg.append("circle").attr("cx",850).attr("cy",40).attr("r", 6).style("fill", "black").attr('fill-opacity', 0.5)
                         svg.append("circle").attr("cx",850).attr("cy",60).attr("r", 6).style("fill", "blue").attr('fill-opacity', 0.5)
-                        svg.append("circle").attr("cx",850).attr("cy",80).attr("r", 6).style("fill", "yellow").attr('fill-opacity', 0.5)
+                        svg.append("circle").attr("cx",850).attr("cy",80).attr("r", 6).style("fill", "#FFD233").attr('fill-opacity', 0.5)
                         svg.append("circle").attr("cx",850).attr("cy",100).attr("r", 6).style("fill", "orange").attr('fill-opacity', 0.5)
                         svg.append("circle").attr("cx",850).attr("cy",120).attr("r", 6).style("fill", "red").attr('fill-opacity', 0.5)
                         svg.append("circle").attr("cx",850).attr("cy",140).attr("r", 6).style("fill", "purple").attr('fill-opacity', 0.5)
                         svg.append("circle").attr("cx",850).attr("cy",160).attr("r", 6).style("fill", "brown").attr('fill-opacity', 0.5)
                         svg.append("circle").attr("cx",850).attr("cy",180).attr("r", 6).style("fill", "green").attr('fill-opacity', 0.5)
-			svg.append("circle").attr("cx",850).attr("cy",200).attr("r", 6).style("fill", "gray").attr('fill-opacity', 0.5)
-			svg.append("circle").attr("cx",850).attr("cy",220).attr("r", 6).style("fill", "gray").attr('fill-opacity', 0.5)
+                        svg.append("circle").attr("cx",850).attr("cy",200).attr("r", 6).style("fill", "gray").attr("stroke", "black").attr('fill-opacity', 0.5)
+                        svg.append("circle").attr("cx",850).attr("cy",220).attr("r", 6).style("fill", "white").attr("stroke", "black").attr('fill-opacity', 0.5)
 			
                         // Add legend text
 
@@ -327,6 +327,7 @@
 			  .attr("y", 200)
 			  .text("All")
 			  .style("font-size", "12px")
+        .style("font-weight", 600)
 			  .attr("alignment-baseline","middle")
 			  .on("click", function(){
 			  	  var new_opacity = 0.5;
@@ -376,6 +377,7 @@
 			  .attr("y", 220)
 			  .text("None")
 			  .style("font-size", "12px")
+        .style("font-weight", 600)
 			  .attr("alignment-baseline","middle")
 			  .on("click", function(){
 			  	  var new_opacity = 0;
@@ -529,7 +531,7 @@
                                 .data([data])
                                 .attr("transform", `translate(${margin.left}, ${margin.top})`)
                                 .style("stroke-width", 2)
-                                .style("stroke", "yellow")    
+                                .style("stroke", "#FFD233")    
                                 .attr("class", "line")
                                 .attr("d", clonex)
 				.attr("id", "clonexline2");
@@ -592,7 +594,7 @@
                                 .attr('text-anchor', 'middle')
                                 .attr('y', 0)
                                 .attr('x', -(margin.top) + -(graphHeight/2))
-                                .text('Daily transaction volumes')
+                                .text('Daily transaction volumes (log₂ scale)')
                                 .style('font', '18px Avenir')
                                 .attr('fill', '#2c3e50')
                                 .attr('transform', 'rotate(-90)')
