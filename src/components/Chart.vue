@@ -1,6 +1,6 @@
 <template>
     <div id="charts">
-        <svg id="barChart" width="750" height="505"></svg>
+        <svg id="barChart" width="750" height="510"></svg>
     </div>
     <p>Select Liquidity or Cumulative Value against preferred timescale:</p>
     <form @submit="refreshData" class="radioGroup">
@@ -59,7 +59,7 @@ export default {
 		
 		const svg = d3.select("#barChart")
 			.attr('width', 750)
-			.attr('height', 700);
+			.attr('height', 510);
 
 		const margin = {
 		  top: 80,
@@ -175,11 +175,11 @@ export default {
 			.attr('transform', 'rotate(30)')
 			.attr('text-anchor', 'start')
 			.attr('fill', '#2c3e50')
-			.style('font', '16px Avenir');
+			.style('font', '14px Avenir');
 
 		yAxisGroup.selectAll('text')
 			.attr('fill', '#2c3e50')
-			.style('font', '16px Avenir');
+			.style('font', '14px Avenir');
 		})
 		.catch((error) => {
 			console.error(error);
