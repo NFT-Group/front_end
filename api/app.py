@@ -69,42 +69,42 @@ def get_transactions():
     collection_names = ['Bored Ape Yacht Club', 'CryptoPunks', 'Bored Ape Kennel Club', 'Cool Cats', 'cloneX', 'CrypToadz', 'Doodles', 'Pudgy Penguins']
     for key in transaction_keys:
         if transaction_list[key]['contracthash'] == apeAddress:
-            if (data_type == 'liquidity'):
+            if (data_type == 'volume'):
                 transaction_data[0] += 1
             elif (data_type == 'cumulative_value'):
                 transaction_data[0] += transaction_list[key]['ethprice']
-        if transaction_list[key]['contracthash'] == cryptoPunkAddress:
-            if (data_type == 'liquidity'):
+        elif transaction_list[key]['contracthash'] == cryptoPunkAddress:
+            if (data_type == 'volume'):
                 transaction_data[1] += 1
             elif (data_type == 'cumulative_value'):
                 transaction_data[1] += transaction_list[key]['ethprice']
-        if transaction_list[key]['contracthash'] == boredApeKennelAddress:
-            if (data_type == 'liquidity'):
+        elif transaction_list[key]['contracthash'] == boredApeKennelAddress:
+            if (data_type == 'volume'):
                 transaction_data[2] += 1
             elif (data_type == 'cumulative_value'):
                 transaction_data[2] += transaction_list[key]['ethprice']
-        if transaction_list[key]['contracthash'] == coolCatsAddress:
-            if (data_type == 'liquidity'):
+        elif transaction_list[key]['contracthash'] == coolCatsAddress:
+            if (data_type == 'volume'):
                 transaction_data[3] += 1
             elif (data_type == 'cumulative_value'):
                 transaction_data[3] += transaction_list[key]['ethprice']
-        if transaction_list[key]['contracthash'] == cloneXAddress:
-            if (data_type == 'liquidity'):
+        elif transaction_list[key]['contracthash'] == cloneXAddress:
+            if (data_type == 'volume'):
                 transaction_data[4] += 1
             elif (data_type == 'cumulative_value'):
                 transaction_data[4] += transaction_list[key]['ethprice']
-        if transaction_list[key]['contracthash'] == crypToadzAddress:
-            if (data_type == 'liquidity'):
+        elif transaction_list[key]['contracthash'] == crypToadzAddress:
+            if (data_type == 'volume'):
                 transaction_data[5] += 1
             elif (data_type == 'cumulative_value'):
                 transaction_data[5] += transaction_list[key]['ethprice']
-        if transaction_list[key]['contracthash'] == doodlesAddress:
-            if (data_type == 'liquidity'):
+        elif transaction_list[key]['contracthash'] == doodlesAddress:
+            if (data_type == 'volume'):
                 transaction_data[6] += 1
             elif (data_type == 'cumulative_value'):
                 transaction_data[6] += transaction_list[key]['ethprice']
-        if transaction_list[key]['contracthash'] == pudgyPenguinAddress:
-            if (data_type == 'liquidity'):
+        elif transaction_list[key]['contracthash'] == pudgyPenguinAddress:
+            if (data_type == 'volume'):
                 transaction_data[7] += 1
             elif (data_type == 'cumulative_value'):
                 transaction_data[7] += transaction_list[key]['ethprice']
