@@ -2,13 +2,13 @@
     <div id="charts">
         <svg id="barChart" width="750" height="510"></svg>
     </div>
-    <p>Select Liquidity or Cumulative Value against preferred timescale:</p>
+    <p>Select Volume or Cumulative Value against preferred timescale:</p>
     <form @submit="refreshData" class="radioGroup">
-		<label for="liquidity">Liquidity<br />
-			<input type="radio" id="liquidity" value="liquidity" name="data_type" checked="checked">
+		<label for="volume">Volume<br />
+			<input type="radio" id="volume" value="volume" name="data_type" checked="checked">
 		</label>
 		<label for="price">Cumulative value<br />
-			<input type="radio" id="cumvalue" value="cumvalue" name="data_type">
+			<input type="radio" id="cumulative_value" value="cumulative_value" name="data_type">
 		</label>
 		<br>
 		<label for="day">Day<br />
@@ -32,25 +32,18 @@ import axios from 'axios';
 export default {
     methods: {
       buildBarChart(evt) {
-        // console.log("EVENT")
-		// console.log(evt)
-	
 	
         const path = 'https://front-end-one-smoky.vercel.app/api/get_transactions';
 		var request_json = ''
 		
 		if (evt == '')
 		{
-		request_json = {'timeframe': 'week', 'data_type': 'liquidity'}
+		request_json = {'timeframe': 'week', 'data_type': 'volume'}
 		}
 		else
 		{
 		request_json = {'timeframe': evt.srcElement.timeframe.value, 'data_type': evt.srcElement.data_type.value}
-		// console.log("request_json is")
-		// console.log(request_json)
 		}
-		// console.log("request json")
-		// console.log(request_json)
         axios.post(path, request_json)
             .then((res) => {
                 var data = res.data
@@ -187,13 +180,11 @@ export default {
       },
       refreshData(evt) {
         evt.preventDefault()
-		// console.log(evt)
         this.buildBarChart(evt)
       }
     },
     mounted: function() {
     	var evt = ''
-		// console.log("clicking from mounted")
         this.buildBarChart(evt)
     }
 
