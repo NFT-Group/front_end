@@ -23,33 +23,22 @@
 <script>
     import * as d3 from 'd3'
     import axios from 'axios';
-    //import data from '../../public/line_chart_data/multiline.json'
-    //console.log(data);
 
     export default {
         methods:
         {
             chart(evt)
             {
-		console.log("entering chart2 function")
-		
                 const path = 'https://nft-back-end-py.herokuapp.com/get_line_graph_data_volume';
                 var request_json = ''
                 if (evt == '')
                 {
-                    console.log("evt is empty!?")
                     request_json = {'timeframe': '3months'}
                 }
                 else
                 {
-                    console.log("evt is not empty")
                     request_json = {'timeframe': evt.srcElement.timeframe.value}
-                    console.log("request_json is")
-                    console.log(request_json)
                 }
-                console.log("request json")
-                console.log(request_json)
-                //console.log(data);
 
                 axios.post(path, request_json, {timeout : 60000, maxContentLength : 100000000, maxBodyLength : 100000000})
                     .then((res) => {
@@ -72,10 +61,6 @@
 		      	  .attr("graphHeight", graphHeight + margin.top + margin.bottom)
 		     		  .append("g")
 			  .attr("transform", `translate(${margin.left}, ${margin.top})`);
-
-			
-                        console.log(res)
-                        console.log(res.data)
 
                         var data = res.data
 
@@ -197,9 +182,7 @@
 			  .style("font-size", "12px")
 			  .attr("alignment-baseline","middle")
 			  .on("click", function(){
-				  console.log("ba active")
 				  var ba = d3.select('#boredapeline2')
-				  console.log(ba.classed("active"))
 				  var active = ba.classed("active")
 				  var new_opacity = active ? 0.5 : 0;
 				  d3.select("#boredapeline2")
@@ -214,9 +197,7 @@
 			  .style("font-size", "12px")
 			  .attr("alignment-baseline","middle")
 			  .on("click", function(){
-				  console.log("bakc active")
 				  var bakc = d3.select('#boredapekennelline2')
-				  console.log(bakc.classed("active"))
 				  var active = bakc.classed("active")
 				  var new_opacity = active ? 0.5 : 0;
 				  d3.select("#boredapekennelline2")
@@ -231,9 +212,7 @@
 			  .style("font-size", "12px")
 			  .attr("alignment-baseline","middle")
 			  .on("click", function(){
-				  console.log("clonex active")
 				  var cx = d3.select('#clonexline2')
-				  console.log(cx.classed("active"))
 				  var active = cx.classed("active")
 				  var new_opacity = active ? 0.5 : 0;
 				  d3.select("#clonexline2")
@@ -248,9 +227,7 @@
 			  .style("font-size", "12px")
 			  .attr("alignment-baseline","middle")
 			  .on("click", function(){
-				  console.log("cc active")
 				  var cc = d3.select('#coolcatline2')
-				  console.log(cc.classed("active"))
 				  var active = cc.classed("active")
 				  var new_opacity = active ? 0.5 : 0;
 				  d3.select("#coolcatline2")
@@ -265,9 +242,7 @@
 			  .style("font-size", "12px")
 			  .attr("alignment-baseline","middle")
 			  .on("click", function(){
-				  console.log("ct active")
 				  var ct = d3.select('#cryptoadline2')
-				  console.log(ct.classed("active"))
 				  var active = ct.classed("active")
 				  var new_opacity = active ? 0.5 : 0;
 				  d3.select("#cryptoadline2")
@@ -282,9 +257,7 @@
 			  .style("font-size", "12px")
 			  .attr("alignment-baseline","middle")
 			  .on("click", function(){
-				  console.log("dd active")
 				  var dd = d3.select('#doodleline2')
-				  console.log(dd.classed("active"))
 				  var active = dd.classed("active")
 				  var new_opacity = active ? 0.5 : 0;
 				  d3.select("#doodleline2")
@@ -299,9 +272,7 @@
 			  .style("font-size", "12px")
 			  .attr("alignment-baseline","middle")
 			  .on("click", function(){
-				  console.log("pp active")
 				  var pp = d3.select('#penguinline2')
-				  console.log(pp.classed("active"))
 				  var active = pp.classed("active")
 				  var new_opacity = active ? 0.5 : 0;
 				  d3.select("#penguinline2")
@@ -316,9 +287,7 @@
 			  .style("font-size", "12px")
 			  .attr("alignment-baseline","middle")
 			  .on("click", function(){
-				  console.log("punk active")
 				  var punk = d3.select('#punkline2')
-				  console.log(punk.classed("active"))
 				  var active = punk.classed("active")
 				  var new_opacity = active ? 0.5 : 0;
 				  d3.select("#punkline2")
@@ -500,14 +469,12 @@
                                 d.timestamp = parseTime(d.timestamp);
                                 d.boredape = +d.boredape;
                                 d.boredapekennel = +d.boredapekennel;
-				//console.log(d.boredapekennel)
                                 d.clonex = +d.clonex;
                                 d.coolcat = +d.coolcat;
                                 d.cryptoad = +d.cryptoad;
                                 d.doodle = +d.doodle;
                                 d.penguin = +d.penguin;
                                 d.punk = +d.punk;
-                                //console.log(d.punk)
                             });
 
                             // Scale the range of the data
@@ -636,9 +603,7 @@
 	}
 	},
         mounted: function () {
-	    console.log("multiline2 mounted")
             var evt = '';
-	    console.log("calling chart2")
             this.chart(evt)
         } 
     }
