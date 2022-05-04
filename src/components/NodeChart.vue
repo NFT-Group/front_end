@@ -29,6 +29,7 @@
     <div id="charts">
         <svg id="loopsChart" width="1350" height="1000"></svg>
     </div>
+    
 
 </template>
 
