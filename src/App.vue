@@ -2,8 +2,7 @@
   <div id="nav">
     <router-link to="/">Home</router-link> |
     <router-link to="/predictions">Predictions</router-link> |
-    <router-link to="/whalewatch">Whale Watch</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link to="/whalewatch">Whale Watch</router-link>
   <router-view/>
   <index />
   </div>
@@ -15,7 +14,7 @@
   /* -webkit-font-smoothing: antialiased; */ /* this has been causing errors for some reason? */
   /* -moz-osx-font-smoothing: grayscale; */
   text-align: center;
-  color:midnightblue;
+  color:#5a49e3;
 }
 
 
@@ -34,7 +33,7 @@ p{
 }
 
 #nav a.router-link-exact-active {
-  color: #2c7453;
+  color: #5a49e3;
 }
 
 button{

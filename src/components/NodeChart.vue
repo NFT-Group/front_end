@@ -355,11 +355,9 @@
                     .attr("d", line);
 
                 // Add legend 
-                svg.append("circle").attr("cx", 550).attr("cy", 60).attr("r", 6).style("fill", "blue").attr('fill-opacity', 0.9)
-                svg.append("circle").attr("cx", 550).attr("cy", 80).attr("r", 6).style("fill", "red").attr('fill-opacity', 0.9)
-                svg.append("text").attr("x", 544). attr("y", 40).text("On hover:").style("font-size", "12px").attr("alignment-baseline","middle").attr("text-anchor", "start").attr("font-weight", 800)
-                svg.append("text").attr("x", 570).attr("y", 60).text("Sale").style("font-size", "12px").attr("alignment-baseline","middle")
-                svg.append("text").attr("x", 570).attr("y", 80).text("Purchase").style("font-size", "12px").attr("alignment-baseline","middle")
+                // svg.append("circle").attr("cx", 550).attr("cy", 60).attr("r", 6).style("fill", "black").attr('fill-opacity', 0.9)
+                // svg.append("text").attr("x", 544). attr("y", 40).text("On hover:").style("font-size", "12px").attr("alignment-baseline","middle").attr("text-anchor", "start").attr("font-weight", 800)
+                // svg.append("text").attr("x", 570).attr("y", 60).text("Suspicious transaction").style("font-size", "12px").attr("alignment-baseline","middle")
 
                 function addParentNode(data) {
                     var map = {};
@@ -399,20 +397,20 @@
 
                 function mouseovered(d) {
                     node.each(n => { n.target = n.source = false; });
-                    link.classed("link--target", l => { if (l.target === d) return l.source.source = true; })
-                        .classed("link--source", l => { if (l.source === d) return l.target.target = true; })
+                    link.classed("link--target--loops", l => { if (l.target === d) return l.source.source = true; })
+                        .classed("link--source--loops", l => { if (l.source === d) return l.target.target = true; })
                         .filter(l => l.target === d || l.source === d)
                         .raise();
-                    node.classed("node--source", n => n.source)
-                        .classed("node--target", n => n.target)
+                    node.classed("node--source--loops", n => n.source)
+                        .classed("node--target--loops", n => n.target)
                     console.log(d3.selectAll(".link--target"));
                 }
 
                 function mouseouted(d) {
-                    link.classed("link--source", false)
-                        .classed("link--target", false);
-                    node.classed("node--source", false)
-                        .classed("node--target", false);
+                    link.classed("link--source--loops", false)
+                        .classed("link--target--loops", false);
+                    node.classed("node--source--loops", false)
+                        .classed("node--target--loops", false);
                 }
 
                 function getX(d) {
@@ -467,11 +465,16 @@
     .link--target {
         stroke: blue;
     }
+    .link--source--loops {
+        stroke: black;
+    }
+    .link--target--loops {
+        stroke: black;
+        stroke-width: 2px;
+        opacity: 1;
+    }
 	/* 
-    NOTE:
-    
     RED = SALE
     BLUE = PURCHASE
-    
     */
 </style>

@@ -1,4 +1,4 @@
-# quantum
+# NFT Police
 
 ## Project setup
 ```

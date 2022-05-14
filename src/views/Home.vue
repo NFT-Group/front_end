@@ -1,7 +1,9 @@
 <template>
+  <br><br>
+  <div>
+    <img src="../assets/images/Logo.png">
+  </div>
 
-  <h1 class="title">Quantum</h1>
-  <h2>AN NFT MARKET ANALYSER AND VISUALISER</h2>
   <br><br>
   <div>
     <MultiLine/>
