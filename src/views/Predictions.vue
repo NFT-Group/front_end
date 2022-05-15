@@ -1,7 +1,8 @@
 <template>
   <h1>Price Predictor</h1>
   <br><br>
-  <h2>Predict the value of your next NFT</h2>
+  <h2>Predict the value of your next NFT </h2>
+  <h2>& check suspected wash trading...</h2>
   <br>
   <img src="" id="nft_img">
   <form @submit="onSubmit">
@@ -23,7 +24,8 @@
     <input type="submit" name="submit_button">
   </form>
   <br><br>
-  <h3 id="nft_price_display">Your NFT price will appear here... </h3>
+  <h3 id="nft_price_display"></h3>
+  <h4 id="nft_traits_display"></h4>
   <br><br>
   <hr class="solid">
   <br><br><br><br>
@@ -38,36 +40,79 @@ export default {
   },
   methods: {
     onSubmit(evt) {
-      console.log(evt);
-      console.log("which element is checked?")
       var collection = evt.srcElement.collection.value
       var tokenid = evt.srcElement.tokenid.value
-      console.log("collection")
-      console.log(collection)
-      console.log("tokenid")
-      console.log(tokenid)
       var query_object = {"collection": collection, "tokenid": tokenid}
-      console.log(query_object)
       //console.log(evt.srcElement.collection.value)
       //var collection_value = evt.srcElement.collection.value
       evt.preventDefault();
-      console.log("entering onSubmit")
       const path = 'https://nft-back-end-py.herokuapp.com/';
       console.log(JSON.stringify(query_object))
       axios.post(path, JSON.stringify(query_object), { headers: { 'content-type': 'text/json' }})
         .then((res) => {
           console.log(res)
           console.log(res.data)
-          document.getElementById('nft_price_display').innerHTML = res.data['price'] + 'eth';
-	  var link = res.data['ipfs']
-	  console.log("link")
-	  console.log(link)
-	  if (link.substring(0, 4) == 'ipfs')
-	  {
-	    link = 'https://ipfs.io/ipfs/' + link.substring(7);
-	  }
-	  console.log(link)
-	  document.getElementById('nft_img').src=link
+          var ethPrice = (Math.round(res.data['price'] * 100)/ 100).toFixed(2)
+          document.getElementById('nft_price_display').innerHTML = 'Predicted value: ' + ethPrice + ' ETH';
+          // document.getElementById('nft_traits_display').innerHTML = res.data['attributes'];
+
+          var attributeCount = 0;
+          var startBrackets = [];
+          var endBrackets = [];
+          for (var i = 0; i < res.data['attributes'].length; i++) {
+            if(res.data['attributes'][i] == '}') {
+              endBrackets.push(i);
+              attributeCount++;
+            }
+            if(res.data['attributes'][i] == '{') {
+              startBrackets.push(i);
+            }
+          }
+          console.log("Start brackets: " + startBrackets)
+          console.log("End brackets: " + endBrackets)
+          console.log("Attribute count: " + attributeCount)
+
+          var attributesList = []
+          for(var i = 0; i < attributeCount; i++) {
+            var substring = res.data['attributes'].substring(startBrackets[i], endBrackets[i] + 1)
+            var substring2 = substring.replace(/'/g, '"')
+            attributesList.push(substring2)
+          }
+
+          var JSONList = []
+          for(var i = 0; i < attributesList.length; i++) {
+            var jsonObject = JSON.parse(attributesList[i]) 
+            JSONList.push(jsonObject)
+          }
+
+          for(var i = 0; i < JSONList.length; i++) {
+            var object = JSONList[i];
+            var attributeDescription = attributeDescription + "Attribute #" + (i + 1) + ": <br>"
+            for (var key in object) {
+              var value = object[key];
+              if(key == 'trait_type') {
+                attributeDescription += value + " : "
+              } else if(key == 'value'){
+                attributeDescription += value
+              } else if(key == 'rarity') {
+                value = 1 - value;
+                value *= 100;
+                var rarityString = value.toFixed(2);
+                attributeDescription += " (Rarity: " + rarityString + "%)<br>"
+              }
+            }
+            attributeDescription += "<br>"
+          }
+          var processedDescription = attributeDescription.replace('undefined', "")
+          document.getElementById('nft_traits_display').innerHTML = processedDescription
+
+          var link = res.data['ipfs']
+          if (link.substring(0, 4) == 'ipfs')
+          {
+            
+            link = 'https://ipfs.io/ipfs/' + link.substring(7);
+          }
+          document.getElementById('nft_img').src=link
         })
         .catch((error) => {
            //eslint-disable-next-line
@@ -89,6 +134,10 @@ export default {
     font-weight: 500;
   }
   h3{
+    color: black;
+    font-weight: 700;
+  }
+  h4{
     color: #666e77;
     font-weight: 500;
   }
