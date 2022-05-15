@@ -1,7 +1,8 @@
 <template>
-    <div class="whalewatching">
-        <h1>Whale Watching</h1>
-    </div>
+  <br><br>
+  <div>
+    <img src="../assets/images/WhaleWatch.png">
+  </div>
     <br>
     <div>
       <nodeChart/>

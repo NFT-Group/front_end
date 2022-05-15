@@ -1,9 +1,8 @@
 <template>
   <br><br>
   <div>
-    <img src="../assets/images/Logo.png">
+    <img src="../assets/images/NFTPolice.png">
   </div>
-
   <br><br>
   <div>
     <MultiLine/>

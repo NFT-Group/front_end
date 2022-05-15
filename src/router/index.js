@@ -8,16 +8,16 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
+  }, 
+  {
+    path: '/whalewatch',
+    name: 'WhaleWatch',
+    component: WhaleWatch
   },
   {
     path: '/predictions',
     name: 'Predictions',
     component: Predictions
-  },
-  {
-    path: '/whalewatch',
-    name: 'WhaleWatch',
-    component: WhaleWatch
   }
 ]
 
