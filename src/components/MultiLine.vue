@@ -402,15 +402,20 @@
                         function hoverMouseOn() {
                             var mouse_x = d3.mouse(this)[0];
                             var mouse_y = d3.mouse(this)[1];
+                            if(mouse_x > graphWidth + margin.left) {
+                                return;
+                            }
+                            if(mouse_y > graphHeight + margin.top) {
+                                return; 
+                            }
                             var graph_y = y.invert(mouse_y);
                             var graph_x = x.invert(mouse_x);
                             var mouseDate = x.invert(mouse_x);
-                            var i = bisectDate(data, mouseDate); // returns the index to the current data item
+                            var i = bisectDate(data, mouseDate) - 5; // returns the index to the current data item
                             var d0 = data[i - 1]
                             var d1 = data[i];
-                            if (!d0 || !d1)
-                            {
-                            return; //this was trying to find the date when hovering beyond the end of the graph
+                            if (!d0 || !d1) {
+                                return; //this was trying to find the date when hovering beyond the end of the graph
                             }
                             // work out which date value is closest to the mouse
                             var d = mouseDate - d0[0] > d1[0] - mouseDate ? d1 : d0;

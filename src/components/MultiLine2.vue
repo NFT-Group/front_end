@@ -60,7 +60,7 @@
 		      	  .attr("graphWidth", graphWidth + margin.left + margin.right)
 		      	  .attr("graphHeight", graphHeight + margin.top + margin.bottom)
 		     		  .append("g")
-			  .attr("transform", `translate(${margin.left}, ${margin.top})`);
+			        .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
                         var data = res.data
 
@@ -173,8 +173,7 @@
                         svg.append("circle").attr("cx",850).attr("cy",200).attr("r", 6).style("fill", "gray").attr("stroke", "black").attr('fill-opacity', 0.5)
                         svg.append("circle").attr("cx",850).attr("cy",220).attr("r", 6).style("fill", "white").attr("stroke", "black").attr('fill-opacity', 0.5)
 			
-                        // Add legend text
-
+      // Add legend text
 			svg.append("text")
 			  .attr("x", 870)
 			  .attr("y", 40)
@@ -401,16 +400,26 @@
                         function hoverMouseOn() {
                             var mouse_x = d3.mouse(this)[0];
                             var mouse_y = d3.mouse(this)[1];
+                            if(mouse_x > graphWidth + margin.left) {
+                                return;
+                            }
+                            if(mouse_y > graphHeight + margin.top) {
+                                return; 
+                            }
                             var graph_y = y.invert(mouse_y);
                             var graph_x = x.invert(mouse_x);
                             var mouseDate = x.invert(mouse_x);
-                            var i = bisectDate(data, mouseDate); // returns the index to the current data item
+                            var i = bisectDate(data, mouseDate) - 5; // returns the index to the current data item
+                            console.log("i = " + i)
                             var d0 = data[i - 1]
+                            console.log("D0:")
+                            console.log(d0)
                             var d1 = data[i];
-			    if (!d0 || !d1)
-			    {
-				return; //see multiline.vue for explanation
-			    }
+                            console.log("D1: ")
+                            console.log(d1)
+                            if (!d0 || !d1) {
+                                return; //this was trying to find the date when hovering beyond the end of the graph
+                            }
                             // work out which date value is closest to the mouse
                             var d = mouseDate - d0[0] > d1[0] - mouseDate ? d1 : d0;
                             boredapeLabel.text("Bored Ape Yacht Club: " + showValue(d.boredape))
