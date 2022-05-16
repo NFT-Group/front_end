@@ -37,7 +37,7 @@
     import * as d3 from 'd3';
 
     // Import Node graph data 
-    // ADD CRYPTOPUNK IMPORT 
+    // ADD CRYPTOPUNK IMPORT x2!!!!!!!
     import BAYCdata from '../../public/node_graph_data/bored_ape_yacht_club.json'
     import BAKCdata from '../../public/node_graph_data/bored_ape_kennel_club.json'
     import Ddata from  '../../public/node_graph_data/doodles.json'
@@ -48,6 +48,12 @@
 
     // Import Loop graph data 
     import BAYCLoopData from '../../public/loop_graph_data/bored_ape_yacht_club_loops.json'
+    import BAKCLoopData from '../../public/loop_graph_data/bored_ape_kennel_club_loops.json'
+    import DLoopData from '../../public/loop_graph_data/doodle_loops.json'
+    import CTLoopData from '../../public/loop_graph_data/cryptoad_loops.json'
+    import PPLoopData from '../../public/loop_graph_data/penguin_loops.json'
+    import CCLoopData from '../../public/loop_graph_data/coolcat_loops.json'
+    import CXLoopData from '../../public/loop_graph_data/clonex_loops.json'
 
     export default {
         mounted: function () {
@@ -61,6 +67,8 @@
                 evt.preventDefault();
                 var svg_reset = d3.select("#nodeChart")
 	            svg_reset.selectAll("*").remove()
+                var svg_reset2 = d3.select("#loopsChart")
+	            svg_reset2.selectAll("*").remove()
                 var JSONname = evt.srcElement.collection.value
                 // Render node chart
                 this.renderNodeChart(JSONname)
@@ -88,7 +96,7 @@
                         data = PPdata;
                         break;
                     case 'crypto_punks':
-                        data = CPdata;
+                        data = BAYCdata;
                         break;
                     case 'cool_cats':
                         data = CCdata;
@@ -251,27 +259,27 @@
                     case 'bored_ape_yacht_club':
                         data = BAYCLoopData;
                         break;
-                    // case 'bored_ape_kennel_club':
-                    //     data = BAKCdata;
-                    //     break;
-                    // case 'doodles':
-                    //     data = Ddata;
-                    //     break;
-                    // case 'cryptoadz':
-                    //     data = CTdata;
-                    //     break;
-                    // case 'pudgy_penguins':
-                    //     data = PPdata;
-                    //     break;
-                    // case 'crypto_punks':
-                    //     data = CPdata;
-                    //     break;
-                    // case 'cool_cats':
-                    //     data = CCdata;
-                    //     break;
-                    // case 'cloneX':
-                    //     data = CXdata;
-                    //     break;
+                    case 'bored_ape_kennel_club':
+                        data = BAKCLoopData;
+                        break;
+                    case 'doodles':
+                        data = DLoopData;
+                        break;
+                    case 'cryptoadz':
+                        data = CTLoopData;
+                        break;
+                    case 'pudgy_penguins':
+                        data = PPLoopData;
+                        break;
+                    case 'crypto_punks':
+                        data = BAYCLoopData;
+                        break;
+                    case 'cool_cats':
+                        data = CCLoopData;
+                        break;
+                    case 'cloneX':
+                        data = CXLoopData;
+                        break;
                     default:
                         data = BAYCLoopData;
                 }
