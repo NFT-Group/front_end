@@ -1,8 +1,8 @@
 <template>
   <br><br>
-  <div>
-    <img src="../assets/images/NFTPolice.png">
-  </div>
+  <center><div id="logo">
+    <img src="../assets/images/Home.png"/>
+  </div></center>
   <br><br>
   <div>
     <MultiLine/>
@@ -16,7 +16,6 @@
     <chart/>
   </div>
   <br><br>
-  <hr class="solid">
   <p class="input">Contact us</p>
   <br><br>
   <p> Enter your email and a message here. Our team will get back to you ASAP.</p>
@@ -112,5 +111,16 @@ import MultiLine2 from '../components/MultiLine2.vue'
   }
   .submit{
     text-align: center;
+  }
+  #logo {
+    height: 120px;
+    width: 190px; 
+    text-align: center;
+    display: flex;
+  }
+  #logo > img{
+    text-align: center;
+    max-width: 100%;
+    max-height: 100%;
   }
 </style>

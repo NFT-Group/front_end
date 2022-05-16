@@ -1,8 +1,8 @@
 <template>
   <br><br>
-  <div>
+  <center><div id="logo">
     <img src="../assets/images/WhaleWatch.png">
-  </div>
+  </div></center>
     <br>
     <div>
       <nodeChart/>
@@ -28,5 +28,16 @@ export default {
   }
   p.todo{
   font-style: italic;
+  }
+  #logo {
+    height: 120px;
+    width: 190px; 
+    text-align: center;
+    display: flex;
+  }
+  #logo > img{
+    text-align: center;
+    max-width: 100%;
+    max-height: 100%;
   }
 </style>

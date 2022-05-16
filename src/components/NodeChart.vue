@@ -2,7 +2,6 @@
     <form @submit="onSubmit">
       <label>Choose a Collection:</label>
         <select value="collection" id="collection" name="collection">
-            <option value="crypto_punks" id="punk" name="collection">CryptoPunks</option>
             <option value="bored_ape_yacht_club" id="boredape" name="collection" selected="selected">Bored Ape Yacht Club</option>
             <option value="bored_ape_kennel_club" id="boredapekennel" name="collection">Bored Ape Kennel Club</option>
             <option value="doodles" id="doodle" name="collection">Doodles</option>
@@ -20,12 +19,11 @@
         <svg id="nodeChart" width="1350" height="1000"></svg>
     </div>
     <br><br>
-    <hr class="solid">
     <h2>Suspicious trades in this collection:</h2>
     <br>
     <p> Transactions have been filtered to show only whales that <br>
     have exchanged the same tokenID on multiple occasions. <br>
-    These transactions are taken to be an indication of potential wash trading.</p>
+    These transactions are an indication of potential wash trading.</p>
     <div id="charts">
         <svg id="loopsChart" width="1350" height="1000"></svg>
     </div>
@@ -40,13 +38,11 @@
     // Import Node graph data 
     import BAYCdata from '../../public/node_graph_data/bored_ape_yacht_club.json'
     import BAKCdata from '../../public/node_graph_data/bored_ape_kennel_club.json'
-    import CPdata from '../../public/node_graph_data/crypto_punks.json'
     import Ddata from  '../../public/node_graph_data/doodles.json'
     import CTdata from '../../public/node_graph_data/cryptoadz.json'
     import PPdata from '../../public/node_graph_data/pudgy_penguins.json'
-    // Clonex & Cool Cats not yet working... 
-    import CCdata from '../../public/node_graph_data/bored_ape_yacht_club.json'
-    import CXdata from '../../public/node_graph_data/bored_ape_yacht_club.json'
+    import CCdata from '../../public/node_graph_data/coolcat.json'
+    import CXdata from '../../public/node_graph_data/clonex.json'
 
     // Import Loop graph data 
     import BAYCLoopData from '../../public/loop_graph_data/bored_ape_yacht_club_loops.json'

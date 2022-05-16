@@ -82,15 +82,6 @@ export default {
 				.ticks(5)
 				.tickFormat(d => d);
 
-				// svg.append('text')
-				// 	.attr('text-anchor', 'middle')
-				// 	.attr('x', graphWidth/2 + margin.left)
-				// 	.attr('y', graphHeight + margin.top + margin.bottom + (margin.bottom/4))
-				// 	.text('NFT Collection')
-				// 	.style('font', '18px Avenir')
-				// 	.attr('fill', '#2c3e50')
-				// 	.style('font-weight', 400);
-
 				if(request_json.data_type == 'volume') {
 					svg.append('text')
 					.attr('text-anchor', 'middle')
@@ -108,7 +99,7 @@ export default {
 					.attr('x', -(margin.top) + -(graphHeight/2))
 					.text('Cumulative value of sales')
 					.style('font', '18px Avenir')
-					.attr('fill', '#2c3e50')
+					.attr('fill', '#666e77')
 					.attr('transform', 'rotate(-90)')
 					.style('font-weight', 400);
 				}
@@ -119,7 +110,7 @@ export default {
 					.attr('x', margin.left + graphWidth/2)
 					.text('Cumulative overview')
 					.style('font', '25px Avenir')
-					.attr('fill', '#2c3e50')
+					.attr('fill', '#666e77')
 							.style('font-weight', 600);
 
 					

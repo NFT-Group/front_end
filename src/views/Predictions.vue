@@ -1,6 +1,8 @@
 <template>
-  <h1>Price Predictor</h1>
   <br><br>
+  <center><div id="logo">
+    <img src="../assets/images/Predictor.png"/>
+  </div></center>
   <h2>Predict the value of your next NFT </h2>
   <h2>& check suspected wash trading...</h2>
   <br>
@@ -8,7 +10,6 @@
   <form @submit="onSubmit">
     <label>Enter a Collection:</label>
       <select value="collection" id="collection" name="collection">
-          <option value="punk" id="punk" name="collection">CryptoPunks</option>
           <option value="boredape" id="boredape" name="collection">Bored Ape Yacht Club</option>
           <option value="boredapekennel" id="boredapekennel" name="collection">Bored Ape Kennel Club</option>
           <option value="doodle" id="doodle" name="collection">Doodles</option>
@@ -26,8 +27,6 @@
   <br><br>
   <h3 id="nft_price_display"></h3>
   <h4 id="nft_traits_display"></h4>
-  <br><br>
-  <hr class="solid">
   <br><br><br><br>
 </template>
 
@@ -173,5 +172,16 @@ export default {
     border: none; 
     border-bottom: 1px solid #ddd;
     color: #555;
+  }
+  #logo {
+    height: 120px;
+    width: 190px; 
+    text-align: center;
+    display: flex;
+  }
+  #logo > img{
+    text-align: center;
+    max-width: 100%;
+    max-height: 100%;
   }
 </style>

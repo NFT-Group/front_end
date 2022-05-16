@@ -582,7 +582,7 @@
                                 .attr('x', margin.left + graphWidth/2)
                                 .text('Daily average sale prices')
                                 .style('font', '25px Avenir')
-                                .attr('fill', '#2c3e50')
+                                .attr('fill', '#666e77')
                                 .style('font-weight', 600);
 
                             // Format ticks for both axes
