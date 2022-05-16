@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
-import Predictions from '../views/Predictions.vue'
 import WhaleWatch from '../views/WhaleWatch.vue'
+import Predictions from '../views/Predictions.vue'
 
 const routes = [
   {

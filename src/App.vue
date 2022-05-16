@@ -1,8 +1,8 @@
 <template>
   <div id="nav">
     <router-link to="/">Home</router-link> |
-    <router-link to="/predictions">Predictions</router-link> |
-    <router-link to="/whalewatch">Whale Watch</router-link>
+    <router-link to="/whalewatch">Whale Watch</router-link> |
+    <router-link to="/predictions">Predictions</router-link> 
   <router-view/>
   <index />
   </div>
@@ -16,26 +16,20 @@
   text-align: center;
   color:#5a49e3;
 }
-
-
 p{
   color: #666e77;
 }
-
 #nav {
   padding: 30px;
 }
-
 #nav a {
   font-weight: bold;
   color: #2c3e50;
   text-decoration: none;
 }
-
 #nav a.router-link-exact-active {
   color: #5a49e3;
 }
-
 button{
   margin: 0 10px; 
   padding: 10px; 

@@ -16,19 +16,6 @@
     <chart/>
   </div>
   <br><br>
-  <p class="input">Contact us</p>
-  <br><br>
-  <p> Enter your email and a message here. Our team will get back to you ASAP.</p>
-  <form @submit.prevent="handleSubmit">
-      <label>Enter your email:</label>
-      <input type="email" required v-model="emailInput">
-      <label>Message:</label>
-      <input type="text" required v-model="messageInput">
-    <div class="submit">
-      <button>Submit</button>
-    </div>
- </form>
- 
 </template>
 
 <script>

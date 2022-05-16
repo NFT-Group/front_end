@@ -37,7 +37,7 @@ export default {
   }
   #logo > img{
     text-align: center;
-    max-width: 100%;
-    max-height: 100%;
+    max-width: 70%;
+    max-height: 80%;
   }
 </style>
