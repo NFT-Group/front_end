@@ -10,6 +10,7 @@
   <form @submit="onSubmit">
     <label>Enter a Collection:</label>
       <select value="collection" id="collection" name="collection">
+          <option value="punk" id="punk" name="collection">CryptoPunks</option>
           <option value="boredape" id="boredape" name="collection">Bored Ape Yacht Club</option>
           <option value="boredapekennel" id="boredapekennel" name="collection">Bored Ape Kennel Club</option>
           <option value="doodle" id="doodle" name="collection">Doodles</option>
@@ -106,7 +107,9 @@ export default {
           document.getElementById('nft_traits_display').innerHTML = processedDescription
 
           var link = res.data['ipfs']
-          if (link.substring(0, 4) == 'ipfs')
+          if(collection == "punk") {
+            link = "http://media.raritysniper.com/cryptopunks/" + tokenid.toString() + "-600.png"
+          } else if (link.substring(0, 4) == 'ipfs')
           {
             
             link = 'https://ipfs.io/ipfs/' + link.substring(7);

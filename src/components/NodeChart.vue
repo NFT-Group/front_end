@@ -2,6 +2,7 @@
     <form @submit="onSubmit">
       <label>Choose a Collection:</label>
         <select value="collection" id="collection" name="collection">
+            <option value="punk" id="punk" name="collection">CryptoPunks</option>
             <option value="bored_ape_yacht_club" id="boredape" name="collection" selected="selected">Bored Ape Yacht Club</option>
             <option value="bored_ape_kennel_club" id="boredapekennel" name="collection">Bored Ape Kennel Club</option>
             <option value="doodles" id="doodle" name="collection">Doodles</option>
@@ -36,6 +37,7 @@
     import * as d3 from 'd3';
 
     // Import Node graph data 
+    // ADD CRYPTOPUNK IMPORT 
     import BAYCdata from '../../public/node_graph_data/bored_ape_yacht_club.json'
     import BAKCdata from '../../public/node_graph_data/bored_ape_kennel_club.json'
     import Ddata from  '../../public/node_graph_data/doodles.json'
