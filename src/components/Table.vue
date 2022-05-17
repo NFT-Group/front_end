@@ -1,4 +1,7 @@
 <template>
+  <div style="text-align: left">
+    <label>SearchBy:</label><input v-model="searchTerm" />
+  </div>
   <table-lite
     :has-checkbox="true"
     :is-loading="table.isLoading"
@@ -15,7 +18,7 @@
 
 <script>
 import { text } from "body-parser";
-import { defineComponent, reactive } from "vue";
+import { defineComponent, reactive, computed, ref } from "vue";
 import TableLite from "vue3-table-lite";
 import test from '../../public/table_data/table_data.json'
 
@@ -36,6 +39,7 @@ export default defineComponent({
   },
   setup() {
     //  Table
+    const searchTerm = ref(""); 
     const table = reactive({
       isLoading: false,
       isReSearch: false,
@@ -43,14 +47,14 @@ export default defineComponent({
         {
           label: "Loop ID",
           field: "loopid",
-          width: "14%",
+          width: "10%",
           sortable: true,
           isKey: true,
         },
         {
           label: "From Address",
           field: "fromaddress",
-          width: "14%",
+          width: "10%",
           sortable: true,
           display: function (row) {
             return (
@@ -64,7 +68,7 @@ export default defineComponent({
         {
           label: "To Address",
           field: "toaddress",
-          width: "14%",
+          width: "10%",
           sortable: true,
           display: function (row) {
             return (
@@ -78,22 +82,22 @@ export default defineComponent({
         {
           label: "Token ID",
           field: "tokenid",
-          width: "14%",
+          width: "10%",
         },
         {
           label: "ETH Price",
           field: "ethprice",
-          width: "14%",
+          width: "10%",
         },
         {
           label: "Date",
           field: "date",
-          width: "14%",
+          width: "10%",
         },
         {
           label: "Transaction Hash",
           field: "transhash",
-          width: "14%",
+          width: "10%",
           display: function (row) {
             return (
               '<a href="https://etherscan.io/tx/' + row.transhash + '" data-id="'
@@ -103,9 +107,14 @@ export default defineComponent({
             );
           }
         }
-
       ],
-      rows: sampleData1(0, 1096),
+      //rows: sampleData1(0, 1096),
+      rows: computed(() => {
+        return sampleData1(0, 1096).filter(
+          (x) =>
+            x.loopid.toLowerCase().includes(searchTerm.value.toLowerCase())
+        );
+      }),
       totalRecordCount: 1096,
       sortable: {
         order: "id",
@@ -157,6 +166,7 @@ export default defineComponent({
     return {
       table,
       doSearch,
+      searchTerm,
       tableLoadingFinish
     };
   },
