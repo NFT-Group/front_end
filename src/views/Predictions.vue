@@ -3,16 +3,19 @@
   <center><div id="logo">
     <img src="../assets/images/Predictor.png"/>
   </div></center>
-<h2>Price prediction </h2>
-<p> Enter the collection and token ID of the NFT of interest. <br>
-    A predicted value will be generated, along with a list of the NFT's attributes and their rarity relative to their collection. <br>
-    The mean average percentage error is between 0.25 - 1.5% across the collections, suggesting 98.5% accuracy or greater on average.<br>
-    <br>
-    Note: Image loading will not work on Imperial Wi-Fi, since IPFS is blocked by Imperial<br> </p>
-  <br>
+  <br><br> 
+  <div class="center-justified">
+      <p> Enter the collection and token ID of the NFT of interest. <br><br> 
+      A predicted value will be generated, along with a list of the NFT's attributes and their rarity relative to their collection.
+      The mean average percentage error is between 0.25 - 1.5% across the collections, suggesting 98.5% accuracy or greater on average.<br>
+      <br>
+      Note: Image loading will not work on Imperial Wi-Fi, since IPFS is blocked by Imperial<br> </p> 
+  </div>
   <img src="" id="nft_img">
   <form @submit="onSubmit">
+  <div class="label">
     <label>Enter a Collection:</label>
+    </div>
       <select value="collection" id="collection" name="collection">
           <option value="punk" id="punk" name="collection">CryptoPunks</option>
           <option value="boredape" id="boredape" name="collection">Bored Ape Yacht Club</option>
@@ -24,7 +27,9 @@
           <option value="clonex" id="clonex" name="collection">cloneX</option>
       </select>
     <br><br>
-    <label>Enter a Token ID:</label>
+    <div class="label">
+      <label>Enter a Token ID:</label>
+    </div>
     <input type="number" required v-model="tokenID" id="tokenid" name="tokenid"> 
     <br><br>
     <input type="submit" name="submit_button">
@@ -186,5 +191,15 @@ export default {
     text-align: center;
     max-width: 100%;
     max-height: 100%;
+  }
+  .center-justified {
+  text-align: justify;
+  margin: 0 auto;
+  width: 40em;
+  }
+  .label {
+    font-size: 30px;
+    font-family: Avenir;
+    color: black;
   }
 </style>

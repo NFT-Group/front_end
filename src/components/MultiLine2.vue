@@ -410,13 +410,9 @@
                             var graph_x = x.invert(mouse_x);
                             var mouseDate = x.invert(mouse_x);
                             var i = bisectDate(data, mouseDate) - 5; // returns the index to the current data item
-                            console.log("i = " + i)
                             var d0 = data[i - 1]
-                            console.log("D0:")
-                            console.log(d0)
                             var d1 = data[i];
-                            console.log("D1: ")
-                            console.log(d1)
+
                             if (!d0 || !d1) {
                                 return; //this was trying to find the date when hovering beyond the end of the graph
                             }

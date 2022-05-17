@@ -1,16 +1,19 @@
 <template>
-  <p> The below table lists the suspicious transaction loops that have all occurred <br>
-        within a 7-day period. The chance that these loops would occur naturally is negligible,  <br>
-        thus it is strong evidence that these transactions are between either the same person <br>
-        e.g., the same person has several wallets to wash trade, or individuals are<br>
+  <br> 
+  <div class="center-justified">
+  <p> The below table lists the suspicious transaction loops that have all occurred
+        within a 7-day period. The chance that these loops would occur naturally is negligible,
+        thus it is strong evidence that these transactions are between either the same person
+        e.g., the same person has several wallets to wash trade, or individuals are
         partnering to increase volume of transactions. <br> <br> 
-        These transactions have the effect of artificially increasing liquidity within these collections. <br>
-        Strikingly cool cats, doodles, penguin and clonex exhibit over 40 - 70% of their wash trade activity in the <br>
-       first month. This indicates coordinated wash trading within the early days of a collection day being launched <br>
-        to build hype. It is notable that in loops when a collection is more mature, prices tend to be higher than <br>
+        These transactions have the effect of artificially increasing liquidity within these collections.
+        Strikingly cool cats, doodles, penguin and clonex exhibit over 40 - 70% of their wash trade activity in the
+       first month. This indicates coordinated wash trading within the early days of a collection day being launched
+        to build hype. It is notable that in loops when a collection is more mature, prices tend to be higher than
         our predicted value would expect. This is particularly the case for crypto punks. <br> <br>
-        Use the table to search a transaction you are interested in. Clicking on from and to address will take <br>
+        Use the table to search a transaction you are interested in. Clicking on from and to address will take
         you to the relevant Opensea account, and clicking the transaction hash will take you to etherscan.io record <br></p>
+  </div>
   <div class="search" style="text-align: left">
     <label>Search:</label><input v-model="searchTerm" />
   </div>
@@ -37,7 +40,7 @@ import test from '../../public/table_data/table_data.json'
 const sampleData1 = (offst, limit) => {
     let data = [];
     for (let i = offst; i < limit; i++) {
-        data.push(test[i]);
+      data.push(test[i]);
     }
     return data;
 };
@@ -196,5 +199,9 @@ export default defineComponent({
     font-family: Avenir;
     color: black;
 }
-
+.center-justified {
+  text-align: justify;
+  margin: 0 auto;
+  width: 40em;
+}
 </style>

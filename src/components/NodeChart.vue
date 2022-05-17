@@ -1,6 +1,8 @@
 <template>
     <form @submit="onSubmit">
+    <div class="label">
       <label>Choose a Collection:</label>
+      </div>
         <select value="collection" id="collection" name="collection">
             <option value="punk" id="punk" name="collection">CryptoPunks</option>
             <option value="bored_ape_yacht_club" id="boredape" name="collection" selected="selected">Bored Ape Yacht Club</option>
@@ -14,26 +16,29 @@
         <br><br>
         <input type="submit" name="submit_button">
     </form>
-    <p> Hover over links to see the seller and buyer for every transaction. <br>
-    Click on Wallet Names/ Wallet IDs to view OpenSea account.</p>
+
+    <br> <p> Hover over wallet names/ IDs to view transactions. <br>
+    Click on wallet name/ wallet ID to visit OpenSea account.</p> <br> 
     <div id="charts">
         <svg id="nodeChart" width="1350" height="1000"></svg>
     </div>
     <br><br>
     <h2>Suspicious trades in this collection:</h2>
-    <p> The whales above have been filtered to see if they are part of wash trading loops, depicted below.        <br>
-        To find these suspicious transactions, we have isolated those that are part of a loop e.g.: <br><br>
+    <div class="center-justified">
+    <p> The whales above have been filtered to see if they are part of wash trading loops, depicted below.      
+        To find these suspicious transactions, we have isolated those that are part of a loop e.g.: <br><br> 
         1) A --> B, B --> A <br>
         2) A --> B, B --> C, C --> A <br>
         3) A --> B, B --> C, C --> D, D --> A <br> <br>
-        NFTs have long been suspected to contain wash trading, and below shows it is  <br>
+        NFTs have long been suspected to contain wash trading, and below shows it is
         pervasive across NFT collections, with some collections significantly worse than others. <br> <br>
-        Wallets names / wallet ids are connected in the graph below if they are part of a loop. <br>
-        Click on the wallet names / IDs which will link you directly to their OpenSea account.</p>
+        Wallets names / wallet ids are connected in the graph below if they are part of a loop.
+        Click on the wallet names / IDs which will link you directly to their OpenSea account.</p> <br> <br> 
+    </div>
     <div id="charts">
         <svg id="loopsChart" width="1350" height="1000"></svg>
     </div>
-    <br><br> 
+    <br>
 </template>
 
 <script>
@@ -478,8 +483,14 @@
         stroke-width: 2px;
         opacity: 1;
     }
-	/* 
-    RED = SALE
-    BLUE = PURCHASE
-    */
+    .center-justified {
+        text-align: justify;
+        margin: 0 auto;
+        width: 40em;
+    }
+    .search {
+        font-size: 30px;
+        font-family: Avenir;
+        color: black;
+    }
 </style>
