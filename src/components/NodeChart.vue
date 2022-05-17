@@ -22,21 +22,20 @@
     <br><br>
     <h2>Suspicious trades in this collection:</h2>
     <br>
-    <p> Transactions have been filtered to show only whales that <br>
-    have exchanged the same tokenID on multiple occasions. <br>
+    <p> Transactions have been filtered to show only whales from the figure above <br>
+    that have exchanged the same tokenID on multiple occasions with either another whales
+    or a non-whale. <br>
     These transactions are an indication of potential wash trading.</p>
     <div id="charts">
         <svg id="loopsChart" width="1350" height="1000"></svg>
     </div>
-    
-
+    <br><br> 
 </template>
 
 <script>
-    // Import D3 
+    // Import D3 & Grid.js
     import * as d3 from 'd3';
 
-    // Import Node graph data 
     // ADD CRYPTOPUNK IMPORT x2!!!!!!!
     import BAYCdata from '../../public/node_graph_data/bored_ape_yacht_club.json'
     import BAKCdata from '../../public/node_graph_data/bored_ape_kennel_club.json'
@@ -45,6 +44,7 @@
     import PPdata from '../../public/node_graph_data/pudgy_penguins.json'
     import CCdata from '../../public/node_graph_data/coolcat.json'
     import CXdata from '../../public/node_graph_data/clonex.json'
+    import CPdata from '../../public/node_graph_data/punks.json'
 
     // Import Loop graph data 
     import BAYCLoopData from '../../public/loop_graph_data/bored_ape_yacht_club_loops.json'
@@ -54,6 +54,7 @@
     import PPLoopData from '../../public/loop_graph_data/penguin_loops.json'
     import CCLoopData from '../../public/loop_graph_data/coolcat_loops.json'
     import CXLoopData from '../../public/loop_graph_data/clonex_loops.json'
+    import CPLoopData from '../../public/loop_graph_data/punks_loops.json'
 
     export default {
         mounted: function () {
@@ -74,6 +75,7 @@
                 this.renderNodeChart(JSONname)
                 // Render loops chart
                 this.renderLoopsChart(JSONname)
+
             },
             renderNodeChart(JSONname)
             {   
@@ -95,8 +97,8 @@
                     case 'pudgy_penguins':
                         data = PPdata;
                         break;
-                    case 'crypto_punks':
-                        data = BAYCdata;
+                    case 'punk':
+                        data = CPdata;
                         break;
                     case 'cool_cats':
                         data = CCdata;
@@ -271,8 +273,8 @@
                     case 'pudgy_penguins':
                         data = PPLoopData;
                         break;
-                    case 'crypto_punks':
-                        data = BAYCLoopData;
+                    case 'punk':
+                        data = CPLoopData;
                         break;
                     case 'cool_cats':
                         data = CCLoopData;
@@ -283,7 +285,7 @@
                     default:
                         data = BAYCLoopData;
                 }
-                var diameter = 650,
+                var diameter = 1000,
                 innerCircle = 100,
                 radius = diameter / 2 - innerCircle;
 

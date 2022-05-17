@@ -3,19 +3,32 @@
   <center><div id="logo">
     <img src="../assets/images/WhaleWatch.png">
   </div></center>
-    <br>
-    <div>
-      <nodeChart/>
-    </div>
-    <br><br><br><br>
+  <br>
+  <div>
+    <nodeChart/>
+  </div>
+  <br><br>
+  <h2>Investigate individual transactions below:</h2> 
+  <br>
+  <!-- <grid :data="gridData" 
+        :columns="gridColumns"></grid> -->
+  <div>
+    <Table/>
+  </div>
+  <br><br><br><br>
 </template>
 
 <script>
 import NodeChart from '../components/NodeChart.vue'
+import Table from "../components/Table.vue";
+
+
 export default {
-  components: {
-    NodeChart
-  }
+    name: "App",
+    components: { 
+      NodeChart,
+      Table 
+    }
 }
 </script>
 

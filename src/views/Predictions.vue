@@ -68,10 +68,7 @@ export default {
               startBrackets.push(i);
             }
           }
-          console.log("Start brackets: " + startBrackets)
-          console.log("End brackets: " + endBrackets)
-          console.log("Attribute count: " + attributeCount)
-
+          
           var attributesList = []
           for(var i = 0; i < attributeCount; i++) {
             var substring = res.data['attributes'].substring(startBrackets[i], endBrackets[i] + 1)

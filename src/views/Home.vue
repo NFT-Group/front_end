@@ -28,12 +28,6 @@ import MultiLine2 from '../components/MultiLine2.vue'
                   MultiLine,
 		              MultiLine2
     },
-    data(){
-      return{
-        emailInput: '',
-        messageInput: '',
-      }
-    },
     methods:{
       handleSubmit(){
         console.log('form submitted')

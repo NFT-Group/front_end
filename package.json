@@ -18,12 +18,12 @@
     "firebase-admin": "^10.0.2",
     "grid.js": "^1.0.0",
     "gridjs": "^5.0.2",
-    "gridjs-vue": "^5.0.4",
     "http2": "^3.3.7",
     "pandas": "^0.0.3",
     "scikit-learn": "^0.1.0",
-    "vue": "^3.0.0",
+    "vue": "^3.2.33",
     "vue-router": "^4.0.0-0",
+    "vue3-table-lite": "^1.2.0",
     "web3": "^1.7.1"
   },
   "devDependencies": {
