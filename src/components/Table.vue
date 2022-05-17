@@ -30,6 +30,7 @@ const sampleData1 = (offst, limit) => {
 };
 
 export default defineComponent({
+  name: 'App',
   components: {
     TableLite,
   },
@@ -51,21 +52,28 @@ export default defineComponent({
           field: "fromaddress",
           width: "14%",
           sortable: true,
-        //   display: function (row) {
-        //     return (
-        //       '<a href="#" data-id="' +
-        //       row.user_id +
-        //       '" class="name-btn">' +
-        //       row.name +
-        //       "</button>"
-        //     );
-        // },
+          display: function (row) {
+            return (
+              '<a href="https://etherscan.io/address/' + row.fromaddress + '" data-id="'
+                + '" class="name-btn">' +
+              row.fromaddress.substring(0, 10) + '...' +
+              "</button>"
+            );
+        },
         },
         {
           label: "To Address",
           field: "toaddress",
           width: "14%",
           sortable: true,
+          display: function (row) {
+            return (
+              '<a href="https://etherscan.io/address/' + row.toaddress + '" data-id="'
+                + '" class="name-btn">' +
+              row.toaddress.substring(0, 10) + '...' +
+              "</button>"
+            );
+          }
         },
         {
           label: "Token ID",
@@ -86,11 +94,19 @@ export default defineComponent({
           label: "Transaction Hash",
           field: "transhash",
           width: "14%",
+          display: function (row) {
+            return (
+              '<a href="https://etherscan.io/tx/' + row.transhash + '" data-id="'
+                + '" class="name-btn">' +
+              row.transhash.substring(0, 10) + '...' +
+              "</button>"
+            );
+          }
         }
 
       ],
       rows: sampleData1(0, 1096),
-      totalRecordCount: 20,
+      totalRecordCount: 1096,
       sortable: {
         order: "id",
         sort: "asc",
@@ -109,7 +125,11 @@ export default defineComponent({
         if (limit >= 20) {
           limit = 20;
         }
-        table.rows = sampleData1(offset, limit);
+        if (sort === "asc") {
+          table.rows = sampleData1(offset, limit);
+        } else {
+          table.rows = sampleData2(offset, limit);
+        }
         table.totalRecordCount = 20;
         table.sortable.order = order;
         table.sortable.sort = sort;
