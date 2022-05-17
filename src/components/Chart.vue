@@ -1,4 +1,5 @@
 <template>
+
     <div id="charts">
         <svg id="barChart" width="750" height="510"></svg>
     </div>
