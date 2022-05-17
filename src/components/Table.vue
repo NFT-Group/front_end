@@ -1,6 +1,18 @@
 <template>
-  <div style="text-align: left">
-    <label>SearchBy:</label><input v-model="searchTerm" />
+  <p> The below table lists the suspicious transaction loops that have all occurred <br>
+        within a 7-day period. The chance that these loops would occur naturally is negligible,  <br>
+        thus it is strong evidence that these transactions are between either the same person <br>
+        e.g., the same person has several wallets to wash trade, or individuals are<br>
+        partnering to increase volume of transactions. <br> <br> 
+        These transactions have the effect of artificially increasing liquidity within these collections. <br>
+        Strikingly cool cats, doodles, penguin and clonex exhibit over 40 - 70% of their wash trade activity in the <br>
+       first month. This indicates coordinated wash trading within the early days of a collection day being launched <br>
+        to build hype. It is notable that in loops when a collection is more mature, prices tend to be higher than <br>
+        our predicted value would expect. This is particularly the case for crypto punks. <br> <br>
+        Use the table to search a transaction you are interested in. Clicking on from and to address will take <br>
+        you to the relevant Opensea account, and clicking the transaction hash will take you to etherscan.io record <br></p>
+  <div class="search" style="text-align: left">
+    <label>Search:</label><input v-model="searchTerm" />
   </div>
   <table-lite
     :has-checkbox="true"
@@ -23,8 +35,6 @@ import TableLite from "vue3-table-lite";
 import test from '../../public/table_data/table_data.json'
 
 const sampleData1 = (offst, limit) => {
-    console.log(test[0])
-    offst = offst + 1;
     let data = [];
     for (let i = offst; i < limit; i++) {
         data.push(test[i]);
@@ -48,19 +58,18 @@ export default defineComponent({
           label: "Loop ID",
           field: "loopid",
           width: "10%",
-          sortable: true,
           isKey: true,
         },
         {
           label: "From Address",
           field: "fromaddress",
           width: "10%",
-          sortable: true,
           display: function (row) {
+              var tempLabel = row.fromaddress.replaceAll("_", ".")
             return (
-              '<a href="https://etherscan.io/address/' + row.fromaddress + '" data-id="'
+              '<a href="https://opensea.io/' + tempLabel + '" data-id="'
                 + '" class="name-btn">' +
-              row.fromaddress.substring(0, 10) + '...' +
+              tempLabel.substring(0, 10) + '...' +
               "</button>"
             );
         },
@@ -69,12 +78,12 @@ export default defineComponent({
           label: "To Address",
           field: "toaddress",
           width: "10%",
-          sortable: true,
           display: function (row) {
+              var tempLabel = row.toaddress.replaceAll("_", ".")
             return (
-              '<a href="https://etherscan.io/address/' + row.toaddress + '" data-id="'
+              '<a href="https://opensea.io/' + tempLabel + '" data-id="'
                 + '" class="name-btn">' +
-              row.toaddress.substring(0, 10) + '...' +
+              tempLabel.substring(0, 10) + '...' +
               "</button>"
             );
           }
@@ -83,16 +92,19 @@ export default defineComponent({
           label: "Token ID",
           field: "tokenid",
           width: "10%",
+          sortable: true,
         },
         {
           label: "ETH Price",
           field: "ethprice",
           width: "10%",
+          sortable: true,
         },
         {
           label: "Date",
           field: "date",
           width: "10%",
+          sortable: true,
         },
         {
           label: "Transaction Hash",
@@ -153,12 +165,10 @@ export default defineComponent({
       Array.prototype.forEach.call(elements, function (element) {
         if (element.classList.contains("name-btn")) {
           element.addEventListener("click", function () {
-            console.log(this.dataset.id + " name-btn click!!");
           });
         }
         if (element.classList.contains("quick-btn")) {
           element.addEventListener("click", function () {
-            console.log(this.dataset.id + " quick-btn click!!");
           });
         }
       });
@@ -175,10 +185,16 @@ export default defineComponent({
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: Avenir;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
 }
+.search {
+    font-size: 30px;
+    font-family: Avenir;
+    color: black;
+}
+
 </style>

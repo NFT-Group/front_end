@@ -14,18 +14,22 @@
         <br><br>
         <input type="submit" name="submit_button">
     </form>
-    <p> Hover for transaction destination/ origin. <br>
+    <p> Hover over links to see the seller and buyer for every transaction. <br>
     Click on Wallet Names/ Wallet IDs to view OpenSea account.</p>
     <div id="charts">
         <svg id="nodeChart" width="1350" height="1000"></svg>
     </div>
     <br><br>
     <h2>Suspicious trades in this collection:</h2>
-    <br>
-    <p> Transactions have been filtered to show only whales from the figure above <br>
-    that have exchanged the same tokenID on multiple occasions with either another whales
-    or a non-whale. <br>
-    These transactions are an indication of potential wash trading.</p>
+    <p> The whales above have been filtered to see if they are part of wash trading loops, depicted below.        <br>
+        To find these suspicious transactions, we have isolated those that are part of a loop e.g.: <br><br>
+        1) A --> B, B --> A <br>
+        2) A --> B, B --> C, C --> A <br>
+        3) A --> B, B --> C, C --> D, D --> A <br> <br>
+        NFTs have long been suspected to contain wash trading, and below shows it is  <br>
+        pervasive across NFT collections, with some collections significantly worse than others. <br> <br>
+        Wallets names / wallet ids are connected in the graph below if they are part of a loop. <br>
+        Click on the wallet names / IDs which will link you directly to their OpenSea account.</p>
     <div id="charts">
         <svg id="loopsChart" width="1350" height="1000"></svg>
     </div>
@@ -231,7 +235,6 @@
                         .raise();
                     node.classed("node--source", n => n.source)
                         .classed("node--target", n => n.target)
-                    console.log(d3.selectAll(".link--target"));
                 }
 
                 function mouseouted(d) {
@@ -362,11 +365,6 @@
                     .each(d => { d.source = d[0]; d.target = d[d.length - 1]; })
                     .attr("d", line);
 
-                // Add legend 
-                // svg.append("circle").attr("cx", 550).attr("cy", 60).attr("r", 6).style("fill", "black").attr('fill-opacity', 0.9)
-                // svg.append("text").attr("x", 544). attr("y", 40).text("On hover:").style("font-size", "12px").attr("alignment-baseline","middle").attr("text-anchor", "start").attr("font-weight", 800)
-                // svg.append("text").attr("x", 570).attr("y", 60).text("Suspicious transaction").style("font-size", "12px").attr("alignment-baseline","middle")
-
                 function addParentNode(data) {
                     var map = {};
                     data.forEach(node => { map[node.name] = node; });
@@ -411,7 +409,6 @@
                         .raise();
                     node.classed("node--source--loops", n => n.source)
                         .classed("node--target--loops", n => n.target)
-                    console.log(d3.selectAll(".link--target"));
                 }
 
                 function mouseouted(d) {

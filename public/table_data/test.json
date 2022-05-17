@@ -1,5 +1,0 @@
-[
-{"loopid":1,"fromaddress":1,"toaddress":2,"tokenid":3,"ethprice":4,"date":3001,"transhash":12345},
-{"loopid":2,"fromaddress":1,"toaddress":1,"tokenid":5,"ethprice":4,"date":3001,"transhash":12345},
-{"loopid":3,"fromaddress":1,"toaddress":1,"tokenid":5,"ethprice":4,"date":3001,"transhash":12345}
-]

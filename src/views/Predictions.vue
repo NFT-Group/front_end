@@ -3,8 +3,12 @@
   <center><div id="logo">
     <img src="../assets/images/Predictor.png"/>
   </div></center>
-  <h2>Predict the value of your next NFT </h2>
-  <h2>& check suspected wash trading...</h2>
+<h2>Price prediction </h2>
+<p> Enter the collection and token ID of the NFT of interest. <br>
+    A predicted value will be generated, along with a list of the NFT's attributes and their rarity relative to their collection. <br>
+    The mean average percentage error is between 0.25 - 1.5% across the collections, suggesting 98.5% accuracy or greater on average.<br>
+    <br>
+    Note: Image loading will not work on Imperial Wi-Fi, since IPFS is blocked by Imperial<br> </p>
   <br>
   <img src="" id="nft_img">
   <form @submit="onSubmit">
@@ -46,15 +50,10 @@ export default {
       var collection = evt.srcElement.collection.value
       var tokenid = evt.srcElement.tokenid.value
       var query_object = {"collection": collection, "tokenid": tokenid}
-      //console.log(evt.srcElement.collection.value)
-      //var collection_value = evt.srcElement.collection.value
       evt.preventDefault();
       const path = 'https://nft-back-end-py.herokuapp.com/';
-      console.log(JSON.stringify(query_object))
       axios.post(path, JSON.stringify(query_object), { headers: { 'content-type': 'text/json' }})
         .then((res) => {
-          console.log(res)
-          console.log(res.data)
           var ethPrice = (Math.round(res.data['price'] * 100)/ 100).toFixed(2)
           var gbpPrice = (Math.round((res.data['gbpprice'] * ethPrice)* 100)/ 100).toFixed(2)
           document.getElementById('nft_price_display').innerHTML = 'Predicted value: ' + ethPrice + ' ETH (£' + this.numberWithCommas(gbpPrice) + ')';

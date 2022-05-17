@@ -27,18 +27,8 @@ import MultiLine2 from '../components/MultiLine2.vue'
     components: { Chart,
                   MultiLine,
 		              MultiLine2
-    },
-    methods:{
-      handleSubmit(){
-        console.log('form submitted')
-        //at this point, submit result to database
-      },
-      refreshing(){
-        console.log('refreshing the bar chart')
-      }
     }
   }
-  
 </script>
 
 <style>

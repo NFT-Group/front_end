@@ -9,9 +9,6 @@
   </div>
   <br><br>
   <h2>Investigate individual transactions below:</h2> 
-  <br>
-  <!-- <grid :data="gridData" 
-        :columns="gridColumns"></grid> -->
   <div>
     <Table/>
   </div>
