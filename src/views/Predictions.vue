@@ -39,6 +39,9 @@ export default {
     
   },
   methods: {
+    numberWithCommas(x) {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    },
     onSubmit(evt) {
       var collection = evt.srcElement.collection.value
       var tokenid = evt.srcElement.tokenid.value
@@ -53,7 +56,8 @@ export default {
           console.log(res)
           console.log(res.data)
           var ethPrice = (Math.round(res.data['price'] * 100)/ 100).toFixed(2)
-          document.getElementById('nft_price_display').innerHTML = 'Predicted value: ' + ethPrice + ' ETH';
+          var gbpPrice = (Math.round((res.data['gbpprice'] * ethPrice)* 100)/ 100).toFixed(2)
+          document.getElementById('nft_price_display').innerHTML = 'Predicted value: ' + ethPrice + ' ETH (£' + this.numberWithCommas(gbpPrice) + ')';
           // document.getElementById('nft_traits_display').innerHTML = res.data['attributes'];
 
           var attributeCount = 0;
