@@ -17,12 +17,11 @@ firebase_key = {
   "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-ofrcq%40allcollections-6e66c.iam.gserviceaccount.com"
 }
 
-transactions_app = firebase_admin.initialize_app(cred, { 'databaseURL': "https://allcollections-6e66c-default-rtdb.europe-west1.firebasedatabase.app/" } )
-
-ref = db.reference('/')
-
 def test_firebase():
-  first_firebase_object = ref.order_by_child('timestamp').limit_to_last(1).get()
+  cred = credentials.Certificate(firebase_key)
+  transactions_app = firebase_admin.initialize_app(cred, { 'databaseURL': "https://allcollections-6e66c-default-rtdb.europe-west1.firebasedatabase.app/" } )
+  ref = db.reference('/')
+  first_firebase_object = ref.order_by_child('timestamp').limit_to_first(1).get()
   print(first_firebase_object)
   assert(first_firebase_object != None)
   
