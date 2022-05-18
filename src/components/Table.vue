@@ -95,19 +95,16 @@ export default defineComponent({
           label: "Token ID",
           field: "tokenid",
           width: "10%",
-          sortable: true,
         },
         {
           label: "ETH Price",
           field: "ethprice",
           width: "10%",
-          sortable: true,
         },
         {
           label: "Date",
           field: "date",
           width: "10%",
-          sortable: true,
         },
         {
           label: "Transaction Hash",
@@ -127,7 +124,13 @@ export default defineComponent({
       rows: computed(() => {
         return sampleData1(0, 1096).filter(
           (x) =>
-            x.loopid.toLowerCase().includes(searchTerm.value.toLowerCase())
+            x.loopid.toLowerCase().includes(searchTerm.value.toLowerCase()) || 
+            x.fromaddress.toLowerCase().includes(searchTerm.value.toLowerCase()) || 
+            x.toaddress.toLowerCase().includes(searchTerm.value.toLowerCase()) ||
+            x.tokenid.toString().includes(searchTerm.value) ||
+            x.ethprice.toString().includes(searchTerm.value) ||
+            x.date.toLowerCase().includes(searchTerm.value.toLowerCase()) ||
+            x.transhash.toLowerCase().includes(searchTerm.value.toLowerCase())
         );
       }),
       totalRecordCount: 1096,
