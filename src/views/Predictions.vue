@@ -6,10 +6,10 @@
   <br><br> 
   <div class="center-justified">
       <p> Enter the collection and token ID of the NFT of interest. <br><br> 
-      A predicted value will be generated, along with a list of the NFT's attributes and their rarity relative to their collection.
-      The mean average percentage error is between 0.25 - 1.5% across the collections, suggesting 98.5% accuracy or greater on average.<br>
+      A predicted value will be generated, along with a list of the NFT's attributes and their rarities relative to the collection.
       <br>
-      Note: Image loading will not work on Imperial Wi-Fi, since IPFS is blocked by Imperial<br> </p> 
+      <br>
+      Note: some images will not load on Imperial's Wi-Fi, since it blocks IPFS<br> </p> 
   </div>
   <img src="" id="nft_img">
   <form @submit="onSubmit">
