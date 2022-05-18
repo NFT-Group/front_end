@@ -30,7 +30,7 @@ def test_back_end_sanity_reasonable_price_prediction():
   headers = {"Content-Type": "text/json", "Sec-Fetch-Mode": "cors", "Sec-Fetch-Site": "cross-site"}
   r = requests.post('https://nft-back-end-py.herokuapp.com/', headers=headers, json=request_json)
   returned_data = jsonify(r.text)
-  assert(float(returned_data['gbpprice']) > 0.1 && float(returned_data['gbpprice']) < 1000000000)
+  assert(float(returned_data['gbpprice']) > 0.1 and float(returned_data['gbpprice']) < 1000000000)
  
 def test_back_end_correct_feature_retrieval():
   request_json = {"collection":"cryptoad","tokenid":"1234"}
