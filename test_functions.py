@@ -23,7 +23,7 @@ def test_firebase():
   ref = db.reference('/')
   first_firebase_object = ref.order_by_child('timestamp').limit_to_first(1).get()
   print(first_firebase_object)
-  assert(first_firebase_object['0x03c36b107006386b2db0e77667cc3fd4321d036684383dff83e1be1b4e9ff455'']['blocknumber'] == 3919887)
+  assert(first_firebase_object['0x03c36b107006386b2db0e77667cc3fd4321d036684383dff83e1be1b4e9ff455']['blocknumber'] == 3919887)
   
 def test_back_end():
   request_json = {"collection":"boredapekennel","tokenid":"55"}
