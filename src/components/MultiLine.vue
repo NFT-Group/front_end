@@ -571,7 +571,7 @@
                                 .attr('text-anchor', 'middle')
                                 .attr('y', 0)
                                 .attr('x', -(margin.top) + -(graphHeight/2))
-                                .text('Daily avg. transaction values,  (log₂ scale)')
+                                .text('Daily avg. transaction values  (log₂ scale)')
                                 .style('font', '18px Avenir')
                                 .attr('fill', '#2c3e50')
                                 .attr('transform', 'rotate(-90)')
