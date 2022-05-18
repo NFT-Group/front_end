@@ -1,5 +1,6 @@
 import pytest
 import requests
+import jsonify
 
 import firebase_admin
 from firebase_admin import credentials, firestore, db
@@ -22,13 +23,19 @@ def test_correct_retrieval_of_oldest_firebase_entry():
   transactions_app = firebase_admin.initialize_app(cred, { 'databaseURL': "https://allcollections-6e66c-default-rtdb.europe-west1.firebasedatabase.app/" } )
   ref = db.reference('/')
   first_firebase_object = ref.order_by_child('timestamp').limit_to_first(1).get()
-  print(first_firebase_object)
   assert(first_firebase_object['0x03c36b107006386b2db0e77667cc3fd4321d036684383dff83e1be1b4e9ff455']['blocknumber'] == 3919887)
   
-def test_back_end_prediction_for_specific_token():
+def test_back_end_sanity_reasonable_price_prediction():
   request_json = {"collection":"boredapekennel","tokenid":"55"}
   headers = {"Content-Type": "text/json", "Sec-Fetch-Mode": "cors", "Sec-Fetch-Site": "cross-site"}
   r = requests.post('https://nft-back-end-py.herokuapp.com/', headers=headers, json=request_json)
-  print(r.text)
-  assert(r.text == None)
+  returned_data = jsonify(r.text)
+  assert(float(returned_data['gbpprice']) > 0.1 && float(returned_data['gbpprice']) < 1000000000)
+ 
+def test_back_end_correct_feature_retrieval():
+  request_json = {"collection":"cryptoad","tokenid":"1234"}
+  headers = {"Content-Type": "text/json", "Sec-Fetch-Mode": "cors", "Sec-Fetch-Site": "cross-site"}
+  r = requests.post('https://nft-back-end-py.herokuapp.com/', headers=headers, json=request_json)
+  returned_data = jsonify(r.text)
+  assert(returned_data['attributes'] == 'Gummy Raspberry')
   
