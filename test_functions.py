@@ -1,6 +1,7 @@
 import pytest
 import requests
 import json
+import ast
 
 import firebase_admin
 from firebase_admin import credentials, firestore, db
@@ -32,10 +33,21 @@ def test_back_end_sanity_reasonable_price_prediction():
   returned_data = json.loads(r.text)
   assert(float(returned_data['gbpprice']) > 0.1 and float(returned_data['gbpprice']) < 1000000000)
  
-def test_back_end_correct_feature_retrieval():
+def test_back_end_correct_feature_value_retrieval():
   request_json = {"collection":"cryptoad","tokenid":"1234"}
   headers = {"Content-Type": "text/json", "Sec-Fetch-Mode": "cors", "Sec-Fetch-Site": "cross-site"}
   r = requests.post('https://nft-back-end-py.herokuapp.com/', headers=headers, json=request_json)
   returned_data = json.loads(r.text)
-  assert(returned_data['attributes'] == 'Gummy Raspberry')
+  feature_list = ast.literal_eval(returned_data)
+  body_trait = json.loads(feature_list[1])
+  assert(body_trait['value'] == 'Gummy Raspberry')
+  
+def test_back_end_correct_feature_rarity_retrieval():
+  request_json = {"collection":"doodle","tokenid":"5432"}
+  headers = {"Content-Type": "text/json", "Sec-Fetch-Mode": "cors", "Sec-Fetch-Site": "cross-site"}
+  r = requests.post('https://nft-back-end-py.herokuapp.com/', headers=headers, json=request_json)
+  returned_data = json.loads(r.text)
+  feature_list = ast.literal_eval(returned_data)
+  background_trait = json.loads(feature_list[3])
+  assert(100 - round(float(background_trait['rarity']) * 100, 2) == 93.10)
   
