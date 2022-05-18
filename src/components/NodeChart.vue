@@ -17,23 +17,23 @@
         <input type="submit" name="submit_button">
     </form>
 
-    <br> <p> Hover over wallet names/ IDs to view transactions. <br>
-    Click on wallet name/ wallet ID to visit OpenSea account.</p> <br> 
+    <br> <p> Hover over wallet names/IDs to view transactions <br>
+    Click on wallet names/IDs to visit OpenSea accounts </p> <br> 
     <div id="charts">
         <svg id="nodeChart" width="1350" height="1000"></svg>
     </div>
     <br><br>
     <h2>Suspicious trades in this collection:</h2>
     <div class="center-justified">
-    <p> The whales above have been filtered to see if they are part of wash trading loops, depicted below.      
-        To find these suspicious transactions, we have isolated those that are part of a loop e.g.: <br><br> 
+    <p> The whales identified above have been filtered to see if they are part of wash trading loops, and these loops are depicted below.      
+        To identify suspicious transactions, we have isolated those that are part of a loop, e.g.: <br><br> 
         1) A --> B, B --> A <br>
         2) A --> B, B --> C, C --> A <br>
         3) A --> B, B --> C, C --> D, D --> A <br> <br>
-        NFTs have long been suspected to contain wash trading, and below shows it is
-        pervasive across NFT collections, with some collections significantly worse than others. <br> <br>
-        Wallets names / wallet ids are connected in the graph below if they are part of a loop.
-        Click on the wallet names / IDs which will link you directly to their OpenSea account.</p> <br> <br> 
+        The NFT market has long been suspected to contain wash trading, and the charts below show that it is
+        pervasive across NFT collections, some being significantly worse than others. <br> <br>
+        Wallets names/IDs are connected in the graph below if they appear together in a loop.
+        Clicking on wallet names/IDs will link you directly to OpenSea accounts.</p> <br> <br> 
     </div>
     <div id="charts">
         <svg id="loopsChart" width="1350" height="1000"></svg>
@@ -45,7 +45,6 @@
     // Import D3 & Grid.js
     import * as d3 from 'd3';
 
-    // ADD CRYPTOPUNK IMPORT x2!!!!!!!
     import BAYCdata from '../../public/node_graph_data/bored_ape_yacht_club.json'
     import BAKCdata from '../../public/node_graph_data/bored_ape_kennel_club.json'
     import Ddata from  '../../public/node_graph_data/doodles.json'
