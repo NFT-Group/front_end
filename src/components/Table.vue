@@ -1,18 +1,18 @@
 <template>
   <br> 
   <div class="center-justified">
-  <p> The below table lists the suspicious transaction loops that have all occurred
+  <p> The table below lists transaction loops where all transactions involved have occurred
         within a 7-day period. The chance that these loops would occur naturally is negligible,
-        thus it is strong evidence that these transactions are between either the same person
-        e.g., the same person has several wallets to wash trade, or individuals are
-        partnering to increase volume of transactions. <br> <br> 
-        These transactions have the effect of artificially increasing liquidity within these collections.
-        Strikingly cool cats, doodles, penguin and clonex exhibit over 40 - 70% of their wash trade activity in the
-       first month. This indicates coordinated wash trading within the early days of a collection day being launched
-        to build hype. It is notable that in loops when a collection is more mature, prices tend to be higher than
-        our predicted value would expect. This is particularly the case for crypto punks. <br> <br>
-        Use the table to search a transaction you are interested in. Clicking on from and to address will take
-        you to the relevant Opensea account, and clicking the transaction hash will take you to etherscan.io record <br></p>
+        so this is strong evidence that these transactions are between either the same person,
+        i.e., the same person has several wallets to use for wash trading, or individuals are
+        partnering to increase transaction volumes. <br> <br> 
+        These transactions have the effect of artificially increasing transaction volumes within these collections.
+        Strikingly, Cool Cats, Doodles, Pudgy Penguins, and cloneX exhibit 40 - 70% of their wash trading activity in the
+        first month. This indicates coordinated wash trading within the early days of a collection being launched
+        to build hype. It is notable that in loops that occur when a collection is more mature, prices tend to be higher than
+        our predictions would expect. This is particularly the case for CryptoPunks. <br> <br>
+        Use the table to search for transactions you are interested in. Clicking on from- and to-addresses will take
+        you to the relevant OpenSea account, and clicking the transaction hash will take you to the Etherscan record. <br></p>
   </div>
   <div class="search" style="text-align: left">
     <label>Search:</label><input v-model="searchTerm" />
