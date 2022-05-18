@@ -23,7 +23,7 @@ def test_firebase():
   ref = db.reference('/')
   first_firebase_object = ref.order_by_child('timestamp').limit_to_first(1).get()
   print(first_firebase_object)
-  assert(first_firebase_object != None)
+  assert(first_firebase_object == None)
   
 def test_back_end():
   request_json = {"collection":"boredapekennel","tokenid":"55"}
