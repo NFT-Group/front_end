@@ -39,7 +39,7 @@ def test_back_end_correct_feature_value_retrieval():
   r = requests.post('https://nft-back-end-py.herokuapp.com/', headers=headers, json=request_json)
   returned_data = json.loads(r.text)
   feature_list = ast.literal_eval(returned_data['attributes'])
-  body_trait = json.loads(feature_list[1])
+  body_trait = feature_list[1]
   assert(body_trait['value'] == 'Gummy Raspberry')
   
 def test_back_end_correct_feature_rarity_retrieval():
@@ -48,6 +48,6 @@ def test_back_end_correct_feature_rarity_retrieval():
   r = requests.post('https://nft-back-end-py.herokuapp.com/', headers=headers, json=request_json)
   returned_data = json.loads(r.text)
   feature_list = ast.literal_eval(returned_data['attributes'])
-  background_trait = json.loads(feature_list[3])
+  background_trait = feature_list[3]
   assert(100 - round(float(background_trait['rarity']) * 100, 2) == 93.10)
   
