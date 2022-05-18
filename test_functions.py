@@ -53,12 +53,12 @@ def test_back_end_correct_feature_rarity_retrieval():
   assert(100 - round(float(background_trait['rarity']) * 100, 2) == 93.10)
   
 def test_check_node_graph_data_exists():
-  assert(exists('/public/node_graph_data/bored_ape_kennel_club.json'))
+  assert(exists('../public/node_graph_data/bored_ape_kennel_club.json'))
   
 def test_check_loop_graph_data_exists():
-  assert(exists('/public/loop_graph_data/cryptoad_loops.json'))
+  assert(exists('../public/loop_graph_data/cryptoad_loops.json'))
   
 def test_check_table_data_exists():
-  assert(exists('/public/table_data/table_data.json'))
+  assert(exists('../public/table_data/table_data.json'))
   
   
