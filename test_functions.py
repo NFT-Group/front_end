@@ -17,7 +17,7 @@ firebase_key = {
   "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-ofrcq%40allcollections-6e66c.iam.gserviceaccount.com"
 }
 
-def test_firebase():
+def test_correct_retrieval_of_oldest_firebase_entry():
   cred = credentials.Certificate(firebase_key)
   transactions_app = firebase_admin.initialize_app(cred, { 'databaseURL': "https://allcollections-6e66c-default-rtdb.europe-west1.firebasedatabase.app/" } )
   ref = db.reference('/')
@@ -25,9 +25,10 @@ def test_firebase():
   print(first_firebase_object)
   assert(first_firebase_object['0x03c36b107006386b2db0e77667cc3fd4321d036684383dff83e1be1b4e9ff455']['blocknumber'] == 3919887)
   
-def test_back_end():
+def test_back_end_prediction_for_specific_token():
   request_json = {"collection":"boredapekennel","tokenid":"55"}
-  r = requests.post('https://nft-back-end-py.herokuapp.com/', data = request_json)
+  headers = {"Content-Type": "text/json", "Sec-Fetch-Mode": "cors", "Sec-Fetch-Site": "cross-site"}
+  r = requests.post('https://nft-back-end-py.herokuapp.com/', headers=headers, json=request_json)
   print(r.text)
   assert(r.text == None)
   
