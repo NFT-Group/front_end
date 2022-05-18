@@ -88,7 +88,7 @@ export default {
 					.attr('text-anchor', 'middle')
 					.attr('y', margin.left/3)
 					.attr('x', -(margin.top) + -(graphHeight/2))
-					.text('Sale volume')
+					.text('Cumulative volume/value')
 					.style('font', '18px Avenir')
 					.attr('fill', '#2c3e50')
 					.attr('transform', 'rotate(-90)')
