@@ -11,7 +11,7 @@
       <br>
       Note: some images will not load on Imperial's Wi-Fi, since it blocks IPFS<br> </p> 
   </div>
-  <img src="" id="nft_img">
+    <img src="" id="nft_img">
   <form @submit="onSubmit">
   <div class="label">
     <label>Enter a Collection:</label>
@@ -59,6 +59,7 @@ export default {
       const path = 'https://nft-back-end-py.herokuapp.com/';
       axios.post(path, JSON.stringify(query_object), { headers: { 'content-type': 'text/json' }})
         .then((res) => {
+          console.log(res)
           var ethPrice = (Math.round(res.data['price'] * 100)/ 100).toFixed(2)
           var gbpPrice = (Math.round((res.data['gbpprice'] * ethPrice)* 100)/ 100).toFixed(2)
           document.getElementById('nft_price_display').innerHTML = 'Predicted value: ' + ethPrice + ' ETH (£' + this.numberWithCommas(gbpPrice) + ')';
@@ -112,8 +113,13 @@ export default {
           document.getElementById('nft_traits_display').innerHTML = processedDescription
 
           var link = res.data['ipfs']
+          var token_id_string = tokenid.toString();
+          while (token_id_string.length < 3)
+          {
+            token_id_string = "0" + token_id_string;
+          }
           if(collection == "punk") {
-            link = "http://media.raritysniper.com/cryptopunks/" + tokenid.toString() + "-600.png"
+            link = "https://unpkg.com/cryptopunk-icons@1.1.0/app/assets/punk" + token_id_string + ".png"
           } else if (link.substring(0, 4) == 'ipfs')
           {
             

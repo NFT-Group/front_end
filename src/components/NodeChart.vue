@@ -10,7 +10,7 @@
             <option value="doodles" id="doodle" name="collection">Doodles</option>
             <option value="cryptoadz" id="cryptoad" name="collection">CrypToadz</option>
             <option value="pudgy_penguins" id="penguin" name="collection">Pudgy Penguins</option>
-            <option value="cool_cat" id="coolcat" name="collection">Cool Cats</option>
+            <option value="cool_cats" id="cool_cats" name="collection">Cool Cats</option>
             <option value="cloneX" id="clonex" name="collection">cloneX</option>
         </select>
         <br><br>
